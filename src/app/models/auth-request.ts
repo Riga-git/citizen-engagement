@@ -1,4 +1,4 @@
-export class AuthRequest.Ts {
+export class AuthRequest {
     name : string;
     password : string;
 }

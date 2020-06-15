@@ -1,4 +1,6 @@
+import { User } from "./user";
+
 export class AuthResponse {
-    name : string;
-    password : string;
+  token: string;
+  user: User;
 }

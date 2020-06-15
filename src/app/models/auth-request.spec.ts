@@ -1,6 +1,6 @@
-import { AuthRequest.Ts } from './auth-request';
+import { AuthRequest } from './auth-request';
 
-describe('AuthRequest.Ts', () => {
+describe('AuthRequest', () => {
   it('should create an instance', () => {
     expect(new AuthRequest()).toBeTruthy();
   });

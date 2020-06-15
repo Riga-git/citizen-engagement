@@ -2,12 +2,15 @@ import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from "rxjs";
 import { AuthResponse } from "../models/auth-response";
 import { HttpClient } from "@angular/common/http";
-import { map } from "rxjs/operators";
+import { map, tap } from "rxjs/operators";
 import { User } from "../models/user";
 import { AuthRequest } from "../models/auth-request";
 
 // TODO: Insert here your personnal api URL
 const apiUrl = "https://masrad-2020-ce-luca.herokuapp.com/api";
+
+// Add a constant for the storage key
+const STORAGE_KEY = "auth";
 
 @Injectable({
   providedIn: "root",
@@ -21,10 +24,14 @@ export class AuthService {
   private authenticated$: ReplaySubject<AuthResponse>;
 
   constructor(private http: HttpClient) {
-    // Create the ReplaySubject and configure it so that it emits the latest emitted value on each subscription
+    // Get the credentials from the localStorage when the AuthService is created
+    // It will either contains an AuthResponse object of null if it does not exist
+    const savedAuth = JSON.parse(
+      localStorage.getItem(STORAGE_KEY)
+    ) as AuthResponse;
     this.authenticated$ = new ReplaySubject(1);
-    // Emit a null value as the initial value
-    this.authenticated$.next(null);
+    // Emit the savedAuth as the initial value for the ReplaySubject
+    this.authenticated$.next(savedAuth);
   }
 
   /**
@@ -57,6 +64,7 @@ export class AuthService {
    */
   login(authRequest: AuthRequest): Observable<User> {
     return this.http.post<AuthResponse>(`${apiUrl}/auth`, authRequest).pipe(
+      tap((response) => this.saveAuth(response)),
       map((response) => {
         this.authenticated$.next(response);
         console.log(`User ${response.user.name} logged in`);
@@ -69,7 +77,14 @@ export class AuthService {
    * Logs out a user and emit an empty AuthResponse
    */
   logout() {
+    // Remove the AuthResponse from the localStorage when user logs out
+    localStorage.removeItem(STORAGE_KEY);
     this.authenticated$.next(null);
     console.log("User logged out");
   }
+  
+  private saveAuth(auth: AuthResponse) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(auth));
+  }
+
 }
