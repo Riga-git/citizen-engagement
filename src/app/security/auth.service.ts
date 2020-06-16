@@ -5,9 +5,7 @@ import { HttpClient } from "@angular/common/http";
 import { map, tap } from "rxjs/operators";
 import { User } from "../models/user";
 import { AuthRequest } from "../models/auth-request";
-
-// TODO: Insert here your personnal api URL
-const apiUrl = "https://masrad-2020-ce-luca.herokuapp.com/api";
+import { environment } from "../../environments/environement";
 
 // Add a constant for the storage key
 const STORAGE_KEY = "auth";
@@ -63,7 +61,7 @@ export class AuthService {
    * Logs in a user with the provided AuthRequest object and emits the received AuthResponse if successful.
    */
   login(authRequest: AuthRequest): Observable<User> {
-    return this.http.post<AuthResponse>(`${apiUrl}/auth`, authRequest).pipe(
+    return this.http.post<AuthResponse>(`${environment.apiUrl}/auth`, authRequest).pipe(
       tap((response) => this.saveAuth(response)),
       map((response) => {
         this.authenticated$.next(response);
@@ -83,6 +81,9 @@ export class AuthService {
     console.log("User logged out");
   }
   
+  /**
+   * Saves the AuthResponse in the localStorage
+   */
   private saveAuth(auth: AuthResponse) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(auth));
   }

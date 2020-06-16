@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IssueTypeService } from "../api/issue-type.service";
 
 @Component({
   selector: 'app-dummy-page',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dummy-page.component.scss']
 })
 export class DummyPageComponent implements OnInit {
-
-  constructor() { }
+  // Inject the UserService
+  constructor(private issueTypeService: IssueTypeService) {}
 
   ngOnInit(): void {
+    // Ask the service to make an API call on component initialisation
+    this.issueTypeService.loadAllIssueTypes().subscribe({
+      next: (result) => console.log("Issue types", result),
+      error: (error) => console.warn("Error", error),
+    });
   }
-
 }
