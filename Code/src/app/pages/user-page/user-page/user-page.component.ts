@@ -16,10 +16,14 @@ export class UserPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getUserInfo();
   }
 
-  getUserInfo(){
-    this.user = this.authService.getUser().subscribe() // PIE AND GET ONLY NECESSARY INFO
+  getUserInfo(): void{
+    this.authService.getUser().subscribe({
+      next : (user) => this.user = user,
+      error: (err) => console.error('Not logged')  // route to 
+    });
   }
 
 }
