@@ -22,19 +22,13 @@ button{
     min-width: min-content;
 }
 
-.example-icon {
-    padding: 0 14px;
-}
-
-.example-spacer {
+.spacer {
     flex: 1 1 auto;
 }
 
 img{
   padding-left: 5mm;
 }
-
-
 
 @media (max-width: 1100px) {
   .companyName{
@@ -53,7 +47,6 @@ img{
     width: 10mm;
   }
 }
-
 
 @media (max-width: 330px) {
   img{
