@@ -7,6 +7,7 @@ import { PagesModule } from './pages/pages.module'
 import { ReportIssuePageComponent } from './pages/report-issue-page/report-issue-page.component';
 import { AllIssuesPageComponent } from './pages/all-issues/all-issues-page.component';
 import { MyIssuesPageComponent } from './pages/my-issues-page/my-issues-page.component';
+import { UserPageComponent } from './pages/user-page/user-page.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: "reportIssue", component: ReportIssuePageComponent },
   { path: "allIssues", component: AllIssuesPageComponent},
   { path: "myIssues", component:  MyIssuesPageComponent},
+  { path: "myAccount", component:  UserPageComponent},
   // Add the route to display the dummy page
   {
     path: "dummy",
