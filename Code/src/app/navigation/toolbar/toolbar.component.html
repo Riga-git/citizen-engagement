@@ -1,0 +1,20 @@
+<mat-toolbar color="primary">
+    <div fxShow="true" fxHide.gt-sm="true">
+      <button mat-icon-button (click)="toggleSidenav()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+
+    <a mat-button class="companyName" routerLink="/">
+      <span>Citizen engagement</span>
+      <span><img src="../..//assets/Images/logo.svg" alt="Logo"></span>
+    </a>
+    <span class="spacer"></span>
+    <div fxShow="true" fxHide.lt-md="true">
+      <a mat-button routerLink="/">Report an issue</a>
+      <a mat-button routerLink="/">My issues</a>
+      <a mat-button routerLink="/">All issues</a>
+      <a mat-button routerLink="/myAccount">my Accout</a>
+      <a mat-button routerLink="/">Log out</a>
+    </div>
+  </mat-toolbar>
