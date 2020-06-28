@@ -8,6 +8,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 import { LoginPageComponent } from './security/login-page/login-page.component';
 import { LogoutButtonComponent } from './security/logout-button/logout-button.component'
 import { DummyPageComponent } from './dummy-page/dummy-page.component';
+import { PagesModule } from './pages/pages.module'
 
 import { ApiTokenInterceptorService } from "./api/api-token-interceptor.service";
 import { FormsModule } from '@angular/forms';
@@ -39,7 +40,8 @@ import { NavigationModule } from './navigation/navigation.module';
     MatSidenavModule,
     MatButtonModule,
     FlexLayoutModule,
-    NavigationModule
+    NavigationModule,
+    PagesModule
   ],
   providers: [
     {
