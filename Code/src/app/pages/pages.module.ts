@@ -4,7 +4,8 @@ import { UserPageComponent } from './user-page/user-page.component'
 import { ReportIssuePageComponent } from './report-issue-page/report-issue-page.component';
 import { MyIssuesPageComponent } from './my-issues-page/my-issues-page.component'
 import { AllIssuesPageComponent } from './all-issues/all-issues-page.component';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,9 @@ import { AllIssuesPageComponent } from './all-issues/all-issues-page.component';
     AllIssuesPageComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
   exports : [
     ReportIssuePageComponent,
