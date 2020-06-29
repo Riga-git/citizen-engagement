@@ -6,6 +6,7 @@ import { MyIssuesPageComponent } from './my-issues-page/my-issues-page.component
 import { AllIssuesPageComponent } from './all-issues/all-issues-page.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { MatSelectModule } from '@angular/material/select';
   imports: [
     CommonModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatInputModule
   ],
   exports : [
     ReportIssuePageComponent,
