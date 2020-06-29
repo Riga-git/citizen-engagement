@@ -12,7 +12,7 @@ import { UserPageComponent } from './pages/user-page/user-page.component';
 
 const routes: Routes = [
   // Add this default route to redirect to dummy
-  { path: "", redirectTo: "dummy", pathMatch: "full" },
+  { path: "", redirectTo: "reportIssue", pathMatch: "full" },
   { path: "login", component: LoginPageComponent },
   { path: "reportIssue", component: ReportIssuePageComponent },
   { path: "allIssues", component: AllIssuesPageComponent},

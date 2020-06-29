@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 
 import { HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 import { LoginPageComponent } from './security/login-page/login-page.component';
-import { LogoutButtonComponent } from './security/logout-button/logout-button.component'
 import { DummyPageComponent } from './dummy-page/dummy-page.component';
 
 import { ApiTokenInterceptorService } from "./api/api-token-interceptor.service";
@@ -25,8 +24,7 @@ import { NavigationModule } from './navigation/navigation.module';
   declarations: [
     AppComponent,
     LoginPageComponent,
-    DummyPageComponent,
-    LogoutButtonComponent
+    DummyPageComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IssueTypeService } from 'src/app/api/issue-type.service';
 
 @Component({
   selector: 'app-report-issue-page',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReportIssuePageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private issueTypeService: IssueTypeService) { }
 
   ngOnInit(): void {
+    // Ask the service to make an API call on component initialisation
+    this.issueTypeService.loadAllIssueTypes().subscribe({
+      next: (result) => console.log("Issue types", result),
+      error: (error) => console.warn("Error", error),
+    });
   }
-
 }
