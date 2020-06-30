@@ -1,20 +1,22 @@
+<h1>Report an issue</h1>
 
-<div class="example-container">
-    <h1>Report an issue</h1>
-    <mat-form-field appearance="fill">
-      <mat-label>Input</mat-label>
-      <input matInput>
-    </mat-form-field>
-   <!-- <br>
-    <mat-form-field appearance="fill">
-      <mat-label>Select</mat-label>
-      <mat-select>
-        <mat-option value="option">Option</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="fill">
-      <mat-label>Textarea</mat-label>
-      <textarea matInput></textarea>
-    </mat-form-field>-->
+<div fxLayout="row" fxLayout.md="colum" fxLayoutAlign="space-around">
+  <div fxLayout="column">
+    <form action="" method="post">
+      <mat-form-field appearance="outline">
+        <mat-label>Tags</mat-label>
+        <input matInput>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea [(ngModel)]='description' matInput #textarea maxlength="1000" form="repIssueForm"></textarea>
+        <mat-hint>{{description.length}}/1000</mat-hint>
+      </mat-form-field>
+      <br>
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </form>
   </div>
+
+  <div style="height: 50mm;" fxFlex="40" style="background-color: blue;"> </div>
+</div>
