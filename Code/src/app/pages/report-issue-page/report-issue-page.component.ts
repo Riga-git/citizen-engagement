@@ -8,8 +8,8 @@ import { IssueTypeService } from 'src/app/api/issue-type.service';
 })
 export class ReportIssuePageComponent implements OnInit {
 
-  description : string = "fkjsfjgklfjglksjdglk";
-  tagsString  : string;
+  description : string = "";
+  tagsString  : string = "";
   tasStringArray  : string[];
 
   constructor(private issueTypeService: IssueTypeService) { }
