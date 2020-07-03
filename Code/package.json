@@ -22,7 +22,9 @@
     "@angular/platform-browser": "~10.0.1",
     "@angular/platform-browser-dynamic": "~10.0.1",
     "@angular/router": "~10.0.1",
+    "@asymmetrik/ngx-leaflet": "^7.0.1",
     "bootstrap-4-grid": "^3.4.0",
+    "leaflet": "^1.6.0",
     "rxjs": "~6.5.4",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
@@ -33,6 +35,7 @@
     "@angular/compiler-cli": "~10.0.1",
     "@types/jasmine": "^3.5.11",
     "@types/jasminewd2": "~2.0.3",
+    "@types/leaflet": "^1.5.13",
     "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
     "jasmine-core": "~3.5.0",

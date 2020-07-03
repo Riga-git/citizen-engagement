@@ -1,8 +1,8 @@
-<h1>Report an issue</h1>
+<h1 class="pageTitle">Report an issue</h1>
 
 <div class="container">
-  <div class="row">
-    <div class=" col-10 col-lg-5">"
+  <div class="row align-items-center">
+    <div class=" col-10 col-lg-5 align-self-center">
       <form action="" method="post">
         <mat-form-field appearance="outline">
           <mat-label>Tags</mat-label>
@@ -19,8 +19,7 @@
         <button mat-raised-button color="primary" type="submit">Submit</button>
       </form>
     </div>
-    <div style="background-color: blue;" class="col-10 col-lg-5">
-      map
+    <div leaflet [leafletOptions]="mapOptions" class="map col-10 col-lg-5 offset-lg-2 align-self-center">
     </div>
   </div>
 </div> 
