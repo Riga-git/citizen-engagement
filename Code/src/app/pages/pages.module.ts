@@ -8,9 +8,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 @NgModule({
   declarations: [
@@ -25,9 +25,9 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     MatSelectModule,
     MatInputModule,
     FormsModule,
-    FlexLayoutModule,
     MatButtonModule,
-    LeafletModule
+    LeafletModule,
+    MaterialFileInputModule
   ],
   exports : [
     ReportIssuePageComponent,

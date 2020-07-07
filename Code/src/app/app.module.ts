@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
-import { LoginPageComponent } from './security/login-page/login-page.component';
 import { DummyPageComponent } from './dummy-page/dummy-page.component';
 
 import { ApiTokenInterceptorService } from "./api/api-token-interceptor.service";
@@ -19,11 +18,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 
 import { NavigationModule } from './navigation/navigation.module';
+import { SecurityModule } from './security/security.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginPageComponent,
     DummyPageComponent
   ],
   imports: [
@@ -38,6 +37,7 @@ import { NavigationModule } from './navigation/navigation.module';
     MatButtonModule,
     FlexLayoutModule,
     NavigationModule,
+    SecurityModule
   ],
   providers: [
     {
