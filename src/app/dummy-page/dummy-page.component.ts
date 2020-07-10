@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IssueTypeService } from "../api/issue-type.service";
+import { IssueService } from "../api/issue.service";
 
 @Component({
   selector: 'app-dummy-page',
@@ -8,7 +8,7 @@ import { IssueTypeService } from "../api/issue-type.service";
 })
 export class DummyPageComponent implements OnInit {
   // Inject the UserService
-  constructor(private issueTypeService: IssueTypeService) {}
+  constructor(private issueTypeService: IssueService) {}
 
   ngOnInit(): void {
     // Ask the service to make an API call on component initialisation

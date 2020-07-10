@@ -1,10 +1,10 @@
 <div class="container mt-5">
   <div class="row align-items-center justify-content-center">
     <div class=" col-10 col-lg-5 ">
-      <form action="" method="post">
+      <form #reportIssueForm="ngForm" (submit)="addNewIssue(reportIssueForm)">
         <mat-form-field appearance="outline">
           <mat-label>Tags</mat-label>
-          <input matInput>
+          <input [(ngModel)]='tagsString' name="Tags" matInput maxlength="100" form="repIssueForm">
         </mat-form-field>
         <br>
         <mat-form-field appearance="outline">
@@ -13,28 +13,28 @@
             maxlength="1000" form="repIssueForm"></textarea>
           <mat-hint>{{description.length}}/1000</mat-hint>
         </mat-form-field>
-        <p *ngIf="descriptionField.hasError('required') && descriptionField.touched">
+        <p *ngIf="descriptionField.hasError('required') && descriptionField.touched" class="ErrorMessage"> 
           Description is required
         </p>
         <br>
         <mat-form-field appearance="outline">
           <mat-label>Image(s)</mat-label>
-          <ngx-mat-file-input [multiple]="true"></ngx-mat-file-input>
+          <ngx-mat-file-input [multiple]="true" name="images" [(ngModel)]='images' form="repIssueForm"></ngx-mat-file-input>
+          <mat-icon matSuffix>folder</mat-icon>
         </mat-form-field>
         <br>
         <button [disabled]="!this.mapMarkers.length && this.description.length" mat-raised-button color="primary" type="submit">Submit</button>
       </form>
     </div>
     <div class="col-10 order-first order-lg-last mb-5 mb-lg-0 col-lg-6 offset-lg-1">
-      <div *ngIf="!this.mapMarkers.length" >
+      <div *ngIf="!this.mapMarkers.length" class="ErrorMessage">
         Chose a location on the map!
       </div>
       <div  (leafletClick)="updateMarker($event)" 
             leaflet [leafletOptions]="mapOptions"
             (leafletMapReady)="onMapReady($event)" 
             [leafletLayers]="mapMarkers" class="map"
-            ngDefaultControl
-            #mapField>
+            ngDefaultControl>
       </div>
     </div>
   </div>

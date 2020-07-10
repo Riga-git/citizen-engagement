@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { IssueTypeService } from 'src/app/api/issue-type.service';
-import { latLng, MapOptions, tileLayer, Map, Marker, marker, LeafletMouseEvent } from 'leaflet';
+import { IssueService } from 'src/app/api/issue.service';
+import { latLng, MapOptions, tileLayer, Map, Marker, marker, LeafletMouseEvent, Point } from 'leaflet';
+import { NgForm } from '@angular/forms';
+import { FileInput } from 'ngx-material-file-input';
 
 @Component({
   selector: 'app-report-issue-page',
@@ -10,13 +12,13 @@ import { latLng, MapOptions, tileLayer, Map, Marker, marker, LeafletMouseEvent }
 export class ReportIssuePageComponent implements OnInit {
 
   description : string = "";
-  tagsString  : string = "";
-  tasStringArray  : string[];
+  tagsString : string = "";
   mapOptions : MapOptions;
   map : Map;
   mapMarkers : Marker[] = [];
+  images = new FileInput(null);
 
-  constructor(private issueTypeService: IssueTypeService) { 
+  constructor(private issueService: IssueService) { 
     this.mapOptions = {
       layers: [
         tileLayer(
@@ -27,15 +29,11 @@ export class ReportIssuePageComponent implements OnInit {
       zoom: 13,
       center: latLng(46.778186, 6.641524)
     };
-
-    /*this.mapMarkers = [
-      marker([ 46.778186, 6.641524 ])
-    ];*/
   }
 
   ngOnInit(): void {
     // Ask the service to make an API call on component initialisation
-    this.issueTypeService.loadAllIssueTypes().subscribe({
+    this.issueService.loadAllIssueTypes().subscribe({
       next: (result) => console.log("Issue types", result),
       error: (error) => console.warn("Error", error),
     });
@@ -51,6 +49,20 @@ export class ReportIssuePageComponent implements OnInit {
       this.mapMarkers.push(tmpMarker);
     }else{
       this.mapMarkers[0] = tmpMarker;
+    }
+  }
+
+  addNewIssue(form: NgForm) {
+    // Only do something if the form is valid
+    let point : Point;
+    if (form.valid) {
+      this.issueService.postIssue(
+        this.description,
+        point,
+        // ignore the index 0 because is a empty string because the separator is located before the tagName 
+        this.tagsString.replace(/\s/g, "").split('#').slice(1,this.tagsString.length), 
+        this.images.files
+      )
     }
   }
 }

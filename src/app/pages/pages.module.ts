@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     FormsModule,
     MatButtonModule,
     LeafletModule,
-    MaterialFileInputModule
+    MaterialFileInputModule,
+    MatIconModule
   ],
   exports : [
     ReportIssuePageComponent,
