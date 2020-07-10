@@ -1,11 +1,11 @@
 
-import { Point } from 'leaflet';
+import { Geometry } from 'geojson';
 
 export class ReportIssuePost {
     description : String;
     imageUrl? : String;
     additionalImageUrls? : String[] = [];
     IssueTypeHref : String;
-    location : Point;
+    location : Geometry;
     tags? : String[] = [];
 }

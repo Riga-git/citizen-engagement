@@ -6,6 +6,7 @@ import { ReportIssuePost } from '../models/report-issue-post';
 import { ReportIssueResponse } from '../models/report-issue-response';
 import { environment } from "../../environments/environement";
 import { Point } from 'leaflet';
+import { Geometry } from 'geojson';
 
 @Injectable({
   providedIn: "root",
@@ -18,7 +19,7 @@ export class IssueService {
   }
 
   postIssue ( description : String, 
-              location : Point, 
+              location : Geometry, 
               tags? : String[], 
               imagesUrls? : File[] 
             ): void{

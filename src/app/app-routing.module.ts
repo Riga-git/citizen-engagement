@@ -8,16 +8,18 @@ import { ReportIssuePageComponent } from './pages/report-issue-page/report-issue
 import { AllIssuesPageComponent } from './pages/all-issues/all-issues-page.component';
 import { MyIssuesPageComponent } from './pages/my-issues-page/my-issues-page.component';
 import { UserPageComponent } from './pages/user-page/user-page.component';
+import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 
 
 const routes: Routes = [
   // Add this default route to redirect to dummy
   { path: "", redirectTo: "reportIssue", pathMatch: "full" },
   { path: "login", component: LoginPageComponent },
-  { path: "reportIssue", component: ReportIssuePageComponent },
-  { path: "allIssues", component: AllIssuesPageComponent},
-  { path: "myIssues", component:  MyIssuesPageComponent},
-  { path: "myAccount", component:  UserPageComponent},
+  { path: "reportIssue", component: ReportIssuePageComponent, canActivate: [AuthGuard] },
+  { path: "allIssues", component: AllIssuesPageComponent, canActivate: [AuthGuard]},
+  { path: "myIssues", component:  MyIssuesPageComponent, canActivate: [AuthGuard]},
+  { path: "myAccount", component:  UserPageComponent, canActivate: [AuthGuard]},
+  { path: "admin", component:  AdminPageComponent, canActivate: [AuthGuard]},
   // Add the route to display the dummy page
   {
     path: "dummy",

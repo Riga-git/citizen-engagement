@@ -12,13 +12,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { MatIconModule } from '@angular/material/icon';
+import { AdminComponent } from './admin/admin.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
 
 @NgModule({
   declarations: [
     ReportIssuePageComponent,
     UserPageComponent,
     MyIssuesPageComponent,
-    AllIssuesPageComponent
+    AllIssuesPageComponent,
+    AdminComponent,
+    AdminPageComponent
   ],
   imports: [
     CommonModule,
