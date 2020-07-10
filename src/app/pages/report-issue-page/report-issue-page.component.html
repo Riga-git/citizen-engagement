@@ -3,14 +3,14 @@
     <div class=" col-10 col-lg-5 ">
       <form #reportIssueForm="ngForm" (submit)="addNewIssue(reportIssueForm)">
         <mat-form-field appearance="outline">
-          <mat-label>Tags</mat-label>
-          <input [(ngModel)]='tagsString' name="Tags" matInput maxlength="100" form="repIssueForm">
+          <mat-label>Tag(s) (# prefix)</mat-label>
+          <input [(ngModel)]='tagsString' name="Tags" matInput maxlength="100" form="repIssueForm" placeholder="ex: #StreetHole #CityCenter">
         </mat-form-field>
         <br>
         <mat-form-field appearance="outline">
           <mat-label>Description</mat-label>
           <textarea required #descriptionField="ngModel" name="description" [(ngModel)]='description' matInput
-            maxlength="1000" form="repIssueForm"></textarea>
+            maxlength="1000" form="repIssueForm" placeholder="Write a small description..."></textarea>
           <mat-hint>{{description.length}}/1000</mat-hint>
         </mat-form-field>
         <p *ngIf="descriptionField.hasError('required') && descriptionField.touched" class="ErrorMessage"> 
@@ -19,11 +19,11 @@
         <br>
         <mat-form-field appearance="outline">
           <mat-label>Image(s)</mat-label>
-          <ngx-mat-file-input [multiple]="true" name="images" [(ngModel)]='images' form="repIssueForm"></ngx-mat-file-input>
-          <mat-icon matSuffix>folder</mat-icon>
+          <ngx-mat-file-input [multiple]="true" name="images" [(ngModel)]='images' form="repIssueForm" [accept]="'.gif, .jpg, .png'"></ngx-mat-file-input>
+          <mat-icon matSuffix>image</mat-icon>
         </mat-form-field>
         <br>
-        <button [disabled]="!this.mapMarkers.length && this.description.length" mat-raised-button color="primary" type="submit">Submit</button>
+        <button [disabled]="!this.mapMarkers.length && this.description.length" mat-raised-button color="primary" type="submit" class="mb-2">Submit</button>
       </form>
     </div>
     <div class="col-10 order-first order-lg-last mb-5 mb-lg-0 col-lg-6 offset-lg-1">
