@@ -1,1 +1,24 @@
-<p>admin-page works!</p>
+<div class="container mt-5">
+    <form #newTypeForm="ngForm" (submit)="addNewType(newTypeForm)">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-11 col-lg-3">
+                <mat-form-field appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input required [(ngModel)]='name' #nameField name="Name" matInput maxlength="25" form="newTypeForm" placeholder="Damaged sidewalk">
+                    <mat-hint>{{nameField.value?.length || 0}}/25</mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="col-11 col-lg-7">
+                <mat-form-field appearance="outline">
+                    <mat-label>Description</mat-label>
+                    <textarea [(ngModel)]='description' #descriptionField name="description" matInput maxlength="1000" form="newTypeForm"
+                        placeholder="Sidewalk with multiple holes in the asphalt..."></textarea>
+                    <mat-hint>{{descriptionField.value?.length || 0}}/1000</mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="col-2">
+                <button [disabled]="!newTypeForm.valid" mat-raised-button color="primary" type="submit" class="mb-2 col-2">add</button>
+            </div>
+        </div>
+    </form>
+</div>

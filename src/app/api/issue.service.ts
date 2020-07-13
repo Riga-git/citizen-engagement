@@ -1,17 +1,20 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, from } from "rxjs";
 import { IssueType } from "src/app/models/issue-type";
 import { ReportIssuePost } from '../models/report-issue-post';
 import { ReportIssueResponse } from '../models/report-issue-response';
 import { environment } from "../../environments/environement";
-import { Point } from 'leaflet';
 import { Geometry } from 'geojson';
 
 @Injectable({
   providedIn: "root",
 })
 export class IssueService {
+  htptOptions = {
+    headers:  new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8')
+  }
+
   constructor(private http: HttpClient) {}
 
   loadAllIssueTypes(): Observable<IssueType[]> {
@@ -40,6 +43,14 @@ export class IssueService {
     console.log(JSON.stringify(requestContent));
 
     //this.http.post(`${environment.apiUrl}/issues`,requestContent);
+  }
+
+  addNewType(name : string, description? : string): Observable<IssueType> {
+    let newType = new IssueType();
+    newType.name = name;
+    newType.description = description;
+    console.log(newType);
+    return this.http.post<IssueType>(`${environment.apiUrl}/issueTypes`, JSON.stringify(newType), this.htptOptions);
   }
 }
 
