@@ -3,6 +3,12 @@
     <div class=" col-10 col-lg-5 ">
       <form #reportIssueForm="ngForm" (submit)="addNewIssue(reportIssueForm)">
         <mat-form-field appearance="outline">
+          <mat-label>Type</mat-label>
+          <mat-select required name="typeSelector" [(ngModel)]='chosesIssueType'> 
+            <mat-option *ngFor="let issueType of issueTypes" [value]='issueType.href'>{{issueType.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>Tag(s) (# prefix)</mat-label>
           <input [(ngModel)]='tagsString' name="Tags" matInput maxlength="100" form="repIssueForm" placeholder="ex: #StreetHole #CityCenter">
         </mat-form-field>
@@ -23,7 +29,7 @@
           <mat-icon matSuffix>image</mat-icon>
         </mat-form-field>
         <br>
-        <button [disabled]="!this.mapMarkers.length && this.description.length" mat-raised-button color="primary" type="submit" class="mb-2">Submit</button>
+        <button [disabled]="!this.mapMarkers.length || !reportIssueForm.valid" mat-raised-button color="primary" type="submit" class="mb-2">Submit</button>
       </form>
     </div>
     <div class="col-10 order-first order-lg-last mb-5 mb-lg-0 col-lg-6 offset-lg-1">
@@ -39,3 +45,4 @@
     </div>
   </div>
 </div>
+

@@ -3,6 +3,8 @@ import { IssueService } from 'src/app/api/issue.service';
 import { latLng, MapOptions, tileLayer, Map, Marker, marker, LeafletMouseEvent, Point } from 'leaflet';
 import { NgForm } from '@angular/forms';
 import { FileInput } from 'ngx-material-file-input';
+import { IssueType } from 'src/app/models/issue-type';
+import { timestamp } from 'rxjs/operators';
 
 @Component({
   selector: 'app-report-issue-page',
@@ -13,10 +15,12 @@ export class ReportIssuePageComponent implements OnInit {
 
   description : string = "";
   tagsString : string = "";
-  mapOptions : MapOptions;
+  mapOptions : MapOptions = {};
   map : Map;
   mapMarkers : Marker[] = [];
   images = new FileInput(null);
+  chosesIssueType : string = "";
+  issueTypes : IssueType[] = [];
 
   constructor(private issueService: IssueService) { 
     this.mapOptions = {
@@ -34,8 +38,8 @@ export class ReportIssuePageComponent implements OnInit {
   ngOnInit(): void {
     // Ask the service to make an API call on component initialisation
     this.issueService.loadAllIssueTypes().subscribe({
-      next: (result) => console.log("Issue types", result),
-      error: (error) => console.warn("Error", error),
+      next: (result) => result.forEach(element => this.issueTypes.push(element)),
+      error: (error) => console.warn("Error", error)
     });
   }
 
@@ -58,6 +62,7 @@ export class ReportIssuePageComponent implements OnInit {
       this.issueService.postIssue(
         this.description,
         this.mapMarkers[0].toGeoJSON().geometry,
+        this.chosesIssueType,
         // ignore the index 0 because is a empty string because the separator is located before the tagName 
         this.tagsString.replace(/\s/g, "").split('#').slice(1,this.tagsString.length), 
         this.images.files

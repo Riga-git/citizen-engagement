@@ -23,14 +23,15 @@ export class IssueService {
 
   postIssue ( description : String, 
               location : Geometry, 
-              tags? : String[], 
+              typeHref : string,
+              tags? : string[], 
               imagesUrls? : File[] 
             ): void{
 
     let requestContent = new ReportIssuePost();
     let additionalImages : File[] = [];
 
-    requestContent.IssueTypeHref = "/api/issueTypes/58c55a0af2dc592bf95e5d86";
+    requestContent.IssueTypeHref = typeHref;
     requestContent.description = description;
     requestContent.location = location;
     requestContent.imageUrl = ((imagesUrls.length > 0) ? imagesUrls[0].name : '');
