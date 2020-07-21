@@ -4,12 +4,24 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-
 .pageTitle{
     padding-bottom: 2em;
 }
 
 .ErrorMessage {
     font-size: 1.5 em;
+    font-weight: bold;
+}
+
+.SnackBarSuccess {
+    background-color: #0dcf17c5 !important;
+}
+
+.SnackBarError {
+    background-color: #ff2f2fe8 !important; 
+}
+
+.SnackBarButton button{
+    color: whitesmoke;
     font-weight: bold;
 }

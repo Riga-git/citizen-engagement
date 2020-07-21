@@ -26,6 +26,10 @@ button{
     flex: 1 1 auto;
 }
 
+.activeRoute {
+  border: 2px solid whitesmoke !important;
+}
+
 img{
   padding-left: 5mm;
   width: 70px;

@@ -1,11 +1,11 @@
 <mat-sidenav-container fxFlexFill class="example-container">
     <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over"  opened="false" fxHide.gt-sm="true">
       <div fxLayout="column">
-        <a mat-button routerLink="/reportIssue">Report an issue</a>
-        <a mat-button routerLink="/myIssues">My issues</a>
-        <a mat-button routerLink="/allIssues">All issues</a>
-        <a mat-button routerLink="/myAccount">my Accout</a>
-        <a mat-button routerLink="/admin">Admin</a>
+        <a mat-button routerLinkActive="activeRoute" routerLink="/reportIssue">Report an issue</a>
+        <a mat-button routerLinkActive="activeRoute" routerLink="/myIssues">My issues</a>
+        <a mat-button routerLinkActive="activeRoute" routerLink="/allIssues">All issues</a>
+        <a mat-button routerLinkActive="activeRoute" routerLink="/myAccount">my Accout</a>
+        <a mat-button routerLinkActive="activeRoute" routerLink="/admin">Admin</a>
         <a mat-button (click)="logout()">Log out</a>
       </div>
     </mat-sidenav>

@@ -13,6 +13,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { MatIconModule } from '@angular/material/icon';
 import { AdminPageComponent } from './admin-page/admin-page.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
     MatButtonModule,
     LeafletModule,
     MaterialFileInputModule,
-    MatIconModule
+    MatIconModule,
+    MatSnackBarModule
   ],
   exports : [
     ReportIssuePageComponent,

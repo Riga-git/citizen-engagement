@@ -40,7 +40,7 @@ export class IssueService {
       requestContent.additionalImageUrls.push(image.name);
     }
     requestContent.tags = tags;
-
+    console.log(JSON.stringify(requestContent));
     return this.http.post<ReportIssueResponse>(`${environment.apiUrl}/issues`,requestContent);
   }
 
@@ -53,7 +53,7 @@ export class IssueService {
   }
 
   getIssues() : Observable<ReportIssueResponse> {
-    return this.http.get<ReportIssueResponse>(`${environment.apiUrl}/issueTypes`, JSON.stringify(newType), this.htptOptions);
+    return this.http.get<ReportIssueResponse>(`${environment.apiUrl}/issueTypes`, this.htptOptions);
   }
 }
 

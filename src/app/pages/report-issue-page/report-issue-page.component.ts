@@ -4,13 +4,12 @@ import { latLng, MapOptions, tileLayer, Map, Marker, marker, LeafletMouseEvent, 
 import { NgForm } from '@angular/forms';
 import { FileInput } from 'ngx-material-file-input';
 import { IssueType } from 'src/app/models/issue-type';
-import { Router } from '@angular/router';
-import { error } from '@angular/compiler/src/util';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-report-issue-page',
   templateUrl: './report-issue-page.component.html',
-  styleUrls: ['./report-issue-page.component.scss']
+  styleUrls: ['./report-issue-page.component.scss'],
 })
 export class ReportIssuePageComponent implements OnInit {
 
@@ -23,7 +22,7 @@ export class ReportIssuePageComponent implements OnInit {
   chosesIssueType : string = "";
   issueTypes : IssueType[] = [];
 
-  constructor(private issueService: IssueService, private router : Router) { 
+  constructor(private issueService: IssueService, private snackBar: MatSnackBar ) { 
     this.mapOptions = {
       layers: [
         tileLayer(
@@ -40,7 +39,7 @@ export class ReportIssuePageComponent implements OnInit {
     // Ask the service to make an API call on component initialisation
     this.issueService.loadAllIssueTypes().subscribe({
       next: (result) => result.forEach(element => this.issueTypes.push(element)),
-      error: (error) => console.warn("Error : ", error)
+      error: () => this.snackBar.open('Sorry something went wrong...', 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})
     });
   }
 
@@ -68,7 +67,8 @@ export class ReportIssuePageComponent implements OnInit {
         this.tagsString.replace(/\s/g, "").split('#').slice(1,this.tagsString.length), 
         this.images.files
       ).subscribe({
-        error : (error) => console.warn("Error : ", error)
+        next : () => this.snackBar.open('Issue reported with succes','',{panelClass : 'SnackBarSuccess', duration : 2500}),
+        error : () => this.snackBar.open('Sorry something went wrong...', 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})
       });
     }
   }
