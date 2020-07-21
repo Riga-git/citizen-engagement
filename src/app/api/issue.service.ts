@@ -26,7 +26,7 @@ export class IssueService {
               typeHref : string,
               tags? : string[], 
               imagesUrls? : File[] 
-            ): void{
+            ): Observable<ReportIssueResponse>{
 
     let requestContent = new ReportIssuePost();
     let additionalImages : File[] = [];
@@ -40,10 +40,8 @@ export class IssueService {
       requestContent.additionalImageUrls.push(image.name);
     }
     requestContent.tags = tags;
-    
-    console.log(JSON.stringify(requestContent));
 
-    //this.http.post(`${environment.apiUrl}/issues`,requestContent);
+    return this.http.post<ReportIssueResponse>(`${environment.apiUrl}/issues`,requestContent);
   }
 
   addNewType(name : string, description? : string): Observable<IssueType> {
@@ -52,6 +50,10 @@ export class IssueService {
     newType.description = description;
     console.log(newType);
     return this.http.post<IssueType>(`${environment.apiUrl}/issueTypes`, JSON.stringify(newType), this.htptOptions);
+  }
+
+  getIssues() : Observable<ReportIssueResponse> {
+    return this.http.get<ReportIssueResponse>(`${environment.apiUrl}/issueTypes`, JSON.stringify(newType), this.htptOptions);
   }
 }
 

@@ -4,7 +4,8 @@ import { latLng, MapOptions, tileLayer, Map, Marker, marker, LeafletMouseEvent, 
 import { NgForm } from '@angular/forms';
 import { FileInput } from 'ngx-material-file-input';
 import { IssueType } from 'src/app/models/issue-type';
-import { timestamp } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { error } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-report-issue-page',
@@ -22,7 +23,7 @@ export class ReportIssuePageComponent implements OnInit {
   chosesIssueType : string = "";
   issueTypes : IssueType[] = [];
 
-  constructor(private issueService: IssueService) { 
+  constructor(private issueService: IssueService, private router : Router) { 
     this.mapOptions = {
       layers: [
         tileLayer(
@@ -39,7 +40,7 @@ export class ReportIssuePageComponent implements OnInit {
     // Ask the service to make an API call on component initialisation
     this.issueService.loadAllIssueTypes().subscribe({
       next: (result) => result.forEach(element => this.issueTypes.push(element)),
-      error: (error) => console.warn("Error", error)
+      error: (error) => console.warn("Error : ", error)
     });
   }
 
@@ -66,7 +67,9 @@ export class ReportIssuePageComponent implements OnInit {
         // ignore the index 0 because is a empty string because the separator is located before the tagName 
         this.tagsString.replace(/\s/g, "").split('#').slice(1,this.tagsString.length), 
         this.images.files
-      )
+      ).subscribe({
+        error : (error) => console.warn("Error : ", error)
+      });
     }
   }
 }
