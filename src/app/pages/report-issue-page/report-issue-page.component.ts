@@ -38,7 +38,7 @@ export class ReportIssuePageComponent implements OnInit {
   ngOnInit(): void {
     // Ask the service to make an API call on component initialisation
     this.issueService.loadAllIssueTypes().subscribe({
-      next: (result) => result.forEach(element => this.issueTypes.push(element)),
+      next: (result) => {result.forEach(element => this.issueTypes.push(element)); console.log(result);},
       error: () => this.snackBar.open('Sorry something went wrong...', 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})
     });
   }
@@ -68,7 +68,7 @@ export class ReportIssuePageComponent implements OnInit {
         this.images.files
       ).subscribe({
         next : () => this.snackBar.open('Issue reported with succes','',{panelClass : 'SnackBarSuccess', duration : 2500}),
-        error : () => this.snackBar.open('Sorry something went wrong...', 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})
+        error : (error) => {this.snackBar.open('Sorry something went wrong...', 'x', {panelClass : ['SnackBarError', 'SnackBarButton']}); console.log(error);}
       });
     }
   }

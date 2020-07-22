@@ -31,7 +31,7 @@ export class IssueService {
     let requestContent = new ReportIssuePost();
     let additionalImages : File[] = [];
 
-    requestContent.IssueTypeHref = typeHref;
+    requestContent.issueTypeHref = typeHref;
     requestContent.description = description;
     requestContent.location = location;
     requestContent.imageUrl = ((imagesUrls.length > 0) ? imagesUrls[0].name : '');
@@ -40,7 +40,7 @@ export class IssueService {
       requestContent.additionalImageUrls.push(image.name);
     }
     requestContent.tags = tags;
-    console.log(JSON.stringify(requestContent));
+    console.log('Sent msg: ',JSON.stringify(requestContent));
     return this.http.post<ReportIssueResponse>(`${environment.apiUrl}/issues`,requestContent);
   }
 

@@ -5,7 +5,7 @@ export class ReportIssuePost {
     description : String;
     imageUrl? : String;
     additionalImageUrls? : String[] = [];
-    IssueTypeHref : String;
+    issueTypeHref : String;
     location : Geometry;
     tags? : String[] = [];
 }
