@@ -4,6 +4,7 @@ import { Observable, from } from "rxjs";
 import { IssueType } from "src/app/models/issue-type";
 import { ReportIssuePost } from '../models/report-issue-post';
 import { ReportIssueResponse } from '../models/report-issue-response';
+import { Issue } from '../models/issue';
 import { environment } from "../../environments/environement";
 import { Geometry } from 'geojson';
 
@@ -52,8 +53,8 @@ export class IssueService {
     return this.http.post<IssueType>(`${environment.apiUrl}/issueTypes`, JSON.stringify(newType), this.htptOptions);
   }
 
-  getIssues() : Observable<ReportIssueResponse> {
-    return this.http.get<ReportIssueResponse>(`${environment.apiUrl}/issueTypes`, this.htptOptions);
+  getIssues() : Observable<Issue[]> {
+    return this.http.get<Issue[]>(`${environment.apiUrl}/issues`, this.htptOptions);
   }
 }
 

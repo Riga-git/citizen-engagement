@@ -9,11 +9,13 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { MatIconModule } from '@angular/material/icon';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     LeafletModule,
     MaterialFileInputModule,
     MatIconModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTableModule,
+    MatProgressSpinnerModule
   ],
   exports : [
     ReportIssuePageComponent,
