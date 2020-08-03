@@ -3,5 +3,18 @@ table {
   }
 
 tr {
-  text-align: left;    
+  text-align: left
+  ;    
+}
+
+.map{
+  height: 60vh;
+}
+
+tr:hover{
+  background-color: rgb(148, 148, 148);
+}
+
+.container {
+  width: 95%;
 }

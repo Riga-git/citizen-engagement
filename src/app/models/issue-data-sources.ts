@@ -13,6 +13,7 @@ export class IssuesDataSources implements DataSource<Issue> {
     private loadingSubject = new BehaviorSubject<boolean>(false);
   
     public loading$ = this.loadingSubject.asObservable();
+    public issuesList$ = this.issueSubject.asObservable();
   
     constructor(private issueService: IssueService, private snackBar: MatSnackBar) { }
   
@@ -27,12 +28,10 @@ export class IssuesDataSources implements DataSource<Issue> {
   
     loadIssues() {
       this.loadingSubject.next(true);
-  
       this.issueService.getIssues()
         .pipe(
           finalize(() => this.loadingSubject.next(false))
         )
         .subscribe(issues => this.issueSubject.next(issues));
     }
-  
   }
