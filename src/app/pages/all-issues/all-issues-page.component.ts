@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { IssueService } from 'src/app/api/issue.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { IssuesDataSources } from '../../models/issue-data-sources';
 import { Issue } from 'src/app/models/issue';
 import { latLng, MapOptions, tileLayer, Map, Marker } from 'leaflet';
+import { tap } from 'rxjs/operators';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTable, MatTableModule } from '@angular/material/table';
 
 
 
@@ -21,8 +24,12 @@ export class AllIssuesPageComponent implements OnInit {
   mapOptions : MapOptions = {};
   map : Map;
   mapMarkers : Marker[] = [];
+  itemsPerPage : Number;
 
-  constructor(private issueService: IssueService, private snackBar: MatSnackBar) {
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatTable) Table: MatTable<any>;
+
+  constructor(private issueService: IssueService) {
     this.mapOptions = {
       layers: [
         tileLayer(
@@ -33,15 +40,25 @@ export class AllIssuesPageComponent implements OnInit {
       zoom: 13,
       center: latLng(46.778186, 6.641524)
     };
+    this.itemsPerPage = this.issueService.defaultPaginatorPageSize;
   }
 
+
   ngOnInit(): void {
-      this.dataSource= new IssuesDataSources(this.issueService, this.snackBar);
+      this.dataSource= new IssuesDataSources(this.issueService);
       this.dataSource.loadIssues();
       this.dataSource.issuesList$.subscribe({
         next : (issueList) => {this.issueList = issueList; this.updateMap();}
       });
   }
+
+  ngAfterViewInit() {
+    this.paginator.page
+        .pipe(
+            tap(() => {this.dataSource.loadIssues(this.paginator.pageIndex, this.paginator.pageSize)})
+        )
+        .subscribe();
+}
 
   onRowClicked(row): void {
     console.log(row)

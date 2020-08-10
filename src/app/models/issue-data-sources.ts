@@ -4,7 +4,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { CollectionViewer } from '@angular/cdk/collections';
 import { finalize } from 'rxjs/operators';
 import { IssueService } from 'src/app/api/issue.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 export class IssuesDataSources implements DataSource<Issue> {
@@ -15,7 +14,7 @@ export class IssuesDataSources implements DataSource<Issue> {
     public loading$ = this.loadingSubject.asObservable();
     public issuesList$ = this.issueSubject.asObservable();
   
-    constructor(private issueService: IssueService, private snackBar: MatSnackBar) { }
+    constructor(private issueService: IssueService) { }
   
     connect(collectionViewer: CollectionViewer): Observable<Issue[]> {
       return this.issueSubject.asObservable();
@@ -26,12 +25,13 @@ export class IssuesDataSources implements DataSource<Issue> {
       this.loadingSubject.complete();
     }
   
-    loadIssues() {
+    loadIssues(currentPage = 1 , pageSize= this.issueService.defaultPaginatorPageSize, search? :String , state?:String[]) {
       this.loadingSubject.next(true);
-      this.issueService.getIssues()
+      this.issueService.getIssues(currentPage,pageSize,search,state)
         .pipe(
           finalize(() => this.loadingSubject.next(false))
         )
-        .subscribe(issues => this.issueSubject.next(issues));
+        .subscribe(issues => {this.issueSubject.next(issues)});
     }
+
   }

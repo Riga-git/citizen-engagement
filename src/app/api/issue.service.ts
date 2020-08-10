@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Observable, from } from "rxjs";
 import { IssueType } from "src/app/models/issue-type";
 import { ReportIssuePost } from '../models/report-issue-post';
@@ -12,11 +12,13 @@ import { Geometry } from 'geojson';
   providedIn: "root",
 })
 export class IssueService {
-  htptOptions = {
-    headers:  new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8')
-  }
 
-  constructor(private http: HttpClient) {}
+  private readonly httpHeaders: HttpHeaders;
+  readonly defaultPaginatorPageSize = 10; 
+
+  constructor(private http: HttpClient) {
+    this.httpHeaders =  new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+  }
 
   loadAllIssueTypes(): Observable<IssueType[]> {
     return this.http.get<IssueType[]>(`${environment.apiUrl}/issueTypes`);
@@ -50,11 +52,13 @@ export class IssueService {
     newType.name = name;
     newType.description = description;
     console.log(newType);
-    return this.http.post<IssueType>(`${environment.apiUrl}/issueTypes`, JSON.stringify(newType), this.htptOptions);
+    return this.http.post<IssueType>(`${environment.apiUrl}/issueTypes`, JSON.stringify(newType), {headers : this.httpHeaders});
   }
 
-  getIssues() : Observable<Issue[]> {
-    return this.http.get<Issue[]>(`${environment.apiUrl}/issues`, this.htptOptions);
+  getIssues(currentPage = 1 , pageSize=this.defaultPaginatorPageSize, search? :String , state?:String[]) : Observable<Issue[]> {
+    let params = new HttpParams().set('page', currentPage.toString()).set('pageSize', pageSize.toString())
+
+    return this.http.get<Issue[]>(`${environment.apiUrl}/issues`, {headers : this.httpHeaders, params : params});
   }
 }
 
