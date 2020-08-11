@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from "@angular/common/http";
 import { Observable, from } from "rxjs";
 import { IssueType } from "src/app/models/issue-type";
 import { ReportIssuePost } from '../models/report-issue-post';
@@ -55,10 +55,10 @@ export class IssueService {
     return this.http.post<IssueType>(`${environment.apiUrl}/issueTypes`, JSON.stringify(newType), {headers : this.httpHeaders});
   }
 
-  getIssues(currentPage = 1 , pageSize=this.defaultPaginatorPageSize, search? :String , state?:String[]) : Observable<Issue[]> {
+  getIssues(currentPage = 1 , pageSize=this.defaultPaginatorPageSize, search? :String , state?:String[]) : Observable<any> {
     let params = new HttpParams().set('page', currentPage.toString()).set('pageSize', pageSize.toString())
 
-    return this.http.get<Issue[]>(`${environment.apiUrl}/issues`, {headers : this.httpHeaders, params : params});
+    return this.http.get<any>(`${environment.apiUrl}/issues`, {headers : this.httpHeaders, params : params, observe: 'response'});
   }
 }
 

@@ -1,20 +1,23 @@
 import { Issue } from './issue';
 import { DataSource } from '@angular/cdk/table';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { CollectionViewer } from '@angular/cdk/collections';
-import { finalize } from 'rxjs/operators';
+import { finalize, pluck, map, tap } from 'rxjs/operators';
 import { IssueService } from 'src/app/api/issue.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { error } from '@angular/compiler/src/util';
 
 
 export class IssuesDataSources implements DataSource<Issue> {
 
     private issueSubject = new BehaviorSubject<Issue[]>([]);
     private loadingSubject = new BehaviorSubject<boolean>(false);
+    private snackBar: MatSnackBar;
   
     public loading$ = this.loadingSubject.asObservable();
     public issuesList$ = this.issueSubject.asObservable();
   
-    constructor(private issueService: IssueService) { }
+    constructor(private issueService: IssueService) {}
   
     connect(collectionViewer: CollectionViewer): Observable<Issue[]> {
       return this.issueSubject.asObservable();
@@ -25,13 +28,18 @@ export class IssuesDataSources implements DataSource<Issue> {
       this.loadingSubject.complete();
     }
   
-    loadIssues(currentPage = 1 , pageSize= this.issueService.defaultPaginatorPageSize, search? :String , state?:String[]) {
+    loadIssues(currentPage= 1 , pageSize=this.issueService.defaultPaginatorPageSize, search? :String , state?:String[]) {
       this.loadingSubject.next(true);
       this.issueService.getIssues(currentPage,pageSize,search,state)
         .pipe(
+          tap(response => console.log(response.headers.get('Pagination-Total'))),
+          pluck('body'),
           finalize(() => this.loadingSubject.next(false))
         )
-        .subscribe(issues => {this.issueSubject.next(issues)});
+        .subscribe({
+          next: (issues) => this.issueSubject.next(issues),
+          error: () => this.snackBar.open('Sorry something went wrong...', 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})
+        });
     }
 
   }
