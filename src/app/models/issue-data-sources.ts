@@ -5,7 +5,6 @@ import { CollectionViewer } from '@angular/cdk/collections';
 import { finalize, pluck, map, tap } from 'rxjs/operators';
 import { IssueService } from 'src/app/api/issue.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { error } from '@angular/compiler/src/util';
 
 
 export class IssuesDataSources implements DataSource<Issue> {
@@ -16,6 +15,7 @@ export class IssuesDataSources implements DataSource<Issue> {
   
     public loading$ = this.loadingSubject.asObservable();
     public issuesList$ = this.issueSubject.asObservable();
+    public totalItems : number;
   
     constructor(private issueService: IssueService) {}
   
@@ -32,7 +32,7 @@ export class IssuesDataSources implements DataSource<Issue> {
       this.loadingSubject.next(true);
       this.issueService.getIssues(currentPage,pageSize,search,state)
         .pipe(
-          tap(response => console.log(response.headers.get('Pagination-Total'))),
+          tap(response => this.totalItems = response.headers.get('Pagination-Total')),
           pluck('body'),
           finalize(() => this.loadingSubject.next(false))
         )

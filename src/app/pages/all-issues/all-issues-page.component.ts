@@ -3,10 +3,9 @@ import { IssueService } from 'src/app/api/issue.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { IssuesDataSources } from '../../models/issue-data-sources';
 import { Issue } from 'src/app/models/issue';
-import { latLng, MapOptions, tileLayer, Map, Marker } from 'leaflet';
-import { tap } from 'rxjs/operators';
+import { latLng, MapOptions, tileLayer, Map, Marker, marker } from 'leaflet';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTable, MatTableModule } from '@angular/material/table';
+import { MatTable} from '@angular/material/table';
 
 
 
@@ -53,16 +52,14 @@ export class AllIssuesPageComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.paginator.page
-        .pipe(
-            tap(() => {this.dataSource.loadIssues(this.paginator.pageIndex, this.paginator.pageSize)})
-        )
-        .subscribe();
+    this.paginator.page.subscribe({
+          next : () => this.dataSource.loadIssues(this.paginator.pageIndex+1, this.paginator.pageSize)
+        })
 }
 
   onRowClicked(row): void {
-    console.log(row)
-    console.log('issuelist', this.issueList);
+    let tmpMarker : Marker = marker([0,0]).setLatLng(row.location.coordinates);
+    this.mapMarkers.push(tmpMarker);
   }
 
   updateMap() : void{
