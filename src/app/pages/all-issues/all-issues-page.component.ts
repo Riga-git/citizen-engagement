@@ -47,7 +47,7 @@ export class AllIssuesPageComponent implements OnInit {
       this.dataSource= new IssuesDataSources(this.issueService);
       this.dataSource.loadIssues();
       this.dataSource.issuesList$.subscribe({
-        next : (issueList) => {this.issueList = issueList; this.updateMap();}
+        next : (issueList) => this.issueList = issueList
       });
   }
 
@@ -58,12 +58,17 @@ export class AllIssuesPageComponent implements OnInit {
 }
 
   onRowClicked(row): void {
-    let tmpMarker : Marker = marker([0,0]).setLatLng(row.location.coordinates);
-    this.mapMarkers.push(tmpMarker);
-  }
-
-  updateMap() : void{
-;
+    //in a GeoJson object latitude and longitude are reversed relative to a marker.
+    let lat : number;
+    let lon : number;
+    lon = row.location.coordinates[0];
+    lat = row.location.coordinates[1];
+    let tmpMarker : Marker = marker([0,0]).setLatLng([lat, lon]);
+    if (!this.mapMarkers.length){
+      this.mapMarkers.push(tmpMarker);
+    }else{
+      this.mapMarkers[0] = tmpMarker;
+    }
   }
 
   onMapReady(map : Map) : void {
