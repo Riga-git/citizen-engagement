@@ -25,3 +25,34 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     color: whitesmoke;
     font-weight: bold;
 }
+
+.state-new {
+    font-size: 1 em;
+    font-weight: bold;
+    font-style: italic;
+    color: rgba(252, 0, 155, 0.753);
+}
+
+
+.state-inprogress {
+    font-size: 1 em;
+    font-weight: bold;
+    font-style: italic;
+    color: rgba(248, 141, 0, 0.767);
+}
+
+
+.state-rejected {
+    font-size: 1 em;
+    font-weight: bold;
+    font-style: italic;
+    color: rgba(240, 0, 0, 0.884);
+}
+
+
+.state-resolved {
+    font-size: 1 em;
+    font-weight: bold;
+    font-style: italic;
+    color: rgba(50, 145, 47, 0.795);
+}

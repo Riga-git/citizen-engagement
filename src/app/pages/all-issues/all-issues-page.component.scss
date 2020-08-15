@@ -11,10 +11,65 @@ tr {
   height: 50vh;
 }
 
-tr:hover{
-  background-color: rgb(148, 148, 148);
-}
+
 
 .container {
   width: 95%;
+}
+
+
+.tags{
+  font-size: 1.5em;
+  font-weight: bold;
+  padding-bottom: 1em;
+}
+
+.description{
+  font-weight: lighter;
+  padding-bottom: 0.5em;
+}
+
+.detailsContainer{
+  padding: 1em;
+}
+
+//
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+
+.imagePreview {
+  min-width: 80px;
+  height: 200px;
+}
+
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+
+
+button{
+  position: fixed;
+  bottom: 0;
 }

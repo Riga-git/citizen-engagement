@@ -6,13 +6,21 @@ import { Issue } from 'src/app/models/issue';
 import { latLng, MapOptions, tileLayer, Map, Marker, marker } from 'leaflet';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTable} from '@angular/material/table';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 
 
 @Component({
   selector: 'app-all-issues',
   templateUrl: './all-issues-page.component.html',
-  styleUrls: ['./all-issues-page.component.scss']
+  styleUrls: ['./all-issues-page.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 
 export class AllIssuesPageComponent implements OnInit {
@@ -24,6 +32,7 @@ export class AllIssuesPageComponent implements OnInit {
   map : Map;
   mapMarkers : Marker[] = [];
   itemsPerPage : Number;
+  expandedIssue : Issue | null;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatTable) Table: MatTable<any>;
@@ -59,6 +68,9 @@ export class AllIssuesPageComponent implements OnInit {
 
   onRowClicked(row): void {
     //in a GeoJson object latitude and longitude are reversed relative to a marker.
+    
+    this.expandedIssue = this.expandedIssue === row ? null : row ;
+    
     let lat : number;
     let lon : number;
     lon = row.location.coordinates[0];
@@ -74,5 +86,4 @@ export class AllIssuesPageComponent implements OnInit {
   onMapReady(map : Map) : void {
     this.map = map;
   }
-
 }
