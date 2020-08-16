@@ -11,12 +11,9 @@ tr {
   height: 50vh;
 }
 
-
-
 .container {
   width: 95%;
 }
-
 
 .tags{
   font-size: 1.5em;
@@ -31,45 +28,39 @@ tr {
 
 .detailsContainer{
   padding: 1em;
+  position: relative;
+  width: 100%;
 }
 
-//
+.imagePreview {
+  min-width: 80px;
+  height: 200px;
+  border-style: groove;
+  border-color: rgb(26, 25, 25);
+  border-width: 1px;
+}
 
-.example-element-row td {
+button{
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+.rows td {
   border-bottom-width: 0;
 }
 
-tr.example-element-row:not(.example-expanded-row):hover {
+tr.rows:not(.expanded-row):hover {
   background: whitesmoke;
 }
 
-tr.example-element-row:not(.example-expanded-row):active {
+tr.rows:not(.expanded-row):active {
   background: #efefef;
 }
 
-
-.example-element-detail {
+.issue-detail {
   overflow: hidden;
   display: flex;
 }
 
 
-.imagePreview {
-  min-width: 80px;
-  height: 200px;
-}
-
-
-.example-element-description {
-  padding: 16px;
-}
-
-.example-element-description-attribution {
-  opacity: 0.5;
-}
-
-
-button{
-  position: fixed;
-  bottom: 0;
-}

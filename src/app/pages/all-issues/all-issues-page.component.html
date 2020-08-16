@@ -9,13 +9,13 @@
                     <ng-container matColumnDef="Description">
                         <th mat-header-cell *matHeaderCellDef> Description </th>
                         <td mat-cell *matCellDef="let issue"> {{issue.description}}
-                            <div class="example-element-detail"
+                            <div class="issue-detail"
                                 [@detailExpand]="issue == expandedIssue ? 'expanded' : 'collapsed'">
                                 <div class="imageContainer">
-                                    <img class="imagePreview" src="../../../assets/Images/Damaged-Sidewalk.jpg"
+                                    <img class="imagePreview" [src]="issue.imageUrl!== ''  ? issue.imageUrl : '../../../assets/Images/noImage.svg'"
                                         alt="{{issue.imageUrl}}">
                                 </div>
-                                <div class="detailsContainer">
+                                <div class="detailsContainer"> 
                                     <div class="tags"> {{issue.tags}} </div>
                                     <div class="description"> {{issue.description}} </div>
                                     <div> created : {{issue.createdAt | date:'mediumDate' }} </div>
@@ -31,13 +31,9 @@
                         </td>
                     </ng-container>
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <!-- <tr mat-row (click)="onRowClicked(row)" *matRowDef="let row; columns: displayedColumns;"></tr> -->
-
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="example-element-row"
-                        [class.example-expanded-row]="expandedIssue === row" (click)="onRowClicked(row)">
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="rows"
+                        [class.expanded-row]="expandedIssue === row" (click)="onRowClicked(row)">
                     </tr>
-
-
                 </table>
                 <mat-paginator [pageSize]="itemsPerPage" [pageSizeOptions]="[5, 10, 25, 50]"
                     [length]="dataSource.totalItems">

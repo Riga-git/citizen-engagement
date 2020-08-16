@@ -8,8 +8,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTable} from '@angular/material/table';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
-
-
 @Component({
   selector: 'app-all-issues',
   templateUrl: './all-issues-page.component.html',
@@ -51,7 +49,6 @@ export class AllIssuesPageComponent implements OnInit {
     this.itemsPerPage = this.issueService.defaultPaginatorPageSize;
   }
 
-
   ngOnInit(): void {
       this.dataSource= new IssuesDataSources(this.issueService);
       this.dataSource.loadIssues();
@@ -68,7 +65,7 @@ export class AllIssuesPageComponent implements OnInit {
 
   onRowClicked(row): void {
     //in a GeoJson object latitude and longitude are reversed relative to a marker.
-    
+  
     this.expandedIssue = this.expandedIssue === row ? null : row ;
     
     let lat : number;
