@@ -56,12 +56,15 @@ export class IssueService {
     return this.http.post<IssueType>(`${environment.apiUrl}/issueTypes`, JSON.stringify(newType), {headers : this.httpHeaders});
   }
 
-  getIssues(currentPage = 1 , pageSize=this.defaultPaginatorPageSize, search? :String , state?:String[]) : Observable<any> {
-    let params = new HttpParams().set('page', currentPage.toString()).set('pageSize', pageSize.toString());
-    let url =  this.router.url === '/allIssues' ? '/issues' : '/me/issues';
-    console.log(url);
+  getIssues(currentPage = 1 , pageSize=this.defaultPaginatorPageSize, search? : string , state?:String[]) : Observable<any> {
+    let params = new HttpParams().set('page', currentPage.toString())
+                                .set('pageSize', pageSize.toString());
+    if(search !='' && search != undefined) params.set('search', search);
+    if(state != undefined) if(state.length) params.set('state', state.join('&'));
     
+    let url =  this.router.url === '/allIssues' ? '/issues' : '/me/issues'
     return this.http.get<any>(`${environment.apiUrl}${url}`, {headers : this.httpHeaders, params : params, observe: 'response'});
   }
 }
 
+git 
