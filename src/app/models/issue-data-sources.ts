@@ -5,6 +5,7 @@ import { CollectionViewer } from '@angular/cdk/collections';
 import { finalize, pluck, map, tap } from 'rxjs/operators';
 import { IssueService } from 'src/app/api/issue.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 
 export class IssuesDataSources implements DataSource<Issue> {

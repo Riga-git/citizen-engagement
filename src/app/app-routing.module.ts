@@ -5,7 +5,6 @@ import { AuthGuard } from "./security/guards/auth.guard";
 import { PagesModule } from './pages/pages.module'
 import { ReportIssuePageComponent } from './pages/report-issue-page/report-issue-page.component';
 import { AllIssuesPageComponent } from './pages/all-issues/all-issues-page.component';
-import { MyIssuesPageComponent } from './pages/my-issues-page/my-issues-page.component';
 import { UserPageComponent } from './pages/user-page/user-page.component';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 
@@ -16,7 +15,7 @@ const routes: Routes = [
   { path: "login", component: LoginPageComponent },
   { path: "reportIssue", component: ReportIssuePageComponent, canActivate: [AuthGuard] },
   { path: "allIssues", component: AllIssuesPageComponent, canActivate: [AuthGuard]},
-  { path: "myIssues", component:  MyIssuesPageComponent, canActivate: [AuthGuard]},
+  { path: "myIssues", component:  AllIssuesPageComponent, canActivate: [AuthGuard]},
   { path: "myAccount", component:  UserPageComponent, canActivate: [AuthGuard]},
   { path: "admin", component:  AdminPageComponent, canActivate: [AuthGuard]},
   // Add the route to display the dummy page

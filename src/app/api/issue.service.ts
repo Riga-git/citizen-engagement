@@ -7,6 +7,7 @@ import { ReportIssueResponse } from '../models/report-issue-response';
 import { Issue } from '../models/issue';
 import { environment } from "../../environments/environement";
 import { Geometry } from 'geojson';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: "root",
@@ -16,7 +17,7 @@ export class IssueService {
   private readonly httpHeaders: HttpHeaders;
   readonly defaultPaginatorPageSize = 10; 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.httpHeaders =  new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
   }
 
@@ -56,9 +57,11 @@ export class IssueService {
   }
 
   getIssues(currentPage = 1 , pageSize=this.defaultPaginatorPageSize, search? :String , state?:String[]) : Observable<any> {
-    let params = new HttpParams().set('page', currentPage.toString()).set('pageSize', pageSize.toString())
-
-    return this.http.get<any>(`${environment.apiUrl}/issues`, {headers : this.httpHeaders, params : params, observe: 'response'});
+    let params = new HttpParams().set('page', currentPage.toString()).set('pageSize', pageSize.toString());
+    let url =  this.router.url === '/allIssues' ? '/issues' : '/me/issues';
+    console.log(url);
+    
+    return this.http.get<any>(`${environment.apiUrl}${url}`, {headers : this.httpHeaders, params : params, observe: 'response'});
   }
 }
 
