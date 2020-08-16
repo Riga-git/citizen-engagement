@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
-import { DummyPageComponent } from './dummy-page/dummy-page.component';
 
 import { ApiTokenInterceptorService } from "./api/api-token-interceptor.service";
 import { FormsModule } from '@angular/forms';
@@ -22,8 +21,7 @@ import { SecurityModule } from './security/security.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    DummyPageComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
