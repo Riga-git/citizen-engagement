@@ -1,6 +1,6 @@
-import { ReportIssuePost } from './report-issue-post';
+import { ReportIssueFormat } from './report-issue-format';
 
-export class ReportIssueResponse extends ReportIssuePost {
+export class ReportIssueResponse extends ReportIssueFormat {
     readonly assignedHref : String;
     readonly creatorHref : String;
     readonly description : String;

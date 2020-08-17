@@ -7,6 +7,7 @@ import { ReportIssuePageComponent } from './pages/report-issue-page/report-issue
 import { AllIssuesPageComponent } from './pages/all-issues/all-issues-page.component';
 import { UserPageComponent } from './pages/user-page/user-page.component';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
+import { IssueDetailsPageComponent } from './pages/issue-details-page/issue-details-page.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: "myIssues", component:  AllIssuesPageComponent, canActivate: [AuthGuard]},
   { path: "myAccount", component:  UserPageComponent, canActivate: [AuthGuard]},
   { path: "admin", component:  AdminPageComponent, canActivate: [AuthGuard]},
+  { path: "issue/:id", component:  IssueDetailsPageComponent, canActivate: [AuthGuard]},
   // Add the route to display the dummy page
 ];
 

@@ -7,6 +7,7 @@ import { latLng, MapOptions, tileLayer, Map, Marker, marker } from 'leaflet';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTable} from '@angular/material/table';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-all-issues',
@@ -35,7 +36,7 @@ export class AllIssuesPageComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatTable) Table: MatTable<any>;
 
-  constructor(private issueService: IssueService) {
+  constructor(private issueService: IssueService, private router : Router) {
     this.mapOptions = {
       layers: [
         tileLayer(
@@ -67,7 +68,6 @@ export class AllIssuesPageComponent implements OnInit {
     //in a GeoJson object latitude and longitude are reversed relative to a marker.
   
     this.expandedIssue = this.expandedIssue === row ? null : row ;
-    
     let lat : number;
     let lon : number;
     lon = row.location.coordinates[0];
@@ -82,5 +82,9 @@ export class AllIssuesPageComponent implements OnInit {
 
   onMapReady(map : Map) : void {
     this.map = map;
+  }
+
+  moreDetails() : void {
+    this.router.navigate([ '/issue', this.expandedIssue.id ]);
   }
 }

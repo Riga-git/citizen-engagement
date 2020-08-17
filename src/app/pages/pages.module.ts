@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { UserPageComponent } from './user-page/user-page.component'
 import { ReportIssuePageComponent } from './report-issue-page/report-issue-page.component';
 import { AllIssuesPageComponent } from './all-issues/all-issues-page.component';
+import { IssueDetailsPageComponent } from './issue-details-page/issue-details-page.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
@@ -12,10 +13,14 @@ import { MatTableModule } from '@angular/material/table';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { RouterModule } from '@angular/router'
+
 
 @NgModule({
   declarations: [
@@ -23,7 +28,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     UserPageComponent,
     AllIssuesPageComponent,
     AdminPageComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    IssueDetailsPageComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +44,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatSnackBarModule,
     MatTableModule,
     MatProgressSpinnerModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatListModule,
+    MatDividerModule,
+    RouterModule
   ],
   exports : [
     ReportIssuePageComponent,

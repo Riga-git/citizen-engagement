@@ -1,7 +1,7 @@
 
 import { Geometry } from 'geojson';
 
-export class ReportIssuePost {
+export class ReportIssueFormat {
     description : String;
     imageUrl? : String;
     additionalImageUrls? : String[] = [];

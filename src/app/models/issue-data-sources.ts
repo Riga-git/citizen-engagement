@@ -29,7 +29,7 @@ export class IssuesDataSources implements DataSource<Issue> {
       this.loadingSubject.complete();
     }
   
-    loadIssues(currentPage= 1 , pageSize=this.issueService.defaultPaginatorPageSize, search? :String , state?:String[]) {
+    loadIssues(currentPage= 1 , pageSize=this.issueService.defaultPaginatorPageSize, search? :string , state?:string[]) {
       this.loadingSubject.next(true);
       this.issueService.getIssues(currentPage,pageSize,search,state)
         .pipe(
