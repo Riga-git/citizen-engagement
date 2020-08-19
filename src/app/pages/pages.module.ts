@@ -13,7 +13,7 @@ import { MatTableModule } from '@angular/material/table';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -45,7 +45,7 @@ import { RouterModule } from '@angular/router'
     MatTableModule,
     MatProgressSpinnerModule,
     MatPaginatorModule,
-    MatListModule,
+    MatCardModule,
     MatDividerModule,
     RouterModule
   ],

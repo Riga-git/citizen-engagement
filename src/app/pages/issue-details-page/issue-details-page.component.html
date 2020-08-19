@@ -1,57 +1,63 @@
 <div class="container mt-5">
-    <div class="row align-items-center justify-content-center">
-      <div class=" col-10 col-lg-5 ">
-        <form #reportIssueForm="ngForm" (submit)="UpdateIssue(reportIssueForm)" *ngIf="editMode">
-          <mat-form-field appearance="outline">
-            <mat-label>Tag(s) (# prefix)</mat-label>
-            <input [(ngModel)]='tagsString' name="Tags" matInput maxlength="100" form="repIssueForm" placeholder="ex: #StreetHole #CityCenter">
-          </mat-form-field>
-          <br>
-          <mat-form-field appearance="outline">
-            <mat-label>Description</mat-label>
-            <textarea required #descriptionField="ngModel" name="description" [(ngModel)]='description' matInput
-              maxlength="1000" form="repIssueForm" placeholder="Write a small description..."></textarea>
-            <mat-hint>{{description.length}}/1000</mat-hint>
-          </mat-form-field>
-          <p *ngIf="descriptionField.hasError('required') && descriptionField.touched" class="ErrorMessage"> 
-            Description is required
-          </p>
-          <br>
-          <mat-form-field appearance="outline">
-            <mat-label>Image(s)</mat-label>
-            <ngx-mat-file-input [multiple]="true" name="images" [(ngModel)]='images' form="repIssueForm" [accept]="'.gif, .jpg, .png'"></ngx-mat-file-input>
-            <mat-icon matSuffix>image</mat-icon>
-          </mat-form-field>
-          <br>
-          <button [disabled]="!this.mapMarkers.length || !reportIssueForm.valid" mat-raised-button color="primary" type="submit" class="mb-2">Submit</button>
-        </form>
-        <mat-list *ngIf="!editMode">
-            <h3 mat-subheader>Tags</h3>
-            <mat-list-item>
-                <p mat-line> {{currentIssue.tags}} </p>
-                <mat-divider [inset]="true"></mat-divider>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item>
-              <p mat-line> {{currentIssue.description}} </p>
-              <mat-divider [inset]="true"></mat-divider>
-              <mat-divider></mat-divider>
-          </mat-list-item>
-          </mat-list>
-          <button (click)="editMode = !editMode" >Edit</button>
+  <div class="backbutton">
+    <button (click)="navigateBack()" mat-raised-button color="secondary" class="mb-2">
+      <mat-icon><img src="../../../assets/Images/arrow_back-24px.svg" alt=""></mat-icon>
+    </button>
+  </div>
+  <div class="row align-items-center justify-content-center">
+    <div class=" col-10 col-lg-5 ">
+      <form #reportIssueForm="ngForm" (submit)="UpdateIssue(reportIssueForm)" *ngIf="editMode">
+        <mat-form-field appearance="outline">
+          <mat-label>Tag(s) (# prefix)</mat-label>
+          <input [(ngModel)]='tagsString' name="Tags" matInput maxlength="100" form="repIssueForm"
+            placeholder="ex: #StreetHole #CityCenter">
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+          <textarea required #descriptionField="ngModel" name="description" [(ngModel)]='description' matInput
+            maxlength="1000" form="repIssueForm" placeholder="Write a small description..."></textarea>
+          <mat-hint>{{description.length}}/1000</mat-hint>
+        </mat-form-field>
+        <p *ngIf="descriptionField.hasError('required') && descriptionField.touched" class="ErrorMessage">
+          Description is required
+        </p>
+        <br>
+        <mat-form-field appearance="outline">
+          <mat-label>Image(s)</mat-label>
+          <ngx-mat-file-input [multiple]="true" name="images" [(ngModel)]='images' form="repIssueForm"
+            [accept]="'.gif, .jpg, .png'"></ngx-mat-file-input>
+          <mat-icon matSuffix>image</mat-icon>
+        </mat-form-field>
+        <br>
+        <div class="row align-items-center justify-content-around">
+          <button [disabled]="!this.mapMarkers.length || !reportIssueForm.valid" mat-raised-button color="primary"
+            type="submit">Submit</button>
+          <button (click)="editMode = !editMode" mat-raised-button color="secondary" >Cancel</button>
+        </div>
+      </form>
+      <div *ngIf="!editMode">
+        <mat-card>
+          <mat-card-title>{{currentIssue.tags}}</mat-card-title>
+          <img matCardImageMedium src="../../../assets/Images/noImage.svg">
+          <mat-card-content>{{currentIssue.description}}</mat-card-content>
+          <mat-card-footer>
+            <div [ngClass]="{'state-new' : currentIssue.state === 'new',
+          'state-inprogress' : currentIssue.state === 'inProgress',
+          'state-rejected' : currentIssue.state === 'rejected',
+          'state-resolved' : currentIssue.state === 'resolved'}">
+              {{currentIssue.state}}
+            </div>
+          </mat-card-footer>
+        </mat-card>
+        <button class="mt-5" mat-raised-button color="primary" (click)="editMode = !editMode">Edit</button>
       </div>
-      <div class="col-10 order-first order-lg-last mb-5 mb-lg-0 col-lg-6 offset-lg-1">
-        <div *ngIf="!this.mapMarkers.length" class="ErrorMessage">
-          Chose a location on the map!
-        </div>
-        <div  (leafletClick)="updateMarker($event)" 
-              leaflet [leafletOptions]="mapOptions"
-              (leafletMapReady)="onMapReady($event)" 
-              [leafletLayers]="mapMarkers" class="map"
-              ngDefaultControl>
-        </div>
+    </div>
+    <div class="col-10 order-first order-lg-last mb-5 mb-lg-0 col-lg-6 offset-lg-1">
+      <div (leafletClick)="updateMarker($event)" leaflet [leafletOptions]="mapOptions"
+        (leafletMapReady)="onMapReady($event)" [leafletLayers]="mapMarkers" class="map" ngDefaultControl>
       </div>
     </div>
   </div>
-  
-  
+</div>
+

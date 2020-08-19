@@ -3,7 +3,7 @@ import { IssueService } from 'src/app/api/issue.service';
 import { latLng, MapOptions, tileLayer, Map, Marker, marker, LeafletMouseEvent, Point } from 'leaflet';
 import { NgForm } from '@angular/forms';
 import { FileInput } from 'ngx-material-file-input';
-import { IssueType } from 'src/app/models/issue-type';
+import {Location} from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { finalize } from 'rxjs/operators';
 import { Issue } from 'src/app/models/issue';
@@ -28,7 +28,7 @@ export class IssueDetailsPageComponent {
   currentIssue : Issue;
 
 
-  constructor(private issueService: IssueService, private snackBar: MatSnackBar, private route: ActivatedRoute ) { 
+  constructor(private issueService: IssueService, private snackBar: MatSnackBar, private route: ActivatedRoute, private location :Location ) { 
     this.mapOptions = {
       layers: [
         tileLayer(
@@ -79,5 +79,8 @@ export class IssueDetailsPageComponent {
         error : (error) => this.snackBar.open('Sorry something went wrong...', 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})
       });
     }
+  }
+  navigateBack() : void{
+    this.location.back();
   }
 }

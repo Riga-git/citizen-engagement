@@ -1,0 +1,23 @@
+
+.map{
+    height: 50vh;
+}
+
+.container {
+    width: 95%;
+    display: block;
+  }
+  
+  mat-form-field{
+      display: block;
+  }
+
+  textarea{ 
+    min-height: 25vh;
+}
+
+.backbutton{
+    position: absolute;
+    top: 5px;
+    left: 5px;
+  }
