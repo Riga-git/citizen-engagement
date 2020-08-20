@@ -59,10 +59,9 @@ export class IssueService {
     tags? : string[], imagesUrls? : File[]): Observable<ReportIssueResponse>{
 
     let body = this.prepareIssueToSend(description, location,typeHref,tags,imagesUrls);
-    let params = new HttpParams().set('id', id);
-    return this.http.patch<ReportIssueResponse>(`${environment.apiUrl}/issues`,body, {headers : this.httpHeaders, params : params});
+    //let params = new HttpParams().set('id', id);
+    return this.http.patch<ReportIssueResponse>(`${environment.apiUrl}/issues/${id}`,body, {headers : this.httpHeaders});
 }
-
 
   addNewType(name : string, description? : string): Observable<IssueType> {
     let newType = new IssueType();

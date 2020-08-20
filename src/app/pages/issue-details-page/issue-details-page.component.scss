@@ -15,9 +15,9 @@
   textarea{ 
     min-height: 25vh;
 }
-
-.backbutton{
-    position: absolute;
-    top: 5px;
-    left: 5px;
+  .backButton{
+      padding-left: 20px;
+      top: 5px;
+      position: sticky;
   }
+

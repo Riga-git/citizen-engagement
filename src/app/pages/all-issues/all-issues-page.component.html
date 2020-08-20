@@ -4,7 +4,7 @@
             <div class="spinner-container" *ngIf="dataSource.loading$ | async">
                 <mat-spinner style="display: inline-block;"></mat-spinner>
             </div>
-            <div class="mat-elevation-z8">
+            <div class="mb-5 mat-elevation-z8">
                 <table #table mat-table [dataSource]="dataSource">
                     <ng-container matColumnDef="Description">
                         <th mat-header-cell *matHeaderCellDef> Description </th>

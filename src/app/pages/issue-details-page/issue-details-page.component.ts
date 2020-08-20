@@ -7,7 +7,8 @@ import {Location} from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { finalize } from 'rxjs/operators';
 import { Issue } from 'src/app/models/issue';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { compileNgModule } from '@angular/compiler';
 
 @Component({
   selector: 'app-issue-details-page',
@@ -27,8 +28,7 @@ export class IssueDetailsPageComponent {
   editMode  : Boolean;
   currentIssue : Issue;
 
-
-  constructor(private issueService: IssueService, private snackBar: MatSnackBar, private route: ActivatedRoute, private location :Location ) { 
+  constructor(private issueService: IssueService, private snackBar: MatSnackBar, private route: ActivatedRoute, private location :Location, private router : Router ) { 
     this.mapOptions = {
       layers: [
         tileLayer(
@@ -40,10 +40,12 @@ export class IssueDetailsPageComponent {
       center: latLng(46.778186, 6.641524)
     };
 
+    this.currentIssue = new Issue; // avoid error currentIssue 'undifined' before the data are fetched
+
     this.route.paramMap
       .subscribe((params: ParamMap) => {
         this.issueService.getIssue(params.get('id'))
-          .subscribe({ next: (issue) => this.currentIssue = issue });
+          .subscribe({ next: (issue) => {this.currentIssue = issue; this.displayMarker();}});
       });
   }
 
@@ -60,13 +62,29 @@ export class IssueDetailsPageComponent {
     }
   }
 
-  UpdateIssue(form: NgForm) {
+  displayMarker(): void {
+    //in a GeoJson object latitude and longitude are reversed relative to a marker.
+  
+    let lat : number;
+    let lon : number;
+    lon = this.currentIssue.location['coordinates'][0];
+    lat = this.currentIssue.location['coordinates'][1];
+    let tmpMarker : Marker = marker([0,0]).setLatLng([lat, lon]);
+    if (!this.mapMarkers.length){
+      this.mapMarkers.push(tmpMarker);
+    }else{
+      this.mapMarkers[0] = tmpMarker;
+    }
+  }
+
+  updateIssue(form: NgForm) {
     // Only do something if the form is valid
     if (form.valid) {
-      this.issueService.postIssue(
-        this.description,
+      this.issueService.updateIssue(
+        this.currentIssue.id,
+        this.currentIssue.description,
         this.mapMarkers[0].toGeoJSON().geometry,
-        this.chosesIssueType,
+        this.currentIssue.issueTypeHref,
         // ignore the index 0 because is a empty string because the separator is located before the tagName 
         this.tagsString.replace(/\s/g, "").split('#').slice(1,this.tagsString.length), 
         this.images.files
@@ -75,11 +93,12 @@ export class IssueDetailsPageComponent {
         finalize(() => !this.editMode)
       )
       .subscribe({
-        next : () => this.snackBar.open('Issue reported with succes','',{panelClass : 'SnackBarSuccess', duration : 2500}),
-        error : (error) => this.snackBar.open('Sorry something went wrong...', 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})
+        next : () => {this.snackBar.open('Issue reported with succes','',{panelClass : 'SnackBarSuccess', duration : 2500}), this.editMode = false},
+        error : (error) => {this.snackBar.open('Sorry something went wrong...', 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})}
       });
     }
   }
+
   navigateBack() : void{
     this.location.back();
   }
