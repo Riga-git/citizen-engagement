@@ -3,12 +3,11 @@ import { IssueService } from 'src/app/api/issue.service';
 import { latLng, MapOptions, tileLayer, Map, Marker, marker, LeafletMouseEvent, Point } from 'leaflet';
 import { NgForm } from '@angular/forms';
 import { FileInput } from 'ngx-material-file-input';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { finalize } from 'rxjs/operators';
 import { Issue } from 'src/app/models/issue';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { compileNgModule } from '@angular/compiler';
 
 @Component({
   selector: 'app-issue-details-page',
@@ -27,6 +26,7 @@ export class IssueDetailsPageComponent {
   chosesIssueType : string = "";
   editMode  : Boolean;
   currentIssue : Issue;
+  newComment  : string = "";
 
   constructor(private issueService: IssueService, private snackBar: MatSnackBar, private route: ActivatedRoute, private location :Location, private router : Router ) { 
     this.mapOptions = {
@@ -101,5 +101,9 @@ export class IssueDetailsPageComponent {
 
   navigateBack() : void{
     this.location.back();
+  }
+
+  postComment(form: NgForm) : void {
+    ;
   }
 }

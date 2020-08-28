@@ -16,8 +16,8 @@
         <br>
         <mat-form-field appearance="outline">
           <mat-label>Description</mat-label>
-          <textarea required #descriptionField="ngModel" name="description" [(ngModel)]='currentIssue.description' matInput
-            maxlength="1000" form="repIssueForm" placeholder="Write a small description..."></textarea>
+          <textarea required #descriptionField="ngModel" name="description" [(ngModel)]='currentIssue.description'
+            matInput maxlength="1000" form="updateIssueForm" placeholder="Write a small description..."></textarea>
           <mat-hint>{{description.length}}/1000</mat-hint>
         </mat-form-field>
         <p *ngIf="descriptionField.hasError('required') && descriptionField.touched" class="ErrorMessage">
@@ -34,7 +34,7 @@
         <div class="mb-5 row align-items-center justify-content-around">
           <button [disabled]="!this.mapMarkers.length || !updateIssueForm.valid" mat-raised-button color="primary"
             type="submit">Submit</button>
-          <button (click)="editMode = !editMode" mat-raised-button color="secondary" >Cancel</button>
+          <button (click)="editMode = !editMode" mat-raised-button color="secondary">Cancel</button>
         </div>
       </form>
       <div *ngIf="!editMode">
@@ -60,5 +60,20 @@
       </div>
     </div>
   </div>
+  <div *ngIf="!editMode" class="container mt-5" >
+    <div class="row align-items-center justify-content-center">
+      <form class="col-12" #postCommentForm="ngForm" (submit)="postComment(postCommentForm)">
+        <span class="col-9">
+        <mat-form-field appearance="outline">
+          <mat-label>Leave a comment</mat-label>
+          <textarea #CommentField="ngModel" name="comment" [(ngModel)]='newComment' matInput maxlength="1000"
+            form="postCommentForm" placeholder="..." class="commentField"></textarea>
+          <mat-hint>{{newComment.length}}/1000</mat-hint>
+        </mat-form-field></span>
+        <span class="mb-5 offset-1 col-2">
+          <button [disabled]="newComment.length < 1" mat-raised-button color="primary" type="submit">Post</button>
+        </span>
+      </form>
+    </div>
+  </div>
 </div>
-
