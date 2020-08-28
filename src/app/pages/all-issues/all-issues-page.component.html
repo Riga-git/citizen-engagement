@@ -19,6 +19,7 @@
                                     <div class="tags"> {{issue.tags}} </div>
                                     <div class="description"> {{issue.description}} </div>
                                     <div> created : {{issue.createdAt | date:'mediumDate' }} </div>
+                                    <br>
                                     <div [ngClass]="{'state-new' : issue.state === 'new',
                                                     'state-inprogress' : issue.state === 'inProgress',
                                                     'state-rejected' : issue.state === 'rejected',

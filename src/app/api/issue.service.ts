@@ -8,6 +8,7 @@ import { Issue } from '../models/issue';
 import { environment } from "../../environments/environement";
 import { Geometry } from 'geojson';
 import { Router } from '@angular/router';
+import { IssueComment } from '../models/IssueComment';
 
 @Injectable({
   providedIn: "root",
@@ -85,5 +86,14 @@ export class IssueService {
   getIssue(id : string) : Observable<Issue> {
     
     return this.http.get<Issue>(`${environment.apiUrl}/issues/${id}`, {headers : this.httpHeaders});
+  }
+
+  postComments(issueId : string, commentText : string) : Observable<Comment>{
+    return this.http.post<Comment>(`${environment.apiUrl}/issues/${issueId}/comments`, {text: commentText}, {headers : this.httpHeaders});
+  }
+
+  getComments(issueId: string) : Observable<any>  {
+    let params = new HttpParams().set('include', 'author')
+    return this.http.get<any>(`${environment.apiUrl}/issues/${issueId}/comments`, { headers: this.httpHeaders, params: params, observe: 'response' });
   }
 }

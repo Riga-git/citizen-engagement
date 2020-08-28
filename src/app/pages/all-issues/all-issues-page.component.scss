@@ -47,7 +47,7 @@ button{
 }
 
 .rows td {
-  border-bottom-width: 0;
+  border-bottom-width: 1px;
 }
 
 tr.rows:not(.expanded-row):hover {
@@ -62,5 +62,3 @@ tr.rows:not(.expanded-row):active {
   overflow: hidden;
   display: flex;
 }
-
-

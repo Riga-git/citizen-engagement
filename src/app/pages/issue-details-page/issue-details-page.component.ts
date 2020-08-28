@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { IssueService } from 'src/app/api/issue.service';
 import { latLng, MapOptions, tileLayer, Map, Marker, marker, LeafletMouseEvent, Point } from 'leaflet';
 import { NgForm } from '@angular/forms';
 import { FileInput } from 'ngx-material-file-input';
 import { Location } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { finalize } from 'rxjs/operators';
+import { finalize, pluck } from 'rxjs/operators';
 import { Issue } from 'src/app/models/issue';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { IssueComment } from 'src/app/models/IssueComment';
 
 @Component({
   selector: 'app-issue-details-page',
@@ -26,7 +27,8 @@ export class IssueDetailsPageComponent {
   chosesIssueType : string = "";
   editMode  : Boolean;
   currentIssue : Issue;
-  newComment  : string = "";
+  newComment = new IssueComment();
+  comments : IssueComment[] = [];
 
   constructor(private issueService: IssueService, private snackBar: MatSnackBar, private route: ActivatedRoute, private location :Location, private router : Router ) { 
     this.mapOptions = {
@@ -45,7 +47,7 @@ export class IssueDetailsPageComponent {
     this.route.paramMap
       .subscribe((params: ParamMap) => {
         this.issueService.getIssue(params.get('id'))
-          .subscribe({ next: (issue) => {this.currentIssue = issue; this.displayMarker();}});
+          .subscribe({ next: (issue) => {this.currentIssue = issue; this.displayMarker(); this.getcomments(issue.id);}});
       });
   }
 
@@ -53,12 +55,14 @@ export class IssueDetailsPageComponent {
     this.map = map;
   }
 
-  updateMarker(e : LeafletMouseEvent) : void {
-    let tmpMarker : Marker = marker([0,0]).setLatLng(e.latlng);
-    if (!this.mapMarkers.length){
-      this.mapMarkers.push(tmpMarker);
-    }else{
-      this.mapMarkers[0] = tmpMarker;
+  updateMarker(e: LeafletMouseEvent): void {
+    if (this.editMode) {
+      let tmpMarker: Marker = marker([0, 0]).setLatLng(e.latlng);
+      if (!this.mapMarkers.length) {
+        this.mapMarkers.push(tmpMarker);
+      } else {
+        this.mapMarkers[0] = tmpMarker;
+      }
     }
   }
 
@@ -75,6 +79,9 @@ export class IssueDetailsPageComponent {
     }else{
       this.mapMarkers[0] = tmpMarker;
     }
+
+    // recenter the map on the marker 
+    this.map.panTo(this.mapMarkers[0].getLatLng());
   }
 
   updateIssue(form: NgForm) {
@@ -90,11 +97,11 @@ export class IssueDetailsPageComponent {
         this.images.files
       )
       .pipe(
-        finalize(() => !this.editMode)
+        finalize(() => this.editMode = false)
       )
       .subscribe({
         next : () => {this.snackBar.open('Issue reported with succes','',{panelClass : 'SnackBarSuccess', duration : 2500}), this.editMode = false},
-        error : (error) => {this.snackBar.open('Sorry something went wrong...', 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})}
+        error : () => {this.snackBar.open('Sorry something went wrong...', 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})}
       });
     }
   }
@@ -103,7 +110,22 @@ export class IssueDetailsPageComponent {
     this.location.back();
   }
 
-  postComment(form: NgForm) : void {
-    ;
+  postComment() : void {
+    this.issueService.postComments(this.currentIssue.id, this.newComment.text)
+      .subscribe({
+        next : () => this.getcomments(this.currentIssue.id),
+        error : () => {this.snackBar.open("Sorry we couldn't post your comment...", 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})}
+      });
+  }
+
+  getcomments( issueID : string) : void {
+    this.issueService.getComments(this.currentIssue.id)
+    .pipe(
+      pluck('body')
+    )
+      .subscribe({
+        next : (comments) => {comments.forEach(comment => this.comments.push(comment)),console.log(comments)},
+        error : () => {this.snackBar.open("Sorry we couldn't get the comments...", 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})}
+      });
   }
 }

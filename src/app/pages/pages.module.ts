@@ -20,6 +20,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { RouterModule } from '@angular/router'
+import { MatListModule } from '@angular/material/list'
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { RouterModule } from '@angular/router'
     MatPaginatorModule,
     MatCardModule,
     MatDividerModule,
-    RouterModule
+    RouterModule,
+    MatListModule
   ],
   exports : [
     ReportIssuePageComponent,

@@ -78,6 +78,8 @@ export class AllIssuesPageComponent implements OnInit {
     }else{
       this.mapMarkers[0] = tmpMarker;
     }
+    // recenter the map on the marker 
+    this.map.panTo(this.mapMarkers[0].getLatLng());
   }
 
   onMapReady(map : Map) : void {

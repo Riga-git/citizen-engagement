@@ -34,13 +34,15 @@
         <div class="mb-5 row align-items-center justify-content-around">
           <button [disabled]="!this.mapMarkers.length || !updateIssueForm.valid" mat-raised-button color="primary"
             type="submit">Submit</button>
-          <button (click)="editMode = !editMode" mat-raised-button color="secondary">Cancel</button>
+          <button (click)="editMode = false" mat-raised-button color="secondary">Cancel</button>
         </div>
       </form>
       <div *ngIf="!editMode">
         <mat-card>
           <mat-card-title>{{currentIssue.tags}}</mat-card-title>
           <img matCardImageMedium src="../../../assets/Images/noImage.svg">
+          <div> created : {{currentIssue.createdAt | date:'mediumDate' }} </div>
+          <br>
           <mat-card-content>{{currentIssue.description}}</mat-card-content>
           <mat-card-footer>
             <div [ngClass]="{'state-new' : currentIssue.state === 'new',
@@ -51,7 +53,7 @@
             </div>
           </mat-card-footer>
         </mat-card>
-        <button class="mt-5 mb-5" mat-raised-button color="primary" (click)="editMode = !editMode">Edit</button>
+        <button class="mt-5 mb-5" mat-raised-button color="primary" (click)="editMode = true">Edit</button>
       </div>
     </div>
     <div class="col-10 order-first order-lg-last mb-5 mb-lg-0 col-lg-6 offset-lg-1">
@@ -60,20 +62,29 @@
       </div>
     </div>
   </div>
-  <div *ngIf="!editMode" class="container mt-5" >
+</div>
+
+<div *ngIf="!editMode" class="container mt-lg-5">
+  <div class="col-12">
+    <mat-list>
+      <mat-list-item *ngFor="let comment of comments">
+        <small><strong class="author">{{comment.author.firstname}} {{comment.author.lastname}}</strong><span> &nbsp;wrote on &nbsp;</span><em class="date">{{comment.createdAt | date:'medium'}}</em> &nbsp;: &nbsp;</small>{{comment.text}}
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
+  </div>
+  <form (submit)="postComment()">
     <div class="row align-items-center justify-content-center">
-      <form class="col-12" #postCommentForm="ngForm" (submit)="postComment(postCommentForm)">
-        <span class="col-9">
+      <div class="col-12">
         <mat-form-field appearance="outline">
           <mat-label>Leave a comment</mat-label>
-          <textarea #CommentField="ngModel" name="comment" [(ngModel)]='newComment' matInput maxlength="1000"
-            form="postCommentForm" placeholder="..." class="commentField"></textarea>
-          <mat-hint>{{newComment.length}}/1000</mat-hint>
-        </mat-form-field></span>
-        <span class="mb-5 offset-1 col-2">
-          <button [disabled]="newComment.length < 1" mat-raised-button color="primary" type="submit">Post</button>
-        </span>
-      </form>
+          <textarea class="commentField" name="comment" [(ngModel)]='newComment.text' matInput maxlength="1000" placeholder="..." ></textarea>
+          <mat-hint>{{newComment.text.length}}/1000</mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="mb-5 col-2">
+        <button [disabled]="newComment.text.length < 1" mat-raised-button color="primary" type="submit">Post</button>
+      </div>
     </div>
-  </div>
+  </form>
 </div>
