@@ -12,8 +12,9 @@ import { Router } from "@angular/router";
 export class SidebarComponent implements OnInit {
 
   @ViewChild('sidenav') public sidenav: MatSidenav;
+  isAdminUser : boolean;
 
-  constructor(private sidenavService : SidenavService, private AuthService : AuthService, private router: Router) { }
+  constructor(private sidenavService : SidenavService, public AuthService : AuthService, private router: Router) { }
 
   ngOnInit(): void { }
   

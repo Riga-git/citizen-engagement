@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from "../auth.service";
-import { User } from 'src/app/models/user';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class AdminGuard implements CanActivate {
           // Use this to check if the user is authenticated
           .getUser()
           // If they're authenticated, return true, otherwise, returns an UrlTree to redirect to the login page
-          .pipe(map((user) => (user. ? true : this.router.parseUrl("/login"))))
+          .pipe(map((user) => (user.roles.toString().includes('staff') ? true : false)))
       );
     }
   }

@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginPageComponent } from "./security/login-page/login-page.component";
 import { AuthGuard } from "./security/guards/auth.guard";
+import { AdminGuard } from "./security/guards/admin.guard";
+
 import { PagesModule } from './pages/pages.module'
 import { ReportIssuePageComponent } from './pages/report-issue-page/report-issue-page.component';
 import { AllIssuesPageComponent } from './pages/all-issues/all-issues-page.component';
@@ -18,7 +20,7 @@ const routes: Routes = [
   { path: "allIssues", component: AllIssuesPageComponent, canActivate: [AuthGuard]},
   { path: "myIssues", component:  AllIssuesPageComponent, canActivate: [AuthGuard]},
   { path: "myAccount", component:  UserPageComponent, canActivate: [AuthGuard]},
-  { path: "admin", component:  AdminPageComponent, canActivate: [AuthGuard]},
+  { path: "admin", component:  AdminPageComponent, canActivate: [AuthGuard, AdminGuard]},
   { path: "issue/:id", component:  IssueDetailsPageComponent, canActivate: [AuthGuard]},
   // Add the route to display the dummy page
 ];

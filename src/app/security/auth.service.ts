@@ -6,6 +6,7 @@ import { map, tap } from "rxjs/operators";
 import { User } from "../models/user";
 import { AuthRequest } from "../models/auth-request";
 import { environment } from "../../environments/environement";
+import { ReportIssueResponse } from '../models/report-issue-response';
 
 // Add a constant for the storage key
 const STORAGE_KEY = "auth";
@@ -20,6 +21,7 @@ export class AuthService {
    * It will act as a sort of local "cache" for the AuthResponse object value.
    */
   private authenticated$: ReplaySubject<AuthResponse>;
+  private isAdmin : boolean = false;
 
   constructor(private http: HttpClient) {
     // Get the credentials from the localStorage when the AuthService is created
@@ -40,6 +42,13 @@ export class AuthService {
   }
 
   /**
+   * Retrieves the User object from the latest AuthResponse value
+   */
+  isAdminUser(): boolean {
+    return this.isAdmin;
+  }
+
+    /**
    * Retrieves the User object from the latest AuthResponse value
    */
   getUser(): Observable<User> {
@@ -66,6 +75,7 @@ export class AuthService {
       map((response) => {
         this.authenticated$.next(response);
         console.log(`User ${response.user.name} logged in`);
+        this.isAdmin = response.user.roles.toString().includes('staff') ? true : false;
         return response.user;
       })
     );

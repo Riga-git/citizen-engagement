@@ -15,7 +15,7 @@
       <a mat-button routerLinkActive="activeRoute" routerLink="/myIssues">My issues</a>
       <a mat-button routerLinkActive="activeRoute" routerLink="/allIssues">All issues</a>
       <a mat-button routerLinkActive="activeRoute" routerLink="/myAccount">my Accout</a>
-      <a mat-button routerLinkActive="activeRoute" routerLink="/admin">Admin</a>
+      <a *ngIf="AuthService.isAdminUser()" mat-button routerLinkActive="activeRoute" routerLink="/admin">Admin</a>
       <a mat-button (click)="logout()">Log out</a>
     </div>
   </mat-toolbar>
