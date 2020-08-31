@@ -46,4 +46,8 @@ export class LoginPageComponent {
       });
     }
   }
+
+  navigateToSingUpPage() : void {
+    this.router.navigateByUrl('/singUp');
+  }
 }

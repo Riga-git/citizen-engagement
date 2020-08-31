@@ -1,0 +1,66 @@
+<div class="container mt-5">
+    <form #signUpForm="ngForm" (submit)="addNewUser(signUpForm)">
+      <div class="row justify-content-center">
+        <div class="col-5">
+          <mat-form-field>
+            <mat-label for="name">Unsername</mat-label>
+            <input name="FirstName" matInput id="name" #nameField="ngModel" required [(ngModel)]="userName" />
+          </mat-form-field>
+          <p *ngIf="nameField.hasError('required') && nameField.touched">
+            Username is required
+          </p>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class=" col-5 ">
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput name="password" id="passwrod" #passwordField="ngModel" required [(ngModel)]='password' />
+          </mat-form-field>
+          <p *ngIf="passwordField.hasError('required') && passwordField.touched">
+            Password is required
+          </p>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class=" col-5 ">
+          <mat-form-field>
+            <mat-label>First name</mat-label>
+            <input matInput name="firstName" id="firstName" #firstNameField="ngModel" required [(ngModel)]='firstName' />
+          </mat-form-field>
+          <p *ngIf="firstNameField.hasError('required') && firstNameField.touched">
+            First name is required
+          </p>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class=" col-5 ">
+          <mat-form-field>
+            <mat-label>Last name</mat-label>
+            <input matInput name="lastName" id="lastName" #lastNameField="ngModel" required [(ngModel)]='lastName' />
+          </mat-form-field>
+          <p *ngIf="lastNameField.hasError('required') && lastNameField.touched">
+            Last name is required
+          </p>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class=" col-5 ">
+          <mat-form-field>
+            <mat-label>phone</mat-label>
+            <input matInput name="phonw" id="phone" #phoneField="ngModel" [(ngModel)]='phone' />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row align-content-center justify-content-center">
+        <div class=" col-5 mt-5 ">
+          <div class=" row align-content-center justify-content-around" >
+          <button mat-raised-button color="primary" type="submit" [disabled]="signUpForm.invalid">Submit</button>
+          <button mat-raised-button color="accent" (click)="navigateToLoginPage()">Log in page</button>
+        </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  
+  

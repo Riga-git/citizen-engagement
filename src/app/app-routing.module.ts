@@ -10,12 +10,14 @@ import { AllIssuesPageComponent } from './pages/all-issues/all-issues-page.compo
 import { UserPageComponent } from './pages/user-page/user-page.component';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { IssueDetailsPageComponent } from './pages/issue-details-page/issue-details-page.component';
+import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
 
 
 const routes: Routes = [
   // Add this default route to redirect to dummy
   { path: "", redirectTo: "reportIssue", pathMatch: "full" },
   { path: "login", component: LoginPageComponent },
+  { path: "singUp", component: SignUpPageComponent},
   { path: "reportIssue", component: ReportIssuePageComponent, canActivate: [AuthGuard] },
   { path: "allIssues", component: AllIssuesPageComponent, canActivate: [AuthGuard]},
   { path: "myIssues", component:  AllIssuesPageComponent, canActivate: [AuthGuard]},

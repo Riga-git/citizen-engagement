@@ -20,7 +20,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { RouterModule } from '@angular/router'
-import { MatListModule } from '@angular/material/list'
+import { MatListModule } from '@angular/material/list';
+import { SignUpPageComponent } from './sign-up-page/sign-up-page.component'
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { MatListModule } from '@angular/material/list'
     AllIssuesPageComponent,
     AdminPageComponent,
     AdminPageComponent,
-    IssueDetailsPageComponent
+    IssueDetailsPageComponent,
+    SignUpPageComponent,
   ],
   imports: [
     CommonModule,

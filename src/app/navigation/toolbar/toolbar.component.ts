@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor(private sidenavService : SidenavService, private AuthService : AuthService, private router: Router) { }
+  constructor(private sidenavService : SidenavService, public AuthService : AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }

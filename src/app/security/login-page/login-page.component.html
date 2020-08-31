@@ -4,11 +4,11 @@
     <div class="row justify-content-center">
       <div class="col-5">
         <mat-form-field>
-          <mat-label for="name">Name</mat-label>
+          <mat-label for="name">Unsername</mat-label>
           <input name="FirstName" matInput id="name" #nameField="ngModel" required [(ngModel)]="authRequest.name" />
         </mat-form-field>
         <p *ngIf="nameField.hasError('required') && nameField.touched">
-          Name is required
+          Username is required
         </p>
       </div>
     </div>
@@ -24,11 +24,17 @@
         </p>
       </div>
     </div>
-      <div class="row justify-content-center">
+    <div class="row align-content-center justify-content-center">
+      <div class=" col-5 mt-5 ">
+        <div class=" row align-content-center justify-content-around" >
         <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Log in</button>
         <p *ngIf="loginError">
           Unable to log in. See the log for more information.
         </p>
+        <button mat-raised-button color="accent" (click)="navigateToSingUpPage()">Sign Up</button>
       </div>
+      </div>
+    </div>
   </form>
 </div>
+

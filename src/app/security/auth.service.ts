@@ -81,6 +81,21 @@ export class AuthService {
     );
   }
 
+    /**
+   * Register a new user.
+   */
+  signUp(authRequest: AuthRequest): Observable<User> {
+    return this.http.post<AuthResponse>(`${environment.apiUrl}/auth`, authRequest).pipe(
+      tap((response) => this.saveAuth(response)),
+      map((response) => {
+        this.authenticated$.next(response);
+        console.log(`User ${response.user.name} logged in`);
+        this.isAdmin = response.user.roles.toString().includes('staff') ? true : false;
+        return response.user;
+      })
+    );
+  }
+
   /**
    * Logs out a user and emit an empty AuthResponse
    */
