@@ -113,7 +113,7 @@ export class IssueDetailsPageComponent {
   postComment() : void {
     this.issueService.postComments(this.currentIssue.id, this.newComment.text)
       .subscribe({
-        next : () => this.getcomments(this.currentIssue.id),
+        next : () => {this.getcomments(this.currentIssue.id); this.newComment.text = ''},
         error : () => {this.snackBar.open("Sorry we couldn't post your comment...", 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})}
       });
   }
@@ -124,7 +124,7 @@ export class IssueDetailsPageComponent {
       pluck('body')
     )
       .subscribe({
-        next : (comments) => {comments.forEach(comment => this.comments.push(comment)),console.log(comments)},
+        next : (comments) => {this.comments = []; comments.forEach(comment => this.comments.push(comment))},
         error : () => {this.snackBar.open("Sorry we couldn't get the comments...", 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})}
       });
   }
