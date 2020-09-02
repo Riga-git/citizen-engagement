@@ -40,10 +40,20 @@ tr {
   border-width: 1px;
 }
 
-button{
+.moreButton{
   position: absolute;
   bottom: 5px;
-  right: 5px;
+  right: 5px
+}
+
+.deleteButton{
+  position: absolute;
+  bottom: 5px;
+  right: 100px;
+};
+
+.deleteButton:hover{
+  color: red;
 }
 
 .rows td {

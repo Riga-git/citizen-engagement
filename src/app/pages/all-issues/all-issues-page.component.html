@@ -4,7 +4,7 @@
             <div class="spinner-container" *ngIf="dataSource.loading$ | async">
                 <mat-spinner style="display: inline-block;"></mat-spinner>
             </div>
-            <div class="mb-5 mat-elevation-z8">
+            <div class="mb-5 ">
                 <table #table mat-table [dataSource]="dataSource">
                     <ng-container matColumnDef="Description">
                         <th mat-header-cell *matHeaderCellDef> Description </th>
@@ -26,7 +26,8 @@
                                                     'state-resolved' : issue.state === 'resolved'}"> 
                                                     {{issue.state}} 
                                     </div>
-                                    <button mat-raised-button color="primary" (click)="moreDetails()">more</button>
+                                    <button mat-raised-button color="secondary" class="deleteButton" (click)="deleteIssue()"><mat-icon>delete_outline</mat-icon></button>
+                                    <button mat-raised-button color="primary" class="moreButton" (click)="moreDetails()">more</button>
                                 </div>
                             </div>
                         </td>

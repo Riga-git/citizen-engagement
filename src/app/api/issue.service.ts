@@ -88,6 +88,10 @@ export class IssueService {
     return this.http.get<Issue>(`${environment.apiUrl}/issues/${id}`, {headers : this.httpHeaders});
   }
 
+  deleteIssue(id :string): Observable<boolean> {
+    return this.http.delete<boolean>(`${environment.apiUrl}/issues/${id}`);
+  }
+
   postComments(issueId : string, commentText : string) : Observable<IssueComment>{
     return this.http.post<IssueComment>(`${environment.apiUrl}/issues/${issueId}/comments`, {text: commentText}, {headers : this.httpHeaders});
   }

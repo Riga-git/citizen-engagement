@@ -6,7 +6,7 @@ import { Issue } from 'src/app/models/issue';
 import { latLng, MapOptions, tileLayer, Map, Marker, marker } from 'leaflet';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTable} from '@angular/material/table';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import { animate, state, style, transition, trigger} from '@angular/animations';
 import { Router } from '@angular/router';
 
 @Component({
@@ -36,7 +36,7 @@ export class AllIssuesPageComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatTable) Table: MatTable<any>;
 
-  constructor(private issueService: IssueService, private router : Router) {
+  constructor(private issueService: IssueService, private router : Router, private snackBar: MatSnackBar) {
     this.mapOptions = {
       layers: [
         tileLayer(
@@ -88,5 +88,12 @@ export class AllIssuesPageComponent implements OnInit {
 
   moreDetails() : void {
     this.router.navigate([ '/issue', this.expandedIssue.id ]);
+  }
+
+  deleteIssue() : void {
+    this.issueService.deleteIssue(this.expandedIssue.id).subscribe({
+      next : () => {this.snackBar.open('Issue deleted with succes','',{panelClass : 'SnackBarSuccess', duration : 2500}), this.dataSource.loadIssues();},
+      error : (error) => {this.snackBar.open('Sorry something went wrong...  Detail : ' + error.error, 'x', {panelClass : ['SnackBarError', 'SnackBarButton']}); console.log(error);}
+    });
   }
 }

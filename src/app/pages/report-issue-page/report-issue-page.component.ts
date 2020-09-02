@@ -67,9 +67,15 @@ export class ReportIssuePageComponent implements OnInit {
         this.tagsString.replace(/\s/g, "").split('#').slice(1,this.tagsString.length), 
         this.images.files
       ).subscribe({
-        next : () => this.snackBar.open('Issue reported with succes','',{panelClass : 'SnackBarSuccess', duration : 2500}),
+        next : () => {this.snackBar.open('Issue reported with succes','',{panelClass : 'SnackBarSuccess', duration : 2500}), this.resetForm(form)},
         error : (error) => {this.snackBar.open('Sorry something went wrong...', 'x', {panelClass : ['SnackBarError', 'SnackBarButton']}); console.log(error);}
       });
     }
+  }
+
+  private resetForm(form : NgForm) {
+    form.reset();
+    this.mapMarkers = [];
+    this.images = new FileInput(null);
   }
 }
