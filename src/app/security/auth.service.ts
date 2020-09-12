@@ -6,7 +6,7 @@ import { map, tap } from "rxjs/operators";
 import { User } from "../models/user";
 import { AuthRequest } from "../models/auth-request";
 import { environment } from "../../environments/environement";
-import { ReportIssueResponse } from '../models/report-issue-response';
+
 
 // Add a constant for the storage key
 const STORAGE_KEY = "auth";
@@ -38,7 +38,10 @@ export class AuthService {
    * Checks if the user is authenticated by casting the latest AuthResponse value as a boolean
    */
   isAuthenticated(): Observable<boolean> {
-    return this.authenticated$.pipe(map((auth) => Boolean(auth)));
+    return this.authenticated$.pipe( 
+      tap((auth) => this.isAdmin = auth.user.roles.toString().includes('staff') ? true : false),
+      map((auth) => Boolean(auth)),
+      );
   }
 
   /**
@@ -56,7 +59,7 @@ export class AuthService {
       map((auth) => (auth ? auth.user : undefined))
     );
   }
-
+s
   /**
    * Retrieves the token string from the latest AuthResponse value
    */
@@ -75,7 +78,6 @@ export class AuthService {
       map((response) => {
         this.authenticated$.next(response);
         console.log(`User ${response.user.name} logged in`);
-        this.isAdmin = response.user.roles.toString().includes('staff') ? true : false;
         return response.user;
       })
     );

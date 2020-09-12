@@ -38,8 +38,9 @@ export class ReportIssuePageComponent implements OnInit {
   ngOnInit(): void {
     // Ask the service to make an API call on component initialisation
     this.issueService.loadAllIssueTypes().subscribe({
-      next: (result) => {result.forEach(element => this.issueTypes.push(element)); console.log(result);},
-      error: () => this.snackBar.open('Sorry something went wrong...', 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})
+      next: (result) => result.forEach(element => this.issueTypes.push(element)),
+      error: (error) => this.snackBar.open("Sorry, we were unable to load the issue types list. Detail : " + error.message, "x", {panelClass : ['SnackBarError', 'SnackBarButton']})
+                       
     });
   }
 
@@ -68,7 +69,7 @@ export class ReportIssuePageComponent implements OnInit {
         this.images.files
       ).subscribe({
         next : () => {this.snackBar.open('Issue reported with succes','',{panelClass : 'SnackBarSuccess', duration : 2500}), this.resetForm(form)},
-        error : (error) => {this.snackBar.open('Sorry something went wrong...', 'x', {panelClass : ['SnackBarError', 'SnackBarButton']}); console.log(error);}
+        error : (error) => this.snackBar.open('Sorry we were unable to post your issue. Detail : '+ error.message, 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})
       });
     }
   }

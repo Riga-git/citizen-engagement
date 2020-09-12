@@ -101,7 +101,7 @@ export class IssueDetailsPageComponent {
       )
       .subscribe({
         next : () => {this.snackBar.open('Issue reported with succes','',{panelClass : 'SnackBarSuccess', duration : 2500}), this.editMode = false},
-        error : () => {this.snackBar.open('Sorry something went wrong...', 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})}
+        error : (error) => {this.snackBar.open('Sorry we were unable to update the issue. Detail : '+ error.message, 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})}
       });
     }
   }
@@ -114,7 +114,7 @@ export class IssueDetailsPageComponent {
     this.issueService.postComments(this.currentIssue.id, this.newComment.text)
       .subscribe({
         next : () => {this.getcomments(this.currentIssue.id); this.newComment.text = ''},
-        error : () => {this.snackBar.open("Sorry we couldn't post your comment...", 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})}
+        error : (error) => {this.snackBar.open("Sorry we were unable to post your comment. Detail :" + error.message, 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})}
       });
   }
 
@@ -125,7 +125,7 @@ export class IssueDetailsPageComponent {
     )
       .subscribe({
         next : (comments) => {this.comments = []; comments.forEach(comment => this.comments.push(comment))},
-        error : () => {this.snackBar.open("Sorry we couldn't get the comments...", 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})}
+        error : (error) => {this.snackBar.open("Sorry we were unable to load the comments. Detail :" + error.message, 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})}
       });
   }
 }

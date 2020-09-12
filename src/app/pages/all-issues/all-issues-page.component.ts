@@ -93,7 +93,7 @@ export class AllIssuesPageComponent implements OnInit {
   deleteIssue() : void {
     this.issueService.deleteIssue(this.expandedIssue.id).subscribe({
       next : () => {this.snackBar.open('Issue deleted with succes','',{panelClass : 'SnackBarSuccess', duration : 2500}), this.dataSource.loadIssues();},
-      error : (error) => {this.snackBar.open('Sorry something went wrong...  Detail : ' + error.error, 'x', {panelClass : ['SnackBarError', 'SnackBarButton']}); console.log(error);}
+      error : (error) => this.snackBar.open('Sorry we were unable to delete the issue.  Detail : ' + error.error, 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})
     });
   }
 }
