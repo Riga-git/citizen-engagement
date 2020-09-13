@@ -39,7 +39,7 @@ export class AuthService {
    */
   isAuthenticated(): Observable<boolean> {
     return this.authenticated$.pipe( 
-      tap((auth) => this.isAdmin = auth.user.roles.toString().includes('staff') ? true : false),
+      tap((auth) =>  {if (auth != null) this.isAdmin = auth.user.roles.toString().includes('staff') ? true : false}),
       map((auth) => Boolean(auth)),
       );
   }
@@ -59,7 +59,7 @@ export class AuthService {
       map((auth) => (auth ? auth.user : undefined))
     );
   }
-s
+
   /**
    * Retrieves the token string from the latest AuthResponse value
    */

@@ -5,6 +5,27 @@
                 <mat-spinner style="display: inline-block;"></mat-spinner>
             </div>
             <div class="mb-5 ">
+                <div class="wrapperContainer">
+                    <div class="filterTitleContainer">
+                        <strong>Filters</strong>
+                    </div>
+                <div class="row  justify-content-around">
+                    <mat-form-field>
+                        <mat-label>Search </mat-label>
+                        <input matInput [(ngModel)]='searchText' (change)="filterIssue()"> 
+                        <mat-icon matSuffix>search</mat-icon>
+                      </mat-form-field>
+                      <mat-form-field>
+                        <mat-label>Stauts</mat-label>
+                        <mat-select name="typeSelector" [(ngModel)]='issueStatus' (selectionChange)="filterIssue()"> 
+                            <mat-option value="">all</mat-option>
+                            <mat-option value="new">new</mat-option>
+                            <mat-option value="inProgress">inProgress</mat-option>
+                            <mat-option value="rejected">rejected</mat-option>
+                            <mat-option value="resolved">resolved</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>  </div>
                 <table #table mat-table [dataSource]="dataSource">
                     <ng-container matColumnDef="Description">
                         <th mat-header-cell *matHeaderCellDef> Description </th>

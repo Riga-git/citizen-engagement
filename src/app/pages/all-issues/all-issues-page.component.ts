@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { IssueService } from 'src/app/api/issue.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { IssuesDataSources } from '../../models/issue-data-sources';
-import { Issue } from 'src/app/models/issue';
+import { Issue, IssueState } from 'src/app/models/issue';
 import { latLng, MapOptions, tileLayer, Map, Marker, marker } from 'leaflet';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTable} from '@angular/material/table';
@@ -32,6 +32,9 @@ export class AllIssuesPageComponent implements OnInit {
   mapMarkers : Marker[] = [];
   itemsPerPage : Number;
   expandedIssue : Issue | null;
+  chosesIssueType : string = "";
+  searchText : string = "";
+  issueStatus : IssueState = "all";
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatTable) Table: MatTable<any>;
@@ -95,5 +98,9 @@ export class AllIssuesPageComponent implements OnInit {
       next : () => {this.snackBar.open('Issue deleted with succes','',{panelClass : 'SnackBarSuccess', duration : 2500}), this.dataSource.loadIssues();},
       error : (error) => this.snackBar.open('Sorry we were unable to delete the issue.  Detail : ' + error.error, 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})
     });
+  }
+
+  filterIssue() : void{
+    this.dataSource.loadIssues(undefined, undefined, this.searchText, [this.issueStatus]);
   }
 }

@@ -3,6 +3,8 @@ export class IssueType {
     readonly href: string;
     name: string;
     description?: string;
-    icon?: string;
-    imageUrl?: string;
+
+    constructor(name : string = ""){
+      this.name = name;
+    }
   }

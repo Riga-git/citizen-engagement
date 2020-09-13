@@ -76,8 +76,13 @@ export class IssueService {
     
     let params = new HttpParams().set('page', currentPage.toString())
                                 .set('pageSize', pageSize.toString());
-    if(search !='' && search != undefined) params.set('search', search);
-    if(state != undefined) if(state.length) params.set('state', state.join('&'));
+
+    params
+    if(search !='' && search != undefined) 
+      params = params.set('search', search);
+    if(state != undefined) 
+      if(state.length) 
+      params = params.set('state', state.join('&'));
     
     let url =  this.router.url === '/allIssues' ? '/issues' : '/me/issues'
     return this.http.get<any>(`${environment.apiUrl}${url}`, {headers : this.httpHeaders, params : params, observe: 'response'});

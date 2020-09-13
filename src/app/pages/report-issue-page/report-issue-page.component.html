@@ -25,7 +25,7 @@
         <br>
         <mat-form-field appearance="outline">
           <mat-label>Image(s)</mat-label>
-          <ngx-mat-file-input [multiple]="true" name="images" [(ngModel)]='images' form="repIssueForm" [accept]="'.gif, .jpg, .png'"></ngx-mat-file-input>
+          <ngx-mat-file-input [multiple]="false" name="images" [(ngModel)]='images' (ngModelChange)="loadImage()" form="repIssueForm" [accept]="'.gif, .jpg, .png'"></ngx-mat-file-input>
           <mat-icon matSuffix>image</mat-icon>
         </mat-form-field>
         <br>
@@ -45,4 +45,5 @@
     </div>
   </div>
 </div>
+
 

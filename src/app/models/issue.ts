@@ -1,5 +1,7 @@
 import { Geometry } from 'geojson';
 
+export type IssueState = "all" |"new" | "inProgress" | "rejected" | "resolved"; 
+
 export class Issue {
     assigneeHref : string;
     createdAt : string;
@@ -11,7 +13,7 @@ export class Issue {
     additionalImageUrls : string;
     issueTypeHref : string;
     location : Geometry;
-    state : string; 
+    state : IssueState;
     tags : string[];
     updatedAt : string;
 }

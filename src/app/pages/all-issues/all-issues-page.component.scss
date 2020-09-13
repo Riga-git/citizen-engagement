@@ -15,6 +15,20 @@ tr {
   width: 95%;
 }
 
+.wrapperContainer{
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,.2);
+  margin-bottom: 1em;
+  text-align: left;
+}
+
+.filterTitleContainer{
+  padding: 1em;
+  text-align: left;
+  color: rgba(0,0,0,.54);
+  font-family: Roboto,Helvetica, sans-serif;
+}
+
 .tags{
   font-size: 1.5em;
   font-weight: bold;

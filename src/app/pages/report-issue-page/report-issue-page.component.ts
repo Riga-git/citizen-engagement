@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IssueService } from 'src/app/api/issue.service';
+import { ImagesService } from 'src/app/imageApi/images.service';
 import { latLng, MapOptions, tileLayer, Map, Marker, marker, LeafletMouseEvent, Point } from 'leaflet';
 import { NgForm } from '@angular/forms';
 import { FileInput } from 'ngx-material-file-input';
@@ -22,7 +23,7 @@ export class ReportIssuePageComponent implements OnInit {
   chosesIssueType : string = "";
   issueTypes : IssueType[] = [];
 
-  constructor(private issueService: IssueService, private snackBar: MatSnackBar ) { 
+  constructor(private issueService: IssueService, private snackBar: MatSnackBar, private imagesService : ImagesService) { 
     this.mapOptions = {
       layers: [
         tileLayer(
@@ -78,5 +79,9 @@ export class ReportIssuePageComponent implements OnInit {
     form.reset();
     this.mapMarkers = [];
     this.images = new FileInput(null);
+  }
+
+  loadImage() : void {
+    this.imagesService.addImage(this.images.files[0]);
   }
 }
