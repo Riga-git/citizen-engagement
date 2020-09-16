@@ -28,6 +28,7 @@
           <ngx-mat-file-input [multiple]="false" name="images" [(ngModel)]='images' (ngModelChange)="loadImage()" form="repIssueForm" [accept]="'.gif, .jpg, .png'"></ngx-mat-file-input>
           <mat-icon matSuffix>image</mat-icon>
         </mat-form-field>
+        <img *ngFor="let images of loadedImages" [src]="images.url">
         <br>
         <button [disabled]="!this.mapMarkers.length || !reportIssueForm.valid" mat-raised-button color="primary" type="submit" class="mb-2">Submit</button>
       </form>

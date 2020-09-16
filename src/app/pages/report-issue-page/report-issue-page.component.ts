@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
 import { FileInput } from 'ngx-material-file-input';
 import { IssueType } from 'src/app/models/issue-type';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { LoadImageResponse } from 'src/app/models/load-image-response';
 
 @Component({
   selector: 'app-report-issue-page',
@@ -22,6 +23,7 @@ export class ReportIssuePageComponent implements OnInit {
   images = new FileInput(null);
   chosesIssueType : string = "";
   issueTypes : IssueType[] = [];
+  loadedImages : LoadImageResponse[] = [];
 
   constructor(private issueService: IssueService, private snackBar: MatSnackBar, private imagesService : ImagesService) { 
     this.mapOptions = {
@@ -83,5 +85,8 @@ export class ReportIssuePageComponent implements OnInit {
 
   loadImage() : void {
     this.imagesService.addImage(this.images.files[0]);
-  }
+    this.imagesService.newImage$.subscribe({
+      next : (image) => this.loadedImages.push(image)
+    });
+    }
 }
