@@ -93,8 +93,7 @@ export class IssueDetailsPageComponent {
         this.mapMarkers[0].toGeoJSON().geometry,
         this.currentIssue.issueTypeHref,
         // ignore the index 0 because is a empty string because the separator is located before the tagName 
-        this.tagsString.replace(/\s/g, "").split('#').slice(1,this.tagsString.length), 
-        this.images.files
+        this.tagsString.replace(/\s/g, "").split('#').slice(1,this.tagsString.length)
       )
       .pipe(
         finalize(() => this.editMode = false)
