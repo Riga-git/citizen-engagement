@@ -42,8 +42,10 @@ export class ReportIssuePageComponent implements OnInit {
     // Ask the service to make an API call on component initialisation
     this.issueService.loadAllIssueTypes().subscribe({
       next: (result) => result.forEach(element => this.issueTypes.push(element)),
-      error: (error) => this.snackBar.open("Sorry, we were unable to load the issue types list. Detail : " + error.message, "x", {panelClass : ['SnackBarError', 'SnackBarButton']})
-                       
+      error: (error) => this.snackBar.open("Sorry, we were unable to load the issue types list. Detail : " + error.message, "x", {panelClass : ['SnackBarError', 'SnackBarButton']})     
+    });
+    this.imagesService.newImage$.subscribe({
+      next: (image) => {this.loadedImages.push(image)}
     });
   }
 
@@ -69,7 +71,7 @@ export class ReportIssuePageComponent implements OnInit {
         this.chosesIssueType,
         // ignore the index 0 because is a empty string because the separator is located before the tagName 
         this.tagsString.replace(/\s/g, "").split('#').slice(1,this.tagsString.length), 
-        this.images.files
+        this.loadedImages.map(image => image.url)
       ).subscribe({
         next : () => {this.snackBar.open('Issue reported with succes','',{panelClass : 'SnackBarSuccess', duration : 2500}), this.resetForm(form)},
         error : (error) => this.snackBar.open('Sorry we were unable to post your issue. Detail : '+ error.message, 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})
@@ -83,10 +85,15 @@ export class ReportIssuePageComponent implements OnInit {
     this.images = new FileInput(null);
   }
 
-  loadImage() : void {
-    this.imagesService.addImage(this.images.files[0]);
-    this.imagesService.newImage$.subscribe({
-      next : (image) => this.loadedImages.push(image)
-    });
+  loadImage(): void {
+    if (this.images.files.length){
+      if (this.images.files[0] !== null) {
+        this.imagesService.addImage(this.images.files[0]);
+      }
     }
+  }
+
+  deleteLastImageLoaded() : void{
+    this.loadedImages.pop();
+  }
 }

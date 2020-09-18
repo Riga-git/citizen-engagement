@@ -30,19 +30,19 @@ export class IssueService {
                               location: Geometry,
                               typeHref: string,
                               tags?: string[],
-                              imagesUrls?: File[]
+                              imagesUrls?: string[]
                             ): ReportIssueFormat {
 
     let requestContent = new ReportIssueFormat();
-    let additionalImages: File[] = [];
+    let additionalImages: string[] = [];
 
     requestContent.issueTypeHref = typeHref;
     requestContent.description = description;
     requestContent.location = location;
-    requestContent.imageUrl = ((imagesUrls.length > 0) ? imagesUrls[0].name : '');
+    requestContent.imageUrl = ((imagesUrls.length > 0) ? imagesUrls[0] : '');
     additionalImages = imagesUrls.slice(1);
     for (const image of additionalImages) {
-      requestContent.additionalImageUrls.push(image.name);
+      requestContent.additionalImageUrls.push(image);
     }
     requestContent.tags = tags;
     return requestContent;
@@ -50,16 +50,16 @@ export class IssueService {
   
 
   postIssue ( description : String,  location : Geometry, typeHref : string,
-             tags? : string[], imagesUrls? : File[]): Observable<ReportIssueResponse>{
+             tags? : string[], imagesUrls? : string[]): Observable<ReportIssueResponse>{
 
     let body = this.prepareIssueToSend(description, location,typeHref,tags,imagesUrls);
     return this.http.post<ReportIssueResponse>(`${environment.apiUrl}/issues`,body, {headers : this.httpHeaders});
   }
 
   updateIssue (id : string, description : String,  location : Geometry, typeHref : string, 
-    tags? : string[], imagesUrls? : File[]): Observable<ReportIssueResponse>{
+    tags? : string[]): Observable<ReportIssueResponse>{
 
-    let body = this.prepareIssueToSend(description, location,typeHref,tags,imagesUrls);
+    let body = this.prepareIssueToSend(description, location,typeHref,tags);
     //let params = new HttpParams().set('id', id);
     return this.http.patch<ReportIssueResponse>(`${environment.apiUrl}/issues/${id}`,body, {headers : this.httpHeaders});
 }

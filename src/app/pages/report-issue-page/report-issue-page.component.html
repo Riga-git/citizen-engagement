@@ -4,13 +4,14 @@
       <form #reportIssueForm="ngForm" (submit)="addNewIssue(reportIssueForm)">
         <mat-form-field appearance="outline">
           <mat-label>Type</mat-label>
-          <mat-select required name="typeSelector" [(ngModel)]='chosesIssueType'> 
+          <mat-select required name="typeSelector" [(ngModel)]='chosesIssueType'>
             <mat-option *ngFor="let issueType of issueTypes" [value]='issueType.href'>{{issueType.name}}</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Tag(s) (# prefix)</mat-label>
-          <input [(ngModel)]='tagsString' name="Tags" matInput maxlength="100" form="repIssueForm" placeholder="ex: #StreetHole #CityCenter">
+          <input [(ngModel)]='tagsString' name="Tags" matInput maxlength="100" form="repIssueForm"
+            placeholder="ex: #StreetHole #CityCenter">
         </mat-form-field>
         <br>
         <mat-form-field appearance="outline">
@@ -19,32 +20,36 @@
             maxlength="1000" form="repIssueForm" placeholder="Write a small description..."></textarea>
           <mat-hint>{{description.length}}/1000</mat-hint>
         </mat-form-field>
-        <p *ngIf="descriptionField.hasError('required') && descriptionField.touched" class="ErrorMessage"> 
+        <p *ngIf="descriptionField.hasError('required') && descriptionField.touched" class="ErrorMessage">
           Description is required
         </p>
         <br>
         <mat-form-field appearance="outline">
           <mat-label>Image(s)</mat-label>
-          <ngx-mat-file-input [multiple]="false" name="images" [(ngModel)]='images' (ngModelChange)="loadImage()" form="repIssueForm" [accept]="'.gif, .jpg, .png'"></ngx-mat-file-input>
+          <ngx-mat-file-input [multiple]="false" name="images" [(ngModel)]='images' (ngModelChange)="loadImage()"
+            form="repIssueForm" [accept]="'.gif, .jpg, .png'"></ngx-mat-file-input>
           <mat-icon matSuffix>image</mat-icon>
         </mat-form-field>
-        <img *ngFor="let images of loadedImages" [src]="images.url">
+        <div class="imagesFlexContainer">
+          <mat-card *ngFor="let images of loadedImages" class="imageContainer">
+            <img [src]="images.url">
+          </mat-card>
+          <div (click)="deleteLastImageLoaded()" *ngIf="loadedImages.length" class="deleteiconContainer">
+            <img class="deleteIcon" src="../../../assets/Images/delete.png">
+          </div>
+        </div>
         <br>
-        <button [disabled]="!this.mapMarkers.length || !reportIssueForm.valid" mat-raised-button color="primary" type="submit" class="mb-2">Submit</button>
+        <button [disabled]="!this.mapMarkers.length || !reportIssueForm.valid" mat-raised-button color="primary"
+          type="submit" class="mb-2">Submit</button>
       </form>
     </div>
     <div class="col-10 order-first order-lg-last mb-5 mb-lg-0 col-lg-6 offset-lg-1">
       <div *ngIf="!this.mapMarkers.length" class="ErrorMessage">
         Chose a location on the map!
       </div>
-      <div  (leafletClick)="updateMarker($event)" 
-            leaflet [leafletOptions]="mapOptions"
-            (leafletMapReady)="onMapReady($event)" 
-            [leafletLayers]="mapMarkers" class="map"
-            ngDefaultControl>
+      <div (leafletClick)="updateMarker($event)" leaflet [leafletOptions]="mapOptions"
+        (leafletMapReady)="onMapReady($event)" [leafletLayers]="mapMarkers" class="map" ngDefaultControl>
       </div>
     </div>
   </div>
 </div>
-
-

@@ -24,13 +24,6 @@
           Description is required
         </p>
         <br>
-        <mat-form-field appearance="outline">
-          <mat-label>Image(s)</mat-label>
-          <ngx-mat-file-input [multiple]="true" name="images" [(ngModel)]='images' form="repIssueForm"
-            [accept]="'.gif, .jpg, .png'"></ngx-mat-file-input>
-          <mat-icon matSuffix>image</mat-icon>
-        </mat-form-field>
-        <br>
         <div class="mb-5 row align-items-center justify-content-around">
           <button [disabled]="!this.mapMarkers.length || !updateIssueForm.valid" mat-raised-button color="primary"
             type="submit">Submit</button>

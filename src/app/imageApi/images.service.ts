@@ -15,6 +15,7 @@ export class ImagesService {
 
   private newImageSubject = new Subject<LoadImageResponse>();
   public newImage$ = this.newImageSubject.asObservable();
+  b : number = 0;
 
   constructor(private http: HttpClient, private snackBar : MatSnackBar) {
   }
@@ -31,8 +32,8 @@ export class ImagesService {
     let data = btoa(e.target.result);
     this.http.post<LoadImageResponse>(`${environment.apiImageUrl}`, {"data": data}, { headers: headers })
     .subscribe({
-      next : (result) => {console.log(result), this.newImageSubject.next(result)},
-      error : (error) => {console.log(error), this.snackBar.open('Sorry we were unable upload your image. Detail : '+ error.message, 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})},
+      next : (result) => {this.newImageSubject.next(result)},
+      error : (error) => {this.snackBar.open('Sorry we were unable upload your image. Detail : '+ error.message, 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})},
     });
   }
 
