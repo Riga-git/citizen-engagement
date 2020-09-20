@@ -10,7 +10,7 @@
       <form #updateIssueForm="ngForm" (submit)="updateIssue(updateIssueForm)" *ngIf="editMode">
         <mat-form-field appearance="outline">
           <mat-label>Tag(s) (# prefix)</mat-label>
-          <input [(ngModel)]='currentIssue.tags' name="Tags" matInput maxlength="100" form="repIssueForm"
+          <input [(ngModel)]='tagsString' name="Tags" matInput maxlength="100" form="repIssueForm"
             placeholder="ex: #StreetHole #CityCenter">
         </mat-form-field>
         <br>
@@ -23,6 +23,17 @@
         <p *ngIf="descriptionField.hasError('required') && descriptionField.touched" class="ErrorMessage">
           Description is required
         </p>
+        <br>
+        <mat-form-field *ngIf="auth.isAdminUser()" appearance="outline">
+          <mat-label>State</mat-label>
+          <mat-select name="typeSelector" [(ngModel)]="currentIssue.state"> 
+            <mat-option value="">all</mat-option>
+            <mat-option value="new">new</mat-option>
+            <mat-option value="inProgress">inProgress</mat-option>
+            <mat-option value="rejected">rejected</mat-option>
+            <mat-option value="resolved">resolved</mat-option>
+        </mat-select>
+        </mat-form-field>
         <br>
         <div class="mb-5 row align-items-center justify-content-around">
           <button [disabled]="!this.mapMarkers.length || !updateIssueForm.valid" mat-raised-button color="primary"

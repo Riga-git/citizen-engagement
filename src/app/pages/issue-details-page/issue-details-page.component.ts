@@ -6,9 +6,10 @@ import { FileInput } from 'ngx-material-file-input';
 import { Location } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { finalize, pluck } from 'rxjs/operators';
-import { Issue } from 'src/app/models/issue';
+import { Issue, IssueState } from 'src/app/models/issue';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { IssueComment } from 'src/app/models/IssueComment';
+import { AuthService } from 'src/app/security/auth.service';
 
 @Component({
   selector: 'app-issue-details-page',
@@ -16,7 +17,7 @@ import { IssueComment } from 'src/app/models/IssueComment';
   styleUrls: ['./issue-details-page.component.scss']
 })
 
-export class IssueDetailsPageComponent {
+export class IssueDetailsPageComponent implements OnInit{
 
   description : string = "";
   tagsString : string = "";
@@ -26,11 +27,12 @@ export class IssueDetailsPageComponent {
   images = new FileInput(null);
   chosesIssueType : string = "";
   editMode  : Boolean;
-  currentIssue : Issue;
+  currentIssue : Issue = new Issue;
   newComment = new IssueComment();
   comments : IssueComment[] = [];
+  issueCUrrentStatus : IssueState;
 
-  constructor(private issueService: IssueService, private snackBar: MatSnackBar, private route: ActivatedRoute, private location :Location, private router : Router ) { 
+  constructor(private issueService: IssueService, private snackBar: MatSnackBar, private route: ActivatedRoute, private location :Location, public auth : AuthService ) { 
     this.mapOptions = {
       layers: [
         tileLayer(
@@ -42,12 +44,13 @@ export class IssueDetailsPageComponent {
       center: latLng(46.778186, 6.641524)
     };
 
-    this.currentIssue = new Issue; // avoid error currentIssue 'undifined' before the data are fetched
+  }
 
+  ngOnInit(){
     this.route.paramMap
       .subscribe((params: ParamMap) => {
         this.issueService.getIssue(params.get('id'))
-          .subscribe({ next: (issue) => {this.currentIssue = issue; this.displayMarker(); this.getcomments(issue.id);}});
+          .subscribe({ next: (issue) => {this.currentIssue = issue; this.displayMarker(); this.getcomments(issue.id); this.tagsString = this.currentIssue.tags.toString()}});
       });
   }
 
@@ -122,7 +125,7 @@ export class IssueDetailsPageComponent {
     .pipe(
       pluck('body')
     )
-      .subscribe({
+    .subscribe({
         next : (comments) => {this.comments = []; comments.forEach(comment => this.comments.push(comment))},
         error : (error) => {this.snackBar.open("Sorry we were unable to load the comments. Detail :" + error.message, 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})}
       });

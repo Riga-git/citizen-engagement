@@ -39,7 +39,7 @@ export class IssuesDataSources implements DataSource<Issue> {
         )
         .subscribe({
           next: (issues) => this.issueSubject.next(issues),
-          error: () => this.snackBar.open('Sorry something went wrong...', 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})
+          error: (error) => this.snackBar.open('Sorry we were unable to get the issues list! Details '+error, 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})
         });
     }
 

@@ -4,7 +4,7 @@ import { Observable, from } from "rxjs";
 import { IssueType } from "src/app/models/issue-type";
 import { ReportIssueFormat } from '../models/report-issue-format';
 import { ReportIssueResponse } from '../models/report-issue-response';
-import { Issue } from '../models/issue';
+import { Issue, IssueState } from '../models/issue';
 import { environment } from "../../environments/environement";
 import { Geometry } from 'geojson';
 import { Router } from '@angular/router';
@@ -39,10 +39,12 @@ export class IssueService {
     requestContent.issueTypeHref = typeHref;
     requestContent.description = description;
     requestContent.location = location;
-    requestContent.imageUrl = ((imagesUrls.length > 0) ? imagesUrls[0] : '');
-    additionalImages = imagesUrls.slice(1);
-    for (const image of additionalImages) {
-      requestContent.additionalImageUrls.push(image);
+    if (imagesUrls !== undefined){
+      requestContent.imageUrl = ((imagesUrls.length > 0) ? imagesUrls[0] : '');
+      additionalImages = imagesUrls.slice(1);
+      for (const image of additionalImages) {
+        requestContent.additionalImageUrls.push(image);
+      }
     }
     requestContent.tags = tags;
     return requestContent;

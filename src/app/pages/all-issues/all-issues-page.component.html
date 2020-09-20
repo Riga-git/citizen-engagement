@@ -9,34 +9,63 @@
                     <div class="filterTitleContainer">
                         <strong>Filters</strong>
                     </div>
-                <div class="row  justify-content-around">
-                    <mat-form-field>
-                        <mat-label>Search </mat-label>
-                        <input matInput [(ngModel)]='searchText' (change)="filterIssue()"> 
-                        <mat-icon matSuffix>search</mat-icon>
-                      </mat-form-field>
-                      <mat-form-field>
-                        <mat-label>Stauts</mat-label>
-                        <mat-select name="typeSelector" [(ngModel)]='issueStatus' (selectionChange)="filterIssue()"> 
-                            <mat-option value="">all</mat-option>
-                            <mat-option value="new">new</mat-option>
-                            <mat-option value="inProgress">inProgress</mat-option>
-                            <mat-option value="rejected">rejected</mat-option>
-                            <mat-option value="resolved">resolved</mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                </div>  </div>
-                <table #table mat-table [dataSource]="dataSource">
+                    <div class="row  justify-content-around">
+                        <mat-form-field>
+                            <mat-label>Search </mat-label>
+                            <input matInput [(ngModel)]='searchText' (change)="filterIssue()">
+                            <mat-icon matSuffix>search</mat-icon>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Stauts</mat-label>
+                            <mat-select name="typeSelector" [(ngModel)]='issueStatus' (selectionChange)="filterIssue()">
+                                <mat-option value="">all</mat-option>
+                                <mat-option value="new">new</mat-option>
+                                <mat-option value="inProgress">inProgress</mat-option>
+                                <mat-option value="rejected">rejected</mat-option>
+                                <mat-option value="resolved">resolved</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="cardsContainer">
+                    <mat-card class="d-none d-lg-block" *ngFor="let issue of issueList">
+                        <div class="issue-detail">
+                            <div class="imageContainer">
+                                <img class="imagePreview"
+                                    [src]="issue.imageUrl!== ''  ? issue.imageUrl : '../../../assets/Images/noImage.svg'"
+                                    alt="{{issue.imageUrl}}">
+                            </div>
+                            <div class="detailsContainer">
+                                <div class="tags"> {{issue.tags}} </div>
+                                <div class="description"> {{issue.description}} </div>
+                                <div> created : {{issue.createdAt | date:'mediumDate' }} </div>
+                                <br>
+                                <div [ngClass]="{'state-new' : issue.state === 'new',
+                                'state-inprogress' : issue.state === 'inProgress',
+                                'state-rejected' : issue.state === 'rejected',
+                                'state-resolved' : issue.state === 'resolved'}">
+                                    {{issue.state}}
+                                </div>
+                                <button mat-raised-button color="secondary" class="deleteButton" (click)="deleteIssue()">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                                <button mat-raised-button color="primary" class="moreButton" (click)="moreDetails()">more</button>
+                            </div>
+                        </div>
+                    </mat-card>
+                </div>
+                 <table class="d-lg-none" #table mat-table [dataSource]="dataSource">
                     <ng-container matColumnDef="Description">
                         <th mat-header-cell *matHeaderCellDef> Description </th>
                         <td mat-cell *matCellDef="let issue"> {{issue.description}}
                             <div class="issue-detail"
                                 [@detailExpand]="issue == expandedIssue ? 'expanded' : 'collapsed'">
                                 <div class="imageContainer">
-                                    <img class="imagePreview" [src]="issue.imageUrl!== ''  ? issue.imageUrl : '../../../assets/Images/noImage.svg'"
+                                    <img class="imagePreview"
+                                        [src]="issue.imageUrl!== ''  ? issue.imageUrl : '../../../assets/Images/noImage.svg'"
                                         alt="{{issue.imageUrl}}">
                                 </div>
-                                <div class="detailsContainer"> 
+                                <div class="detailsContainer">
                                     <div class="tags"> {{issue.tags}} </div>
                                     <div class="description"> {{issue.description}} </div>
                                     <div> created : {{issue.createdAt | date:'mediumDate' }} </div>
@@ -44,11 +73,15 @@
                                     <div [ngClass]="{'state-new' : issue.state === 'new',
                                                     'state-inprogress' : issue.state === 'inProgress',
                                                     'state-rejected' : issue.state === 'rejected',
-                                                    'state-resolved' : issue.state === 'resolved'}"> 
-                                                    {{issue.state}} 
+                                                    'state-resolved' : issue.state === 'resolved'}">
+                                        {{issue.state}}
                                     </div>
-                                    <button mat-raised-button color="secondary" class="deleteButton" (click)="deleteIssue()"><mat-icon>delete_outline</mat-icon></button>
-                                    <button mat-raised-button color="primary" class="moreButton" (click)="moreDetails()">more</button>
+                                    <button mat-raised-button color="secondary" class="deleteButton"
+                                        (click)="deleteIssue()">
+                                        <mat-icon>delete_outline</mat-icon>
+                                    </button>
+                                    <button mat-raised-button color="primary" class="moreButton"
+                                        (click)="moreDetails()">more</button>
                                 </div>
                             </div>
                         </td>
