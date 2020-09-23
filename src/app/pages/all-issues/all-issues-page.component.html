@@ -1,6 +1,13 @@
 <div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12 mb-5">
+            <div leaflet [leafletOptions]="mapOptions" (leafletMapReady)="onMapReady($event)"
+                [leafletLayers]="mapMarkers" class="map" ngDefaultControl>
+            </div>
+        </div>
+    </div>
     <div class="row align-items-center justify-content-center">
-        <div class=" col-10 col-lg-6 ">
+        <div class=" col-12">
             <div class="spinner-container" *ngIf="dataSource.loading$ | async">
                 <mat-spinner style="display: inline-block;"></mat-spinner>
             </div>
@@ -9,13 +16,13 @@
                     <div class="filterTitleContainer">
                         <strong>Filters</strong>
                     </div>
-                    <div class="row  justify-content-around">
-                        <mat-form-field>
+                    <div class="row justify-content-around">
+                        <mat-form-field class="col-4">
                             <mat-label>Search </mat-label>
                             <input matInput [(ngModel)]='searchText' (change)="filterIssue()">
                             <mat-icon matSuffix>search</mat-icon>
                         </mat-form-field>
-                        <mat-form-field>
+                        <mat-form-field class="col-4">
                             <mat-label>Stauts</mat-label>
                             <mat-select name="typeSelector" [(ngModel)]='issueStatus' (selectionChange)="filterIssue()">
                                 <mat-option value="">all</mat-option>
@@ -28,7 +35,8 @@
                     </div>
                 </div>
                 <div class="cardsContainer">
-                    <mat-card class="d-none d-lg-block" *ngFor="let issue of issueList">
+                    <div #IdHolder [id]="issue.id" *ngFor="let issue of issueList">
+                    <mat-card  (click)="onCardClicked(IdHolder.id)" matRipple class="d-none d-lg-block clickable"  >
                         <div class="issue-detail">
                             <div class="imageContainer">
                                 <img class="imagePreview"
@@ -53,6 +61,7 @@
                             </div>
                         </div>
                     </mat-card>
+                </div>
                 </div>
                  <table class="d-lg-none" #table mat-table [dataSource]="dataSource">
                     <ng-container matColumnDef="Description">
@@ -88,18 +97,12 @@
                     </ng-container>
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="rows"
-                        [class.expanded-row]="expandedIssue === row" (click)="onRowClicked(row)">
+                        [class.expanded-row]="expandedIssue === row" (click)="onRowClickedExpand(row)">
                     </tr>
                 </table>
-                <mat-paginator [pageSize]="itemsPerPage" [pageSizeOptions]="[5, 10, 25, 50]"
+                <mat-paginator [pageSize]="itemsPerPage" [pageSizeOptions]="[6, 12, 18, 36]"
                     [length]="dataSource.totalItems">
                 </mat-paginator>
-            </div>
-        </div>
-
-        <div class="col-10 order-first order-lg-last mb-5 mb-lg-0 col-lg-6">
-            <div leaflet [leafletOptions]="mapOptions" (leafletMapReady)="onMapReady($event)"
-                [leafletLayers]="mapMarkers" class="map" ngDefaultControl>
             </div>
         </div>
     </div>

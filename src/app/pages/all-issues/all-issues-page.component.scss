@@ -1,3 +1,5 @@
+@import '~@angular/material/theming';
+
 table {
     width: 100%;
   }
@@ -8,7 +10,7 @@ tr {
 }
 
 .map{
-  height: 90vh;
+  height: 30vh;
 }
 
 .container {
@@ -48,24 +50,23 @@ tr {
 
 .imagePreview {
   min-width: 80px;
-  height: 150px;
+  height: 200px;
   border-style: groove;
   border-color: rgb(26, 25, 25);
   border-width: 1px;
+  margin-bottom: 30px;
 }
 
 .moreButton{
   position: absolute;
-  bottom: 5px;
   right: 5px;
-  margin-top: 50px;
+  bottom: 2px;
 }
 
 .deleteButton{
   position: absolute;
-  bottom: 5px;
   right: 100px;
-  margin-top: 50px;
+  bottom: 2px;
 };
 
 .deleteButton:hover{
@@ -92,10 +93,25 @@ tr.rows:not(.expanded-row):active {
 mat-card{
   max-width: 700px;
   min-width: 500px;
+  margin: 0px 10px 10px 0px;
 }
 
 .cardsContainer{
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
+}
+
+mat-paginator{
+  border: solid rgba(75, 73, 73, 0.54);
+  border-width: 1px;
+  border-radius: 5px;
+}
+
+.clickable {
+  cursor: pointer;
+  &:hover {
+    @include mat-elevation(8);
+  }
 }

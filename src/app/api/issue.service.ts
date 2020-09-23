@@ -16,7 +16,7 @@ import { IssueComment } from '../models/IssueComment';
 export class IssueService {
 
   private readonly httpHeaders: HttpHeaders;
-  readonly defaultPaginatorPageSize = 10; 
+  readonly defaultPaginatorPageSize = 6; 
 
   constructor(private http: HttpClient, private router: Router) {
     this.httpHeaders =  new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');

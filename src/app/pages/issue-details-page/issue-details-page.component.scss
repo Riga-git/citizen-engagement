@@ -6,20 +6,21 @@
 .container {
     width: 95%;
     display: block;
-  }
+}
   
-  mat-form-field{
-      display: block;
-  }
+mat-form-field{
+    display: block;
+}
 
   textarea{ 
     min-height: 25vh;
 }
-  .backButton{
-      padding-left: 20px;
-      top: 5px;
-      position: sticky;
-  }
+
+.backButton{
+    padding-left: 20px;
+    top: 5px;
+     position: sticky;
+}
 
  .commentField{ 
     min-height: 10vh;

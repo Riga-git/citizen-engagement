@@ -67,7 +67,7 @@ export class AllIssuesPageComponent implements OnInit {
         })
 }
 
-  onRowClicked(row): void {
+  onRowClickedExpand(row): void {
     //in a GeoJson object latitude and longitude are reversed relative to a marker.
   
     this.expandedIssue = this.expandedIssue === row ? null : row ;
@@ -83,6 +83,15 @@ export class AllIssuesPageComponent implements OnInit {
     }
     // recenter the map on the marker 
     this.map.panTo(this.mapMarkers[0].getLatLng());
+  }
+
+  onCardClicked(id) : void{
+    console.log("event ", id);
+    let clickedCard = this.issueList.find(issue => issue.id === id)
+    if (clickedCard !== undefined)
+    {
+      this.onRowClickedExpand(clickedCard);
+    } 
   }
 
   onMapReady(map : Map) : void {
