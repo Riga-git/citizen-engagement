@@ -40,7 +40,7 @@
                         <div class="issue-detail">
                             <div class="imageContainer">
                                 <img class="imagePreview"
-                                    [src]="issue.imageUrl!== ''  ? issue.imageUrl : '../../../assets/Images/noImage.svg'"
+                                    [src]="issue.imageUrl ? issue.imageUrl : '../../../assets/Images/noImage.svg'"
                                     alt="{{issue.imageUrl}}">
                             </div>
                             <div class="detailsContainer">
