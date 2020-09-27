@@ -26,8 +26,8 @@ export class AllIssuesPageComponent implements OnInit {
 
   dataSource: IssuesDataSources;
   displayedColumns: string[] = ['Description'];
-  issueList : Issue[] = [];
   mapOptions : MapOptions = {};
+  issueList : Issue[] = [];
   map : Map;
   mapMarkers : Marker[] = [];
   itemsPerPage : Number;
@@ -39,7 +39,10 @@ export class AllIssuesPageComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatTable) Table: MatTable<any>;
 
-  constructor(private issueService: IssueService, private router : Router, private snackBar: MatSnackBar) {
+  constructor(private issueService: IssueService, private router : Router, private snackBar: MatSnackBar) {}
+
+  ngOnInit(): void {
+
     this.mapOptions = {
       layers: [
         tileLayer(
@@ -50,15 +53,14 @@ export class AllIssuesPageComponent implements OnInit {
       zoom: 13,
       center: latLng(46.778186, 6.641524)
     };
+    
     this.itemsPerPage = this.issueService.defaultPaginatorPageSize;
-  }
 
-  ngOnInit(): void {
-      this.dataSource= new IssuesDataSources(this.issueService);
-      this.dataSource.loadIssues();
-      this.dataSource.issuesList$.subscribe({
-        next : (issueList) => this.issueList = issueList
-      });
+    this.dataSource = new IssuesDataSources(this.issueService);
+    this.dataSource.loadIssues();
+    this.dataSource.issuesList$.subscribe({
+      next: (issueList) => this.issueList = issueList
+    });
   }
 
   ngAfterViewInit() {
@@ -86,7 +88,6 @@ export class AllIssuesPageComponent implements OnInit {
   }
 
   onCardClicked(id) : void{
-    console.log("event ", id);
     let clickedCard = this.issueList.find(issue => issue.id === id)
     if (clickedCard !== undefined)
     {
@@ -98,12 +99,12 @@ export class AllIssuesPageComponent implements OnInit {
     this.map = map;
   }
 
-  moreDetails() : void {
-    this.router.navigate([ '/issue', this.expandedIssue.id ]);
+  moreDetails(id) : void {
+    this.router.navigate([ '/issue', id ]);
   }
 
-  deleteIssue() : void {
-    this.issueService.deleteIssue(this.expandedIssue.id).subscribe({
+  deleteIssue(id) : void {
+    this.issueService.deleteIssue(id).subscribe({
       next : () => {this.snackBar.open('Issue deleted with succes','',{panelClass : 'SnackBarSuccess', duration : 2500}), this.dataSource.loadIssues();},
       error : (error) => this.snackBar.open('Sorry we were unable to delete the issue.  Detail : ' + error.error, 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})
     });

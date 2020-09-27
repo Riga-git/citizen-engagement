@@ -1,7 +1,5 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Issue } from 'src/app/models/issue';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-card',
@@ -9,25 +7,27 @@ import { MatCardModule } from '@angular/material/card';
   styleUrls: ['./card.component.scss']
 })
 
-export class CardComponent implements OnInit {
+export class CardComponent{
 
  @Input() issue: Issue;
+ @Output() deleteClicked : EventEmitter<string> = new EventEmitter(); 
+ @Output() moreClicked : EventEmitter<string> = new EventEmitter(); 
+ @Output() cardClicked : EventEmitter<string> = new EventEmitter<string>();
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor() { 
+    this.issue = new Issue;
   }
 
   onCardClicked(id) : void{
-    ;
+    this.cardClicked.emit(id);
   }
 
-  moreDetails() : void {
-    ;
+  onMoreClicked(id) : void {
+    this.moreClicked.emit(id);
   }
 
-  deleteIssue() : void {
-    ;
+  onDeleteClicked(id) : void {
+    this.deleteClicked.emit(id);
   }
 
 }
