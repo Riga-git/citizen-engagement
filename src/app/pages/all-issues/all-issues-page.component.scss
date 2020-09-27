@@ -1,13 +1,5 @@
 @import '~@angular/material/theming';
 
-table {
-    width: 100%;
-  }
-
-tr {
-  text-align: left
-  ;    
-}
 
 .map{
   height: 30vh;
@@ -17,7 +9,8 @@ tr {
   width: 95%;
 }
 
-.wrapperContainer{
+// filers ---------------------------------------
+.filterContainer{
   border-radius: 4px;
   border: 1px solid rgba(0,0,0,.2);
   margin-bottom: 1em;
@@ -30,48 +23,38 @@ tr {
   color: rgba(0,0,0,.54);
   font-family: Roboto,Helvetica, sans-serif;
 }
+// ------------------------------------------------
 
-.tags{
-  font-size: 1.5em;
-  font-weight: bold;
-  padding-bottom: 1em;
+// cards ------------------------------------------
+.cardsContainer{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 
-.description{
-  font-weight: lighter;
-  padding-bottom: 0.5em;
+.card{
+  margin: 5px;
+  width: 700px;
 }
 
-.detailsContainer{
-  padding: 1em;
-  position: relative;
+.clickable {
+  cursor: pointer;
+  &:hover {
+    @include mat-elevation(8);
+  }
+}
+
+// ------------------------------------------------
+
+// Table ------------------------------------------
+table {
   width: 100%;
 }
 
-.imagePreview {
-  min-width: 80px;
-  max-width: 200px;
-  height: 200px;
-  border-style: groove;
-  border-color: rgb(26, 25, 25);
-  border-width: 1px;
-  margin-bottom: 30px;
-}
-
-.moreButton{
-  position: absolute;
-  right: 5px;
-  bottom: 2px;
-}
-
-.deleteButton{
-  position: absolute;
-  right: 100px;
-  bottom: 2px;
-};
-
-.deleteButton:hover{
-  color: red;
+tr {
+text-align: left
+;    
 }
 
 .rows td {
@@ -85,23 +68,83 @@ tr.rows:not(.expanded-row):hover {
 tr.rows:not(.expanded-row):active {
   background: #efefef;
 }
+// ------------------------------------------------
 
+// Sharred cards and table ------------------------
 .issue-detail {
   overflow: hidden;
   display: flex;
 }
 
-mat-card{
-  max-width: 700px;
-  min-width: 500px;
-  margin: 0px 10px 10px 0px;
+.imageFrame{
+  max-width: 30%;
+  min-width: 30%;
+  border-style: groove;
+  border-color: rgb(26, 25, 25);
+  border-width: 0px 1px 0px 0px;
+  vertical-align: auto;
+  display: flex;
+  justify-content: center;
 }
 
-.cardsContainer{
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+.imagePreview{
+  width: 100%;
+  height: auto;
+  margin: auto;
+  display: block;
+  padding-right: 1em;
+}
+
+.detailsContainer{
+  max-width: 70%;
+  padding-left: 1em;
+  text-align: start;
+  margin: auto;
+}
+
+.tags{
+  font-size: 1.5em;
+  font-weight: bold;
+  max-width: 100%;
+  padding-bottom: 1em;
+}
+
+div.tags mat-form-field{
+  width: 100%;
+}
+
+div.tags mat-form-field{
+  width: 100%;
+}
+
+div.tags mat-form-field-infix {
+  border-top: none !important;
+}
+
+#TagsMatContainer{
+  border-top: 0;
+}
+
+.description{
+  font-weight: lighter;
+  padding-bottom: 0.5em;
+  max-width: 100%;
+}
+
+.moreButton{
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+
+.deleteButton{
+  position: absolute;
+  right: 100px;
+  bottom: 10px;
+};
+
+.deleteButton:hover{
+  color: red;
 }
 
 mat-paginator{
@@ -109,10 +152,8 @@ mat-paginator{
   border-width: 1px;
   border-radius: 5px;
 }
+// ------------------------------------------------
 
-.clickable {
-  cursor: pointer;
-  &:hover {
-    @include mat-elevation(8);
-  }
-}
+
+
+

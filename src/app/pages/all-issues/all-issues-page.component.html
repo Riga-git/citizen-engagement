@@ -12,7 +12,7 @@
                 <mat-spinner style="display: inline-block;"></mat-spinner>
             </div>
             <div class="mb-5 ">
-                <div class="wrapperContainer">
+                <div class="filterContainer">
                     <div class="filterTitleContainer">
                         <strong>Filters</strong>
                     </div>
@@ -35,35 +35,41 @@
                     </div>
                 </div>
                 <div class="cardsContainer">
-                    <div #IdHolder [id]="issue.id" *ngFor="let issue of issueList">
-                    <mat-card  (click)="onCardClicked(IdHolder.id)" matRipple class="d-none d-lg-block clickable"  >
-                        <div class="issue-detail">
-                            <div class="imageContainer">
-                                <img class="imagePreview"
-                                    [src]="issue.imageUrl ? issue.imageUrl : '../../../assets/Images/noImage.svg'"
-                                    alt="{{issue.imageUrl}}">
-                            </div>
-                            <div class="detailsContainer">
-                                <div class="tags"> {{issue.tags}} </div>
-                                <div class="description"> {{issue.description}} </div>
-                                <div> created : {{issue.createdAt | date:'mediumDate' }} </div>
-                                <br>
-                                <div [ngClass]="{'state-new' : issue.state === 'new',
-                                'state-inprogress' : issue.state === 'inProgress',
-                                'state-rejected' : issue.state === 'rejected',
-                                'state-resolved' : issue.state === 'resolved'}">
-                                    {{issue.state}}
+                    <div class="card" #IdHolder [id]="issue.id" *ngFor="let issue of issueList">
+                        <mat-card (click)="onCardClicked(IdHolder.id)" matRipple class="d-none d-lg-block clickable">
+                            <div class="issue-detail">
+                                <div class="imageFrame">
+                                    <img class="imagePreview"
+                                        [src]="issue.imageUrl ? issue.imageUrl : '../../../assets/Images/noImage.svg'"
+                                        alt="{{issue.imageUrl}}">
                                 </div>
-                                <button mat-raised-button color="secondary" class="deleteButton" (click)="deleteIssue()">
-                                    <mat-icon>delete_outline</mat-icon>
-                                </button>
-                                <button mat-raised-button color="primary" class="moreButton" (click)="moreDetails()">more</button>
+                                <div class="detailsContainer">
+                                    <div class="tags">
+                                        <mat-chip-list #chipList>
+                                            <mat-chip *ngFor="let tag of issue.tags">{{tag}}</mat-chip>
+                                        </mat-chip-list>
+                                    </div>
+                                    <p class="description"> {{issue.description}} </p>
+                                    <p> created : {{issue.createdAt | date:'mediumDate' }} </p>
+                                    <br>
+                                    <p [ngClass]="{'state-new' : issue.state === 'new',
+                                                'state-inprogress' : issue.state === 'inProgress',
+                                                'state-rejected' : issue.state === 'rejected',
+                                                'state-resolved' : issue.state === 'resolved'}">
+                                        {{issue.state}}
+                                    </p>
+                                    <button mat-raised-button color="secondary" class="deleteButton"
+                                        (click)="deleteIssue()">
+                                        <mat-icon>delete_outline</mat-icon>
+                                    </button>
+                                    <button mat-raised-button color="primary" class="moreButton"
+                                        (click)="moreDetails()">more</button>
+                                </div>
                             </div>
-                        </div>
-                    </mat-card>
+                        </mat-card>
+                    </div>
                 </div>
-                </div>
-                 <table class="d-lg-none" #table mat-table [dataSource]="dataSource">
+                <table class="d-lg-none" #table mat-table [dataSource]="dataSource">
                     <ng-container matColumnDef="Description">
                         <th mat-header-cell *matHeaderCellDef> Description </th>
                         <td mat-cell *matCellDef="let issue"> {{issue.description}}
@@ -75,16 +81,16 @@
                                         alt="{{issue.imageUrl}}">
                                 </div>
                                 <div class="detailsContainer">
-                                    <div class="tags"> {{issue.tags}} </div>
-                                    <div class="description"> {{issue.description}} </div>
-                                    <div> created : {{issue.createdAt | date:'mediumDate' }} </div>
+                                    <p class="tags"> {{issue.tags}} </p>
+                                    <p class="description"> {{issue.description}} </p>
+                                    <p> created : {{issue.createdAt | date:'mediumDate' }} </p>
                                     <br>
-                                    <div [ngClass]="{'state-new' : issue.state === 'new',
+                                    <p [ngClass]="{'state-new' : issue.state === 'new',
                                                     'state-inprogress' : issue.state === 'inProgress',
                                                     'state-rejected' : issue.state === 'rejected',
                                                     'state-resolved' : issue.state === 'resolved'}">
                                         {{issue.state}}
-                                    </div>
+                                    </p>
                                     <button mat-raised-button color="secondary" class="deleteButton"
                                         (click)="deleteIssue()">
                                         <mat-icon>delete_outline</mat-icon>

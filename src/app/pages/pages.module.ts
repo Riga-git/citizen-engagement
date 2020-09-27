@@ -19,6 +19,7 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatChipsModule } from '@angular/material/chips';
 import { RouterModule } from '@angular/router'
 import { MatListModule } from '@angular/material/list';
 import { SignUpPageComponent } from './sign-up-page/sign-up-page.component'
@@ -51,7 +52,8 @@ import { SignUpPageComponent } from './sign-up-page/sign-up-page.component'
     MatCardModule,
     MatDividerModule,
     RouterModule,
-    MatListModule
+    MatListModule,
+    MatChipsModule
   ],
   exports : [
     ReportIssuePageComponent,
