@@ -9,14 +9,12 @@ import { Issue } from 'src/app/models/issue';
 
 export class CardComponent{
 
- @Input() issue: Issue;
+ @Input() issue: Issue = new Issue;
  @Output() deleteClicked : EventEmitter<string> = new EventEmitter(); 
  @Output() moreClicked : EventEmitter<string> = new EventEmitter(); 
  @Output() cardClicked : EventEmitter<string> = new EventEmitter<string>();
 
-  constructor() { 
-    this.issue = new Issue;
-  }
+  constructor() {}
 
   onCardClicked(id) : void{
     this.cardClicked.emit(id);

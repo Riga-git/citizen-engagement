@@ -21,20 +21,3 @@ mat-form-field{
     top: 5px;
      position: sticky;
 }
-
- .commentField{ 
-    min-height: 10vh;
-}
-
-small{
-    color: rgba(0, 0, 0, 0.568);
-}
-
-.deleteComment{
-    position: absolute;
-    right: 10px;
-}
-  
-.deleteComment:hover{
-    color: red;
-}

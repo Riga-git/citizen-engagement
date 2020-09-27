@@ -7,6 +7,7 @@ import { FileInput } from 'ngx-material-file-input';
 import { IssueType } from 'src/app/models/issue-type';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoadImageResponse } from 'src/app/models/load-image-response';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-report-issue-page',
@@ -25,7 +26,7 @@ export class ReportIssuePageComponent implements OnInit {
   issueTypes : IssueType[] = [];
   loadedImages : LoadImageResponse[] = [];
 
-  constructor(private issueService: IssueService, private snackBar: MatSnackBar, private imagesService : ImagesService) { 
+  constructor(private issueService: IssueService, private router : Router, private snackBar: MatSnackBar, private imagesService : ImagesService) { 
     this.mapOptions = {
       layers: [
         tileLayer(
@@ -73,16 +74,10 @@ export class ReportIssuePageComponent implements OnInit {
         this.tagsString.replace(/\s/g, "").split('#').slice(1,this.tagsString.length), 
         this.loadedImages.map(image => image.url)
       ).subscribe({
-        next : () => {this.snackBar.open('Issue reported with succes','',{panelClass : 'SnackBarSuccess', duration : 2500}), this.resetForm(form)},
+        next : () => {this.snackBar.open('Issue reported with succes','',{panelClass : 'SnackBarSuccess', duration : 2500}), this.router.navigate([ '/myIssues']);},
         error : (error) => this.snackBar.open('Sorry we were unable to post your issue. Detail : '+ error.message, 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})
       });
     }
-  }
-
-  private resetForm(form : NgForm) {
-    form.reset();
-    this.mapMarkers = [];
-    this.images = new FileInput(null);
   }
 
   loadImage(): void {

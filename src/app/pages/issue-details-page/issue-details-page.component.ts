@@ -112,8 +112,8 @@ export class IssueDetailsPageComponent implements OnInit{
     this.location.back();
   }
 
-  postComment() : void {
-    this.issueService.postComments(this.currentIssue.id, this.newComment.text)
+  postComment(text : string) : void {
+    this.issueService.postComments(this.currentIssue.id, text)
       .subscribe({
         next : () => {this.getcomments(this.currentIssue.id); this.newComment.text = ''},
         error : (error) => {this.snackBar.open("Sorry we were unable to post your comment. Detail :" + error.message, 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})}
