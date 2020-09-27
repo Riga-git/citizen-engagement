@@ -28,7 +28,7 @@ export class IssueDetailsPageComponent implements OnInit{
   chosesIssueType : string = "";
   editMode  : Boolean;
   currentIssue : Issue = new Issue;
-  newComment = new IssueComment();
+  commentText : string = '';
   comments : IssueComment[] = [];
   issueCUrrentStatus : IssueState;
 
@@ -50,7 +50,7 @@ export class IssueDetailsPageComponent implements OnInit{
     this.route.paramMap
       .subscribe((params: ParamMap) => {
         this.issueService.getIssue(params.get('id'))
-          .subscribe({ next: (issue) => {this.currentIssue = issue; this.displayMarker(); this.getcomments(issue.id); this.tagsString = this.currentIssue.tags.toString()}});
+          .subscribe({ next: (issue) => {this.currentIssue = issue; this.displayMarker(); this.getcomments(); this.tagsString = this.currentIssue.tags.toString()}});
       });
   }
 
@@ -112,15 +112,15 @@ export class IssueDetailsPageComponent implements OnInit{
     this.location.back();
   }
 
-  postComment(text : string) : void {
-    this.issueService.postComments(this.currentIssue.id, text)
+  postComment() : void {
+    this.issueService.postComments(this.currentIssue.id, this.commentText)
       .subscribe({
-        next : () => {this.getcomments(this.currentIssue.id); this.newComment.text = ''},
+        next : () => {this.getcomments(); this.commentText = ''},
         error : (error) => {this.snackBar.open("Sorry we were unable to post your comment. Detail :" + error.message, 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})}
       });
   }
 
-  getcomments( issueID : string) : void {
+  getcomments() : void {
     this.issueService.getComments(this.currentIssue.id)
     .pipe(
       pluck('body')

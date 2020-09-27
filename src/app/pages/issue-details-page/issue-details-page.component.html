@@ -76,6 +76,20 @@
 </div>
 <!-- comments -->
 <app-comments-list  [comments]="comments" 
-                    [display]="!editMode" 
-                    (postCommentClicked)="postComment($event)">
+                    [display]="!editMode">
 </app-comments-list>
+<div *ngIf="!editMode" class="container mt-lg-5">
+  <form (submit)="postComment()">
+    <div class="row align-items-center justify-content-center">
+     <mat-form-field class="col-12" appearance="outline">
+       <mat-label>Leave a comment</mat-label>
+          <textarea name="comment" [(ngModel)]='commentText' matInput maxlength="1000"
+            placeholder="..."></textarea>
+          <mat-hint>{{commentText.length}}/1000</mat-hint>
+        </mat-form-field>
+      <div class="mb-5 col-2">
+        <button [disabled]="commentText.length < 1" mat-raised-button color="primary" type="submit">Post</button>
+      </div>
+    </div> 
+  </form>
+</div>

@@ -13,16 +13,10 @@ export class CommentsListComponent implements OnInit {
   @Input() comments: IssueComment[] = [];
   @Input() display: boolean;
 
-  @Output() postCommentClicked : EventEmitter<string> = new EventEmitter(); 
-
   commentText : string;
   
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  postComment(){
-    this.postCommentClicked.emit(this.commentText);
   }
 }
