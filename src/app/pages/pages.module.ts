@@ -19,11 +19,11 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatChipsModule } from '@angular/material/chips';
 import { RouterModule } from '@angular/router'
 import { MatListModule } from '@angular/material/list';
-import { SignUpPageComponent } from './sign-up-page/sign-up-page.component'
-
+import { SignUpPageComponent } from './sign-up-page/sign-up-page.component';
+import { CardComponent } from '../customComponents/card/card.component';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -34,6 +34,7 @@ import { SignUpPageComponent } from './sign-up-page/sign-up-page.component'
     AdminPageComponent,
     IssueDetailsPageComponent,
     SignUpPageComponent,
+    CardComponent
   ],
   imports: [
     CommonModule,
@@ -58,7 +59,8 @@ import { SignUpPageComponent } from './sign-up-page/sign-up-page.component'
   exports : [
     ReportIssuePageComponent,
     UserPageComponent,
-    AllIssuesPageComponent
+    AllIssuesPageComponent,
+    CardComponent
   ]
 })
 export class PagesModule { }

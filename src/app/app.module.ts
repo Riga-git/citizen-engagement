@@ -18,12 +18,10 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { NavigationModule } from './navigation/navigation.module';
 import { SecurityModule } from './security/security.module';
-import { CardComponent } from './customComponent/card/card.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    CardComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +35,7 @@ import { CardComponent } from './customComponent/card/card.component';
     MatButtonModule,
     FlexLayoutModule,
     NavigationModule,
-    SecurityModule
+    SecurityModule,
   ],
   providers: [
     {

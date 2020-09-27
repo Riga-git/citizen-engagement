@@ -1,0 +1,31 @@
+<div class="card" #IdHolder [id]="issue.id">
+    <mat-card (click)="onCardClicked(IdHolder.id)" matRipple class="clickable">
+        <div class="issue-detail">
+            <div class="imageFrame">
+                <img class="imagePreview"
+                    [src]="issue.imageUrl ? issue.imageUrl : '../../../assets/Images/noImage.svg'"
+                    alt="{{issue.imageUrl}}">
+            </div>
+            <div class="detailsContainer">
+                <div class="tags">
+                    <mat-chip-list #chipList>
+                        <mat-chip *ngFor="let tag of issue.tags">{{tag}}</mat-chip>
+                    </mat-chip-list>
+                </div>
+                <p class="description"> {{issue.description}} </p>
+                <p> created : {{issue.createdAt | date:'mediumDate' }} </p>
+                <br>
+                <p [ngClass]="{'state-new' : issue.state === 'new',
+                            'state-inprogress' : issue.state === 'inProgress',
+                            'state-rejected' : issue.state === 'rejected',
+                            'state-resolved' : issue.state === 'resolved'}">
+                    {{issue.state}}
+                </p>
+                <button mat-raised-button color="secondary" class="deleteButton" (click)="deleteIssue()">
+                    <mat-icon>delete_outline</mat-icon>
+                </button>
+                <button mat-raised-button color="primary" class="moreButton" (click)="moreDetails()">more</button>
+            </div>
+        </div>
+    </mat-card>
+</div>

@@ -33,18 +33,6 @@
   justify-content: center;
 }
 
-.card{
-  margin: 5px;
-  width: 700px;
-}
-
-.clickable {
-  cursor: pointer;
-  &:hover {
-    @include mat-elevation(8);
-  }
-}
-
 // ------------------------------------------------
 
 // Table ------------------------------------------
