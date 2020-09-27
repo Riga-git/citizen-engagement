@@ -24,6 +24,7 @@ import { MatListModule } from '@angular/material/list';
 import { SignUpPageComponent } from './sign-up-page/sign-up-page.component';
 import { CardComponent } from '../customComponents/card/card.component';
 import { MatChipsModule } from '@angular/material/chips';
+import { CommentsListComponent } from '../customComponents/comments-list/comments-list.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { MatChipsModule } from '@angular/material/chips';
     AdminPageComponent,
     IssueDetailsPageComponent,
     SignUpPageComponent,
-    CardComponent
+    CardComponent,
+    CommentsListComponent
   ],
   imports: [
     CommonModule,
