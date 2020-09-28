@@ -12,6 +12,11 @@ mat-form-field{
     display: block;
 }
 
+mat-card-content{
+    padding-top: 1em;
+}
+
+
 textarea{ 
     min-height: 25vh;
 }
@@ -19,5 +24,26 @@ textarea{
 .backButton{
     padding-left: 20px;
     top: 5px;
-     position: sticky;
+    position: sticky;
+}
+
+.imagesFlexContainer{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.imageContainer{
+    margin: 5px 10px 5px 0px;
+    height: 250px;
+    width:  auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imageContainer img{
+    height : 100%;
 }
