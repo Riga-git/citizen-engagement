@@ -79,10 +79,10 @@ export class ReportIssuePageComponent implements OnInit {
       });
     }
   }
-
+  
   loadImage(): void {
-    if (this.images.files.length){
-      if (this.images.files[0] !== null) {
+    if (this.images.files[0] !== null){
+      if (this.images.files.length) {
         this.imagesService.addImage(this.images.files[0]);
       }
     }
