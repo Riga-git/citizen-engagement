@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { IssueService } from 'src/app/api/issue.service';
 import { latLng, MapOptions, tileLayer, Map, Marker, marker, LeafletMouseEvent, Point } from 'leaflet';
 import { NgForm } from '@angular/forms';
@@ -10,6 +10,7 @@ import { Issue, IssueState } from 'src/app/models/issue';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { IssueComment } from 'src/app/models/IssueComment';
 import { AuthService } from 'src/app/security/auth.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-issue-details-page',
@@ -32,7 +33,15 @@ export class IssueDetailsPageComponent implements OnInit{
   comments : IssueComment[] = [];
   issueCUrrentStatus : IssueState;
 
-  constructor(private issueService: IssueService, private snackBar: MatSnackBar, private route: ActivatedRoute, private location :Location, public auth : AuthService ) { 
+  constructor(private issueService: IssueService, private snackBar: MatSnackBar, 
+                      private route: ActivatedRoute, private location :Location, 
+                      public auth : AuthService, private dialogBox : MatDialog ) { 
+
+
+  }
+
+  ngOnInit(){
+
     this.mapOptions = {
       layers: [
         tileLayer(
@@ -44,9 +53,6 @@ export class IssueDetailsPageComponent implements OnInit{
       center: latLng(46.778186, 6.641524)
     };
 
-  }
-
-  ngOnInit(){
     this.route.paramMap
       .subscribe((params: ParamMap) => {
         this.issueService.getIssue(params.get('id'))
@@ -129,5 +135,32 @@ export class IssueDetailsPageComponent implements OnInit{
         next : (comments) => {this.comments = []; comments.forEach(comment => this.comments.push(comment))},
         error : (error) => {this.snackBar.open("Sorry we were unable to load the comments. Detail :" + error.message, 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})}
       });
+  }
+
+  imageDialogOpen(src : string){
+    this.dialogBox.open(ImageDialogBoxComponent,{data: {src: src}});
+  }
+}
+
+
+export interface DialogData {
+  src: string;
+}
+
+@Component({
+  selector: 'app-image-dialog-box',
+  template: `<div class="imageContainer clickable"><img (clic)="close()" [src]="data.src" alt="image at full size"></div>`,
+  styles: ['.imageContainer{display: flex; justify-content: center; align-items: center;}',
+           '.imageContainer img{width : 100%;}',
+          ]
+})
+export class ImageDialogBoxComponent{
+
+  constructor(
+    public dialogRef: MatDialogRef<ImageDialogBoxComponent>,
+    @Inject(MAT_DIALOG_DATA)  public data: DialogData) {}
+
+  close(): void {
+    this.dialogRef.close();
   }
 }

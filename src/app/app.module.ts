@@ -19,9 +19,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { NavigationModule } from './navigation/navigation.module';
 import { SecurityModule } from './security/security.module';
 
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

@@ -52,12 +52,12 @@
           <mat-divider></mat-divider>
           <mat-card-content>
           <div class="imagesFlexContainer">
-            <mat-card class="imageContainer">
-              <img [src]="currentIssue.imageUrl ? currentIssue.imageUrl : '../../../assets/Images/noImage.svg'"
+            <mat-card class="imageContainer clickable">
+              <img #img (click)="imageDialogOpen(img.src)" [src]="currentIssue.imageUrl ? currentIssue.imageUrl : '../../../assets/Images/noImage.svg'"
                 alt="{{currentIssue.imageUrl}}">
             </mat-card>
-            <mat-card *ngFor="let images of currentIssue.additionalImageUrls" class="imageContainer">
-              <img *ngFor="let image of currentIssue.additionalImageUrls" [src]="image" alt="{{image}}">
+            <mat-card *ngFor="let images of currentIssue.additionalImageUrls" class="imageContainer clickable">
+              <img #img (click)="imageDialogOpen(img.src)" *ngFor="let image of currentIssue.additionalImageUrls" [src]="image" alt="{{image}}">
             </mat-card>
           </div>
           <p> created : {{currentIssue.createdAt | date:'mediumDate' }} </p>

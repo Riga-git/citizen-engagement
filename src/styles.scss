@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
 @import '~bootstrap-4-grid/scss/grid.scss';
 
 html, body { height: 100%; }
@@ -56,3 +57,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     font-style: italic;
     color: rgba(50, 145, 47, 0.795);
 }
+
+.clickable {
+    cursor: pointer;
+    &:hover {
+      @include mat-elevation(8);
+    }
+  }

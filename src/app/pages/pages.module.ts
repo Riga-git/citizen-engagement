@@ -25,6 +25,7 @@ import { SignUpPageComponent } from './sign-up-page/sign-up-page.component';
 import { CardComponent } from '../customComponents/card/card.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { CommentsListComponent } from '../customComponents/comments-list/comments-list.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { CommentsListComponent } from '../customComponents/comments-list/comment
     IssueDetailsPageComponent,
     SignUpPageComponent,
     CardComponent,
-    CommentsListComponent
+    CommentsListComponent,
   ],
   imports: [
     CommonModule,
@@ -56,7 +57,8 @@ import { CommentsListComponent } from '../customComponents/comments-list/comment
     MatDividerModule,
     RouterModule,
     MatListModule,
-    MatChipsModule
+    MatChipsModule,
+    MatDialogModule
   ],
   exports : [
     ReportIssuePageComponent,

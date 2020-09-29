@@ -5,13 +5,6 @@
     width: 700px;
   }
   
-  .clickable {
-    cursor: pointer;
-    &:hover {
-      @include mat-elevation(8);
-    }
-  }
-
   .issue-detail {
     overflow: hidden;
     display: flex;
