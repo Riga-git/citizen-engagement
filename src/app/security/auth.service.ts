@@ -115,4 +115,8 @@ export class AuthService {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(auth));
   }
 
+  updateUserInfo() : void  {
+    ;
+  }
+
 }

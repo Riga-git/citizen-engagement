@@ -22,6 +22,7 @@ export class IssueDetailsPageComponent implements OnInit{
 
   description : string = "";
   tagsString : string = "";
+  issueState : IssueState;
   mapOptions : MapOptions = {};
   map : Map;
   mapMarkers : Marker[] = [];
@@ -29,16 +30,13 @@ export class IssueDetailsPageComponent implements OnInit{
   chosesIssueType : string = "";
   editMode  : Boolean;
   currentIssue : Issue = new Issue;
+  updateFormIssue : Issue = new Issue;
   commentText : string = '';
   comments : IssueComment[] = [];
-  issueCUrrentStatus : IssueState;
 
   constructor(private issueService: IssueService, private snackBar: MatSnackBar, 
                       private route: ActivatedRoute, private location :Location, 
-                      public auth : AuthService, private dialogBox : MatDialog ) { 
-
-
-  }
+                      public auth : AuthService, private dialogBox : MatDialog ) {}
 
   ngOnInit(){
 
@@ -56,8 +54,22 @@ export class IssueDetailsPageComponent implements OnInit{
     this.route.paramMap
       .subscribe((params: ParamMap) => {
         this.issueService.getIssue(params.get('id'))
-          .subscribe({ next: (issue) => {this.currentIssue = issue; this.displayMarker(); this.getcomments(); this.tagsString = this.currentIssue.tags.toString()}});
+          .subscribe({ next: (issue) => {this.currentIssue = issue, 
+                                        this.displayMarker(), 
+                                        this.getcomments(), 
+                                        this.tagsString = this.tagsToString(this.currentIssue.tags),
+                                        this.description = this.currentIssue.description,
+                                        this.issueState = this.currentIssue.state
+                                      }});
       });
+  }
+
+  private tagsToString(tags : Array<string>) : string {
+    return '#' + tags.toString().split(',').join(' #');
+  }
+
+  private stringToTags(tagsString : string) : string[]{
+    return tagsString.replace(/\s/g, "").split('#').slice(1,tagsString.length);
   }
 
   onMapReady(map : Map) : void {
@@ -98,17 +110,13 @@ export class IssueDetailsPageComponent implements OnInit{
     if (form.valid) {
       this.issueService.updateIssue(
         this.currentIssue.id,
-        this.currentIssue.description,
+        this.description,
         this.mapMarkers[0].toGeoJSON().geometry,
         this.currentIssue.issueTypeHref,
         // ignore the index 0 because is a empty string because the separator is located before the tagName 
-        this.tagsString.replace(/\s/g, "").split('#').slice(1,this.tagsString.length)
-      )
-      .pipe(
-        finalize(() => this.editMode = false)
-      )
-      .subscribe({
-        next : () => {this.snackBar.open('Issue reported with succes','',{panelClass : 'SnackBarSuccess', duration : 2500}), this.editMode = false},
+        this.stringToTags(this.tagsString)
+      ).subscribe({
+        next : () => {this.snackBar.open('Issue reported with succes','',{panelClass : 'SnackBarSuccess', duration : 2500}), this.editMode = false, this.currentIssue.tags = this.stringToTags(this.tagsString), this.currentIssue.description = this.description},
         error : (error) => {this.snackBar.open('Sorry we were unable to update the issue. Detail : '+ error.message, 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})}
       });
     }

@@ -1,12 +1,14 @@
-<p>
-    <span><strong>First Name : </strong></span>
-    <span>{{user.firstname}}</span>
-</p>
-<p>
-    <span><strong>Last Name : </strong></span>
-    <span>{{user.lastname}}</span>
-</p>
-<p *ngIf='user.phone'>
-    <span><strong>Phone : </strong></span>
-    <span>{{user.phone}}</span>
-</p>
+<mat-card>
+    <p>
+        <span><strong>First Name : </strong></span>
+        <span>{{user.firstname}}</span>
+    </p>
+    <p>
+        <span><strong>Last Name : </strong></span>
+        <span>{{user.lastname}}</span>
+    </p>
+    <p *ngIf='user.phone'>
+        <span><strong>Phone : </strong></span>
+        <span>{{user.phone}}</span>
+    </p>
+</mat-card>   
