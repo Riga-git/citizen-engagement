@@ -22,6 +22,7 @@ export class AuthService {
    */
   private authenticated$: ReplaySubject<AuthResponse>;
   private isAdmin : boolean = false;
+  private userHref : string;
 
   constructor(private http: HttpClient) {
     // Get the credentials from the localStorage when the AuthService is created
@@ -39,25 +40,32 @@ export class AuthService {
    */
   isAuthenticated(): Observable<boolean> {
     return this.authenticated$.pipe( 
-      tap((auth) =>  {if (auth != null) this.isAdmin = auth.user.roles.toString().includes('staff') ? true : false}),
+      tap((auth) =>  {  
+                      if (auth != null){
+                        this.isAdmin = auth.user.roles.toString().includes('staff') ? true : false;
+                        this.userHref = auth.user.href;}
+                      else{
+                        this.userHref = "";}
+                      }),
       map((auth) => Boolean(auth)),
       );
   }
 
-  /**
-   * Retrieves the User object from the latest AuthResponse value
-   */
   isAdminUser(): boolean {
     return this.isAdmin;
   }
 
-    /**
+  /**
    * Retrieves the User object from the latest AuthResponse value
    */
   getUser(): Observable<User> {
     return this.authenticated$.pipe(
       map((auth) => (auth ? auth.user : undefined))
     );
+  }
+
+  geUserHref() : string {
+    return this.userHref;
   }
 
   /**

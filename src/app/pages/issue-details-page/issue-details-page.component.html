@@ -73,7 +73,7 @@
             </div>
           </mat-card-footer>
         </mat-card>
-        <button class="mt-5 mb-5" mat-raised-button color="primary" (click)="editMode = true">Edit</button>
+        <button [disabled]="currentIssue.creatorHref === auth.geUserHref() || auth.isAdminUser()" class="mt-5 mb-5" mat-raised-button color="primary" (click)="editMode = true">Edit</button>
       </div>
     </div>
     <div class="col-10 order-first order-lg-last mb-5 mb-lg-0 col-lg-6 offset-lg-1">
