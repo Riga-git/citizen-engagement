@@ -38,7 +38,7 @@ export class IssuesDataSources implements DataSource<Issue> {
           finalize(() => this.loadingSubject.next(false))
         )
         .subscribe({
-          next: (issues) => {this.issueSubject.next(issues); console.log(issues)},
+          next: (issues) => {this.issueSubject.next(issues)},
           error: (error) => this.snackBar.open('Sorry we were unable to get the issues list! Details '+error, 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})
         });
     }

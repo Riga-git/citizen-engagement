@@ -3,6 +3,7 @@ import { AuthRequest } from "src/app/models/auth-request";
 import { AuthService } from "../auth.service";
 import { Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: "app-login-page",
@@ -22,9 +23,10 @@ export class LoginPageComponent {
    */
   loginError: boolean;
 
-  constructor(private auth: AuthService, private router: Router) {
+  constructor(private auth: AuthService, private router: Router, private snackBar: MatSnackBar,) {
     this.authRequest = new AuthRequest();
     this.loginError = false;
+    
   }
 
   /**
@@ -42,6 +44,7 @@ export class LoginPageComponent {
         error: (err) => {
           this.loginError = true;
           console.warn(`Authentication failed: ${err.message}`);
+          this.snackBar.open("wrong user name or password", "x", {panelClass : ['SnackBarError', 'SnackBarButton'],duration : 2500})
         },
       });
     }
