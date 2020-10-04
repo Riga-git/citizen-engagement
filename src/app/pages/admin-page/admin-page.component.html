@@ -1,4 +1,5 @@
 <div class="container mt-5">
+    <p class="alignLeft"><strong>Add new issue's type</strong></p>
     <form #newTypeForm="ngForm" (submit)="addNewType(newTypeForm)">
         <div class="row align-items-center justify-content-center">
             <div class="col-11 col-lg-3">
@@ -21,4 +22,31 @@
             </div>
         </div>
     </form>
+    <p><strong>User's list</strong></p>
+    <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+        <mat-spinner style="display: inline-block;"></mat-spinner>
+    </div>
+    <div class="tableContainer">
+        <table class="table" fxLayout="column wrap" #table mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="Name">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let user"> {{user.firstname}} {{user.name}}</td>
+            </ng-container>
+            <ng-container matColumnDef="Roles">
+                <th mat-header-cell *matHeaderCellDef> Role </th>
+                <td mat-cell *matCellDef="let user">#{{user.roles.toString().split(',').join(' #')}}</td>
+            </ng-container>
+            <ng-container matColumnDef="MakeStaf">
+                <th mat-header-cell *matHeaderCellDef> actions </th>
+                <td mat-cell *matCellDef="let user">
+                    <button (click)="makeUserStaff(user.id)" *ngIf="!user.roles.toString().includes('staff')" mat-raised-button color="primary">Make him
+                        staff</button>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="rows"></tr>
+        </table>
+        <mat-paginator [pageSize]="itemsPerPage" [pageSizeOptions]="[10, 20, 50]" [length]="dataSource.totalItems">
+        </mat-paginator>
+    </div>
 </div>

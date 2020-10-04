@@ -1,6 +1,6 @@
 
 .mat-sidenav-container{
-  height: auto;
+  height: 93vh;
 }
 
 a{
@@ -21,6 +21,7 @@ button{
 .mat-sidenav-content{
     font-size: 1em;
     text-align: center;
+    height: 100%;
 }
 
 .activeRoute {

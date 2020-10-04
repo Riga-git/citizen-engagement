@@ -1,5 +1,5 @@
 <div class="row justify-content-start backButton">
-  <button (click)="navigateBack()" mat-raised-button color="secondary">
+  <button  (click)="navigateBack()" mat-raised-button color="secondary">
     <mat-icon><img src="../../../assets/Images/arrow_back-24px.svg" alt=""></mat-icon>
   </button>
 </div>
@@ -24,16 +24,14 @@
           Description is required
         </p>
         <br>
-        <mat-form-field *ngIf="auth.isAdminUser()" appearance="outline">
-          <mat-label>State</mat-label>
-          <mat-select name="typeSelector" [(ngModel)]="issueState">
-            <mat-option value="">all</mat-option>
-            <mat-option value="new">new</mat-option>
-            <mat-option value="inProgress">inProgress</mat-option>
-            <mat-option value="rejected">rejected</mat-option>
-            <mat-option value="resolved">resolved</mat-option>
-          </mat-select>
-        </mat-form-field>
+        <div class="changeIssueStatusContaintainer">
+          <button *ngIf="(currentIssue.creatorHref === auth.geUserHref() || auth.isAdminUser()) && currentIssue.state ==='new'" 
+          class="mt-5 mb-5 startBtn"  mat-raised-button type="button" (click)="changeIssueStatus('start')">Start</button>
+          <button *ngIf="(currentIssue.creatorHref === auth.geUserHref() || auth.isAdminUser()) && (currentIssue.state ==='new' || currentIssue.state ==='inProgress')"
+           class="mt-5 mb-5 rejectBtn"  mat-raised-button type="button" (click)="changeIssueStatus('reject')">Reject</button>
+          <button *ngIf="(currentIssue.creatorHref === auth.geUserHref() || auth.isAdminUser()) && currentIssue.state ==='inProgress'"
+           class="mt-5 mb-5 resolveBtn" mat-raised-button type="button" (click)="changeIssueStatus('resolve')">Resolve</button>
+        </div>
         <br>
         <div class="mb-5 row align-items-center justify-content-around">
           <button [disabled]="!this.mapMarkers.length || !updateIssueForm.valid" mat-raised-button color="primary"
@@ -64,18 +62,19 @@
           <br>
           <p>{{currentIssue.description}}</p>
           </mat-card-content>
-          <mat-card-footer>
-            <div [ngClass]="{'state-new' : currentIssue.state === 'new',
+          <div [ngClass]="{'state-new' : currentIssue.state === 'new',
           'state-inprogress' : currentIssue.state === 'inProgress',
           'state-rejected' : currentIssue.state === 'rejected',
           'state-resolved' : currentIssue.state === 'resolved'}">
               {{currentIssue.state}}
-            </div>
-          </mat-card-footer>
-        </mat-card>
-        <button [disabled]="currentIssue.creatorHref === auth.geUserHref() || auth.isAdminUser()" class="mt-5 mb-5" mat-raised-button color="primary" (click)="editMode = true">Edit</button>
+          </div>
+        <mat-card-footer>
+          <button *ngIf="currentIssue.creatorHref === auth.geUserHref() || auth.isAdminUser()" class="mt-5 mb-5"
+            mat-raised-button color="primary" (click)="editMode = true">Edit</button>
+        </mat-card-footer>
+      </mat-card>
       </div>
-    </div>
+    </div> 
     <div class="col-10 order-first order-lg-last mb-5 mb-lg-0 col-lg-6 offset-lg-1">
       <div (leafletClick)="updateMarker($event)" leaflet [leafletOptions]="mapOptions"
         (leafletMapReady)="onMapReady($event)" [leafletLayers]="mapMarkers" class="map" ngDefaultControl>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpHeaders, HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { User, Role } from '../models/user';
 import { environment } from 'src/environments/environement';
 import { Observable } from 'rxjs';
@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 export class UserService {
 
   private readonly httpHeaders: HttpHeaders;
+  readonly defaultPaginatorPageSize = 10; 
 
   constructor(private http: HttpClient) {
     this.httpHeaders =  new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
@@ -28,5 +29,17 @@ export class UserService {
       body.phone = phone;
 
     return this.http.post<User>(`${environment.apiUrl}/users`,body, {headers : this.httpHeaders});
+  }
+
+  getUsers(currentPage = 1 , pageSize=this.defaultPaginatorPageSize) : Observable<HttpResponse<User[]>> {
+    let params = new HttpParams().set('page', currentPage.toString())
+                                .set('pageSize', pageSize.toString());
+
+  
+    return this.http.get<User[]>(`${environment.apiUrl}/users`, {headers : this.httpHeaders, params : params, observe: 'response'});
+  }
+
+  makeUserStaff(userId : string): Observable<User>{
+    return this.http.patch<User>(`${environment.apiUrl}/users/${userId}`, {roles : ['citizen','staff']},{headers : this.httpHeaders});
   }
 }

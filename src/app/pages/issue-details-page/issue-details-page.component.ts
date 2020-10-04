@@ -5,8 +5,9 @@ import { NgForm } from '@angular/forms';
 import { FileInput } from 'ngx-material-file-input';
 import { Location } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { finalize, pluck } from 'rxjs/operators';
+import { finalize, map, pluck } from 'rxjs/operators';
 import { Issue, IssueState } from 'src/app/models/issue';
+import { IssueActions } from 'src/app/models/change-issue-status-response';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { IssueComment } from 'src/app/models/IssueComment';
 import { AuthService } from 'src/app/security/auth.service';
@@ -148,8 +149,20 @@ export class IssueDetailsPageComponent implements OnInit{
   imageDialogOpen(src : string){
     this.dialogBox.open(ImageDialogBoxComponent,{data: {src: src}});
   }
-}
 
+  changeIssueStatus(action : IssueActions){
+    this.issueService.changeIssueStatus(action,this.currentIssue.id).subscribe({
+      next : (response) => {
+                              switch(response.type){
+                                case 'start' : this.currentIssue.state = 'inProgress'; break;
+                                case 'reject' : this.currentIssue.state = 'rejected'; break;
+                                case 'resolve' : this.currentIssue.state = 'resolved'; break;}}
+                                ,
+      error : (error) => this.snackBar.open("Sorry we were unable to change the issue state. Detail :" + error.message, 'x',
+                         {panelClass : ['SnackBarError', 'SnackBarButton']})
+    });
+  }
+}
 
 export interface DialogData {
   src: string;

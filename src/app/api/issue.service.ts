@@ -9,6 +9,7 @@ import { environment } from "../../environments/environement";
 import { Geometry } from 'geojson';
 import { Router } from '@angular/router';
 import { IssueComment } from '../models/IssueComment';
+import { ChangeIssueStatusResponse, IssueActions } from 'src/app/models/change-issue-status-response';
 
 @Injectable({
   providedIn: "root",
@@ -74,12 +75,11 @@ export class IssueService {
     return this.http.post<IssueType>(`${environment.apiUrl}/issueTypes`, JSON.stringify(newType), {headers : this.httpHeaders});
   }
 
-  getIssues(currentPage = 1 , pageSize=this.defaultPaginatorPageSize, search? : string , state?:string[]) : Observable<any> {
+  getIssues(currentPage = 1 , pageSize=this.defaultPaginatorPageSize, search? : string , state?:string[]) : Observable<HttpResponse<Issue[]>> {
     
     let params = new HttpParams().set('page', currentPage.toString())
                                 .set('pageSize', pageSize.toString());
 
-    params
     if(search !='' && search != undefined) 
       params = params.set('search', search);
     if(state != undefined) 
@@ -87,7 +87,7 @@ export class IssueService {
       params = params.set('state', state.join('&'));
     
     let url =  this.router.url === '/allIssues' ? '/issues' : '/me/issues'
-    return this.http.get<any>(`${environment.apiUrl}${url}`, {headers : this.httpHeaders, params : params, observe: 'response'});
+    return this.http.get<Issue[]>(`${environment.apiUrl}${url}`, {headers : this.httpHeaders, params : params, observe: 'response'});
   }
 
   getIssue(id : string) : Observable<Issue> {
@@ -103,8 +103,12 @@ export class IssueService {
     return this.http.post<IssueComment>(`${environment.apiUrl}/issues/${issueId}/comments`, {text: commentText}, {headers : this.httpHeaders});
   }
 
-  getComments(issueId: string) : Observable<any>  {
+  getComments(issueId: string) : Observable<HttpResponse<IssueComment[]>>{
     let params = new HttpParams().set('include', 'author')
-    return this.http.get<any>(`${environment.apiUrl}/issues/${issueId}/comments`, { headers: this.httpHeaders, params: params, observe: 'response' });
+    return this.http.get<IssueComment[]>(`${environment.apiUrl}/issues/${issueId}/comments`, { headers: this.httpHeaders, params: params, observe: 'response' });
+  }
+
+  changeIssueStatus(action : IssueActions, id : string) : Observable<ChangeIssueStatusResponse>{
+    return this.http.post<ChangeIssueStatusResponse>(`${environment.apiUrl}/issues/${id}/actions`, {reason: "test", type : action}, {headers : this.httpHeaders});
   }
 }

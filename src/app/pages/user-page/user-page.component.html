@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card >
     <p>
         <span><strong>First Name : </strong></span>
         <span>{{user.firstname}}</span>
@@ -10,5 +10,9 @@
     <p *ngIf='user.phone'>
         <span><strong>Phone : </strong></span>
         <span>{{user.phone}}</span>
+    </p>
+    <p *ngIf='user.roles'>
+        <span><strong>Roles :  </strong></span>
+        <span># {{user.roles.toString().split(',').join(' #')}}</span>
     </p>
 </mat-card>   

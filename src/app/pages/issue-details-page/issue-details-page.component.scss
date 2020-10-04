@@ -25,6 +25,7 @@ textarea{
     padding-left: 20px;
     top: 5px;
     position: sticky;
+    z-index: 1000;
 }
 
 .imagesFlexContainer{
@@ -46,4 +47,23 @@ textarea{
 
 .imageContainer img{
     height : 100%;
+}
+
+.changeIssueStatusContaintainer{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+}
+
+.startBtn{
+    color: rgba(252, 0, 155, 0.678);
+}
+
+.rejectBtn{
+    color: rgba(216, 22, 22, 0.774);
+}
+
+.resolveBtn{
+    color: rgba(57, 156, 26, 0.719);
 }
