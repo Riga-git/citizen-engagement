@@ -7,6 +7,7 @@ import { User } from '../../models/user';
 import { UserService } from 'src/app/api/user.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTable } from '@angular/material/table';
+import { findIndex } from 'lodash';
 
 
 @Component({
@@ -55,7 +56,7 @@ export class AdminPageComponent implements OnInit{
 
   makeUserStaff(userId : string){
     this.userServce.makeUserStaff(userId).subscribe({
-      next : (user) => this.usersList.forEach(element => {element['id']===user.id ? this.usersList['id']=}),
+      next : (user) => {this.usersList[findIndex(this.usersList,['id', userId])].roles = user.roles},
       error : (error) => this.snackBar.open(error.message, 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})
     })
   }
