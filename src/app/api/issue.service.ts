@@ -18,6 +18,7 @@ export class IssueService {
 
   private readonly httpHeaders: HttpHeaders;
   readonly defaultPaginatorPageSize = 6; 
+  readonly getCommentsPageSize = 50; 
 
   constructor(private http: HttpClient, private router: Router) {
     this.httpHeaders =  new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
@@ -103,8 +104,10 @@ export class IssueService {
     return this.http.post<IssueComment>(`${environment.apiUrl}/issues/${issueId}/comments`, {text: commentText}, {headers : this.httpHeaders});
   }
 
-  getComments(issueId: string) : Observable<HttpResponse<IssueComment[]>>{
-    let params = new HttpParams().set('include', 'author')
+  getComments(issueId: string, currentPage : number, pageSize : number) : Observable<HttpResponse<IssueComment[]>>{
+    let params = new HttpParams() .set('include', 'author')
+                                  .set('page', currentPage.toString())
+                                  .set('pageSize', pageSize.toString());
     return this.http.get<IssueComment[]>(`${environment.apiUrl}/issues/${issueId}/comments`, { headers: this.httpHeaders, params: params, observe: 'response' });
   }
 

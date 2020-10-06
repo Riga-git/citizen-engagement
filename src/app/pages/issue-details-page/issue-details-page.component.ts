@@ -5,7 +5,7 @@ import { NgForm } from '@angular/forms';
 import { FileInput } from 'ngx-material-file-input';
 import { Location } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { finalize, map, pluck } from 'rxjs/operators';
+import { finalize, map, pluck, tap } from 'rxjs/operators';
 import { Issue, IssueState } from 'src/app/models/issue';
 import { IssueActions } from 'src/app/models/change-issue-status-response';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
@@ -34,6 +34,8 @@ export class IssueDetailsPageComponent implements OnInit{
   updateFormIssue : Issue = new Issue;
   commentText : string = '';
   comments : IssueComment[] = [];
+  commentPage : number = 1;
+  totalComments : number
 
   constructor(private issueService: IssueService, private snackBar: MatSnackBar, 
                       private route: ActivatedRoute, private location :Location, 
@@ -57,7 +59,7 @@ export class IssueDetailsPageComponent implements OnInit{
         this.issueService.getIssue(params.get('id'))
           .subscribe({ next: (issue) => {this.currentIssue = issue, 
                                         this.displayMarker(), 
-                                        this.getcomments(), 
+                                        this.getcomments(this.currentIssue.id,this.commentPage,this.issueService.getCommentsPageSize), 
                                         this.tagsString = this.tagsToString(this.currentIssue.tags),
                                         this.description = this.currentIssue.description,
                                         this.issueState = this.currentIssue.state
@@ -130,18 +132,25 @@ export class IssueDetailsPageComponent implements OnInit{
   postComment() : void {
     this.issueService.postComments(this.currentIssue.id, this.commentText)
       .subscribe({
-        next : () => {this.getcomments(); this.commentText = ''},
+        next : (comment) => {},
         error : (error) => {this.snackBar.open("Sorry we were unable to post your comment. Detail :" + error.message, 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})}
       });
   }
 
-  getcomments() : void {
-    this.issueService.getComments(this.currentIssue.id)
+  getcomments(issueId: string, currentPage : number, pageSize : number) : void {
+    this.issueService.getComments(issueId, currentPage, pageSize)
     .pipe(
+      tap(response => this.totalComments = + response.headers.get('Pagination-Total')),
       pluck('body')
     )
     .subscribe({
-        next : (comments) => {this.comments = []; comments.forEach(comment => this.comments.push(comment))},
+        next : (comments) => {
+                                comments.forEach(comment => this.comments.push(comment));
+                                if (this.comments.length < this.issueService.getCommentsPageSize){
+                                  this.commentPage = 1;}
+                                else {  this.commentPage += 1;
+                                       this.getcomments(issueId,this.commentPage,this.issueService.getCommentsPageSize);}
+                                },
         error : (error) => {this.snackBar.open("Sorry we were unable to load the comments. Detail :" + error.message, 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})}
       });
   }
