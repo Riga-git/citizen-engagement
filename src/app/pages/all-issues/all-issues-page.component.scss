@@ -58,7 +58,7 @@ tr.rows:not(.expanded-row):active {
 }
 // ------------------------------------------------
 
-// Sharred cards and table ------------------------
+
 .issue-detail {
   overflow: hidden;
   display: flex;
@@ -75,72 +75,12 @@ tr.rows:not(.expanded-row):active {
   justify-content: center;
 }
 
-.imagePreview{
-  width: 100%;
-  height: auto;
-  margin: auto;
-  display: block;
-  padding-right: 1em;
-}
-
-.detailsContainer{
-  max-width: 70%;
-  padding-left: 1em;
-  text-align: start;
-  margin: auto;
-}
-
-.tags{
-  font-size: 1.5em;
-  font-weight: bold;
-  max-width: 100%;
-  padding-bottom: 1em;
-}
-
-div.tags mat-form-field{
-  width: 100%;
-}
-
-div.tags mat-form-field{
-  width: 100%;
-}
-
-div.tags mat-form-field-infix {
-  border-top: none !important;
-}
-
-#TagsMatContainer{
-  border-top: 0;
-}
-
-.description{
-  font-weight: lighter;
-  padding-bottom: 0.5em;
-  max-width: 100%;
-}
-
-.moreButton{
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-}
-
-.deleteButton{
-  position: absolute;
-  right: 100px;
-  bottom: 10px;
-};
-
-.deleteButton:hover{
-  color: red;
-}
-
 mat-paginator{
   border: solid rgba(75, 73, 73, 0.54);
   border-width: 1px;
   border-radius: 5px;
 }
-// ------------------------------------------------
+
 
 
 

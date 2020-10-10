@@ -26,7 +26,10 @@ export class ReportIssuePageComponent implements OnInit {
   issueTypes : IssueType[] = [];
   loadedImages : LoadImageResponse[] = [];
 
-  constructor(private issueService: IssueService, private router : Router, private snackBar: MatSnackBar, private imagesService : ImagesService) { 
+  constructor(private issueService: IssueService, 
+              private router : Router, 
+              private snackBar: MatSnackBar, 
+              public imagesService : ImagesService) { 
     this.mapOptions = {
       layers: [
         tileLayer(
@@ -43,7 +46,8 @@ export class ReportIssuePageComponent implements OnInit {
     // Ask the service to make an API call on component initialisation
     this.issueService.loadAllIssueTypes().subscribe({
       next: (result) => result.forEach(element => this.issueTypes.push(element)),
-      error: (error) => this.snackBar.open("Sorry, we were unable to load the issue types list. Detail : " + error.message, "x", {panelClass : ['SnackBarError', 'SnackBarButton']})     
+      error: (error) => this.snackBar.open( "Sorry, we were unable to load the issue types list. Detail : " + error.message, 
+                                            "x", {panelClass : ['SnackBarError', 'SnackBarButton']})     
     });
     this.imagesService.newImage$.subscribe({
       next: (image) => {this.loadedImages.push(image)}
@@ -74,8 +78,12 @@ export class ReportIssuePageComponent implements OnInit {
         this.tagsString.replace(/\s/g, "").split('#').slice(1,this.tagsString.length), 
         this.loadedImages.map(image => image.url)
       ).subscribe({
-        next : () => {this.snackBar.open('Issue reported with succes','',{panelClass : 'SnackBarSuccess', duration : 2500}), this.router.navigate([ '/myIssues']);},
-        error : (error) => this.snackBar.open('Sorry we were unable to post your issue. Detail : '+ error.message, 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})
+        next : () => {this.snackBar.open('Issue reported with succes','',
+                                        {panelClass : 'SnackBarSuccess', 
+                                        duration : 2500}), 
+                      this.router.navigate([ '/myIssues']);},
+        error : (error) => this.snackBar.open('Sorry we were unable to post your issue. Detail : '+ error.message,
+                                               'x', {panelClass : ['SnackBarError', 'SnackBarButton']})
       });
     }
   }

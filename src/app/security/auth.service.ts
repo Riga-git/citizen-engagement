@@ -6,6 +6,7 @@ import { map, tap } from "rxjs/operators";
 import { User } from "../models/user";
 import { AuthRequest } from "../models/auth-request";
 import { environment } from "../../environments/environement";
+import { CommentAuthor } from '../models/comment-author';
 
 
 // Add a constant for the storage key
@@ -23,6 +24,7 @@ export class AuthService {
   private authenticated$: ReplaySubject<AuthResponse>;
   private isAdmin : boolean = false;
   private userHref : string;
+  private userName : CommentAuthor = new CommentAuthor();
 
   constructor(private http: HttpClient) {
     // Get the credentials from the localStorage when the AuthService is created
@@ -43,7 +45,9 @@ export class AuthService {
       tap((auth) =>  {  
                       if (auth != null){
                         this.isAdmin = auth.user.roles.toString().includes('staff') ? true : false;
-                        this.userHref = auth.user.href;}
+                        this.userHref = auth.user.href;
+                        this.userName.firstname = auth.user.firstname;
+                        this.userName.lastname = auth.user.lastname;}
                       else{
                         this.userHref = "";}
                       }),
@@ -66,6 +70,10 @@ export class AuthService {
 
   geUserHref() : string {
     return this.userHref;
+  }
+
+  getUserName() : CommentAuthor{
+    return this.userName;
   }
 
   /**

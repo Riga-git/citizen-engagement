@@ -34,15 +34,16 @@ export class SignUpPageComponent implements OnInit {
         undefined,
         this.phone,
       ).subscribe({
-        next : () => {this.snackBar.open('User added','',{panelClass : 'SnackBarSuccess', duration : 2500}); this.navigateToLoginPage();},
-        error : (error) => {this.snackBar.open('Sorry something went wrong...', 'x', {panelClass : ['SnackBarError', 'SnackBarButton']}); console.log(error);}
+        next : () => {this.snackBar.open('User added','',{panelClass : 'SnackBarSuccess', 
+                                          duration : 2500}); 
+                      this.navigateToLoginPage();},
+        error : () => {this.snackBar.open('Sorry something went wrong...', 'x', 
+                            {panelClass : ['SnackBarError', 'SnackBarButton']});}
       });
     }
   }
 
   navigateToLoginPage () : void {
     this.router.navigateByUrl('/login');
-
   }
-
 }

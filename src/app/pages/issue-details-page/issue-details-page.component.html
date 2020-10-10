@@ -7,36 +7,67 @@
 <div class="container mt-5">
   <div class="row align-items-center justify-content-center">
     <div class=" col-10 col-lg-5 ">
-      <form #updateIssueForm="ngForm" (submit)="updateIssue(updateIssueForm)" *ngIf="editMode">
+      <form #updateIssueForm="ngForm" 
+            (submit)="updateIssue(updateIssueForm)" 
+            *ngIf="editMode">
         <mat-form-field appearance="outline">
           <mat-label>Tag(s) (# prefix)</mat-label>
-          <input [(ngModel)]='tagsString' name="Tags" matInput maxlength="100" form="repIssueForm"
-            placeholder="ex: #StreetHole #CityCenter">
+          <input [(ngModel)]='tagsString' 
+                  name="Tags" matInput 
+                  maxlength="100" 
+                  form="repIssueForm"
+                  placeholder="ex: #StreetHole #CityCenter">
         </mat-form-field>
         <br>
         <mat-form-field appearance="outline">
           <mat-label>Description</mat-label>
-          <textarea required #descriptionField="ngModel" name="description" [(ngModel)]='description'
-            matInput maxlength="1000" form="updateIssueForm" placeholder="Write a small description..."></textarea>
+          <textarea required #descriptionField="ngModel" 
+                    name="description" [(ngModel)]='description'
+                    matInput maxlength="1000" form="updateIssueForm" 
+                    placeholder="Write a small description...">
+          </textarea>
           <mat-hint>{{description.length}}/1000</mat-hint>
         </mat-form-field>
-        <p *ngIf="descriptionField.hasError('required') && descriptionField.touched" class="ErrorMessage">
-          Description is required
+        <p *ngIf="descriptionField.hasError('required') && descriptionField.touched" 
+            class="ErrorMessage">
+            Description is required
         </p>
         <br>
         <div class="changeIssueStatusContaintainer">
-          <button *ngIf="(currentIssue.creatorHref === auth.geUserHref() || auth.isAdminUser()) && currentIssue.state ==='new'" 
-          class="mt-5 mb-5 startBtn"  mat-raised-button type="button" (click)="changeIssueStatus('start')">Start</button>
-          <button *ngIf="(currentIssue.creatorHref === auth.geUserHref() || auth.isAdminUser()) && (currentIssue.state ==='new' || currentIssue.state ==='inProgress')"
-           class="mt-5 mb-5 rejectBtn"  mat-raised-button type="button" (click)="changeIssueStatus('reject')">Reject</button>
-          <button *ngIf="(currentIssue.creatorHref === auth.geUserHref() || auth.isAdminUser()) && currentIssue.state ==='inProgress'"
-           class="mt-5 mb-5 resolveBtn" mat-raised-button type="button" (click)="changeIssueStatus('resolve')">Resolve</button>
+          <button *ngIf="(currentIssue.creatorHref === auth.geUserHref() || auth.isAdminUser()) 
+                          && currentIssue.state ==='new'" 
+                          class="mt-5 mb-5 startBtn"  
+                          mat-raised-button type="button" 
+                          (click)="changeIssueStatus('start')">
+                          Start
+          </button>
+          <button *ngIf="(currentIssue.creatorHref === auth.geUserHref() || auth.isAdminUser()) 
+                          && (currentIssue.state ==='new' || currentIssue.state ==='inProgress')"
+                          class="mt-5 mb-5 rejectBtn"  
+                          mat-raised-button 
+                          type="button" 
+                          (click)="changeIssueStatus('reject')">
+                          Reject
+          </button>
+          <button *ngIf="(currentIssue.creatorHref === auth.geUserHref() || auth.isAdminUser()) 
+                          && currentIssue.state ==='inProgress'"
+                          class="mt-5 mb-5 resolveBtn" mat-raised-button 
+                          type="button" (click)="changeIssueStatus('resolve')">
+                          Resolve
+          </button>
         </div>
         <br>
         <div class="mb-5 row align-items-center justify-content-around">
-          <button [disabled]="!this.mapMarkers.length || !updateIssueForm.valid" mat-raised-button color="primary"
-            type="submit">Submit</button>
-          <button (click)="editMode = false" mat-raised-button color="secondary">Cancel</button>
+          <button [disabled]="!this.mapMarkers.length || !updateIssueForm.valid" 
+                  mat-raised-button color="primary"
+                  type="submit">$
+                  Submit
+          </button>
+          <button (click)="editMode = false" 
+                  mat-raised-button 
+                  color="secondary">
+                  Cancel
+          </button>
         </div>
       </form>
       <!-- issue details -->
@@ -51,33 +82,45 @@
           <mat-card-content>
           <div class="imagesFlexContainer">
             <mat-card class="imageContainer clickable">
-              <img #img (click)="imageDialogOpen(img.src)" [src]="currentIssue.imageUrl ? currentIssue.imageUrl : '../../../assets/Images/noImage.svg'"
-                alt="{{currentIssue.imageUrl}}">
+              <img  #img (click)="imageDialogOpen(img.src)" 
+                    [src]="currentIssue.imageUrl ? currentIssue.imageUrl : '../../../assets/Images/noImage.svg'"
+                    alt="{{currentIssue.imageUrl}}">
             </mat-card>
-            <mat-card *ngFor="let images of currentIssue.additionalImageUrls" class="imageContainer clickable">
-              <img #img (click)="imageDialogOpen(img.src)" *ngFor="let image of currentIssue.additionalImageUrls" [src]="image" alt="{{image}}">
+            <mat-card *ngFor="let images of currentIssue.additionalImageUrls" 
+                      class="imageContainer clickable">
+              <img  #img (click)="imageDialogOpen(img.src)" 
+                    *ngFor="let image of currentIssue.additionalImageUrls" 
+                    [src]="image" alt="{{image}}">
             </mat-card>
           </div>
           <p> created : {{currentIssue.createdAt | date:'mediumDate' }} </p>
           <br>
           <p>{{currentIssue.description}}</p>
           </mat-card-content>
-          <div [ngClass]="{'state-new' : currentIssue.state === 'new',
-          'state-inprogress' : currentIssue.state === 'inProgress',
-          'state-rejected' : currentIssue.state === 'rejected',
-          'state-resolved' : currentIssue.state === 'resolved'}">
-              {{currentIssue.state}}
+          <div [ngClass]="{ 'state-new' : currentIssue.state === 'new',
+                            'state-inprogress' : currentIssue.state === 'inProgress',
+                            'state-rejected' : currentIssue.state === 'rejected',
+                            'state-resolved' : currentIssue.state === 'resolved'}">
+                            {{currentIssue.state}}
           </div>
         <mat-card-footer>
-          <button *ngIf="currentIssue.creatorHref === auth.geUserHref() || auth.isAdminUser()" class="mt-5 mb-5"
-            mat-raised-button color="primary" (click)="editMode = true">Edit</button>
+          <button *ngIf="currentIssue.creatorHref === auth.geUserHref() || auth.isAdminUser()" 
+                  class="mt-5 mb-5"
+                  mat-raised-button 
+                  color="primary" 
+                  (click)="editMode = true">
+                  Edit
+          </button>
         </mat-card-footer>
       </mat-card>
       </div>
     </div> 
     <div class="col-10 order-first order-lg-last mb-5 mb-lg-0 col-lg-6 offset-lg-1">
-      <div (leafletClick)="updateMarker($event)" leaflet [leafletOptions]="mapOptions"
-        (leafletMapReady)="onMapReady($event)" [leafletLayers]="mapMarkers" class="map" ngDefaultControl>
+      <div  (leafletClick)="updateMarker($event)" 
+            leaflet [leafletOptions]="mapOptions"
+            (leafletMapReady)="onMapReady($event)" 
+            [leafletLayers]="mapMarkers" 
+            class="map" ngDefaultControl>
       </div>
     </div>
   </div>
@@ -89,14 +132,21 @@
 <div *ngIf="!editMode" class="container mt-lg-5">
   <form (submit)="postComment()">
     <div class="row align-items-center justify-content-center">
-     <mat-form-field class="col-12" appearance="outline">
+     <mat-form-field class="col-12" 
+                     appearance="outline">
        <mat-label>Leave a comment</mat-label>
-          <textarea name="comment" [(ngModel)]='commentText' matInput maxlength="1000"
-            placeholder="..."></textarea>
+          <textarea name="comment" 
+                    [(ngModel)]='commentText' 
+                    matInput maxlength="1000"
+                    placeholder="..."></textarea>
           <mat-hint>{{commentText.length}}/1000</mat-hint>
         </mat-form-field>
       <div class="mb-5 col-2">
-        <button [disabled]="commentText.length < 1" mat-raised-button color="primary" type="submit">Post</button>
+        <button [disabled]="commentText.length < 1" 
+                mat-raised-button color="primary" 
+                type="submit">
+                Post
+        </button>
       </div>
     </div> 
   </form>

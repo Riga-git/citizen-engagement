@@ -5,20 +5,33 @@
             <div class="col-11 col-lg-3">
                 <mat-form-field appearance="outline">
                     <mat-label>Name</mat-label>
-                    <input required [(ngModel)]='name' #nameField name="Name" matInput maxlength="25" form="newTypeForm" placeholder="Damaged sidewalk">
+                    <input required [(ngModel)]='name' 
+                            #nameField name="Name" 
+                            matInput maxlength="25" 
+                            form="newTypeForm" 
+                            placeholder="Damaged sidewalk">
                     <mat-hint>{{nameField.value?.length || 0}}/25</mat-hint>
                 </mat-form-field>
             </div>
             <div class="col-11 col-lg-7">
                 <mat-form-field appearance="outline">
                     <mat-label>Description</mat-label>
-                    <textarea [(ngModel)]='description' #descriptionField name="description" matInput maxlength="1000" form="newTypeForm"
-                        placeholder="Sidewalk with multiple holes in the asphalt..."></textarea>
+                    <textarea [(ngModel)]='description' 
+                                #descriptionField name="description" 
+                                matInput 
+                                maxlength="1000" 
+                                form="newTypeForm"
+                                placeholder="Sidewalk with multiple holes in the asphalt...">
+                    </textarea>
                     <mat-hint>{{descriptionField.value?.length || 0}}/1000</mat-hint>
                 </mat-form-field>
             </div>
             <div class="col-2">
-                <button [disabled]="!newTypeForm.valid" mat-raised-button color="primary" type="submit" class="mb-2 col-2">add</button>
+                <button [disabled]="!newTypeForm.valid" 
+                        mat-raised-button 
+                        color="primary" type="submit" 
+                        class="mb-2 col-2">add
+                </button>
             </div>
         </div>
     </form>
@@ -27,7 +40,8 @@
         <mat-spinner style="display: inline-block;"></mat-spinner>
     </div>
     <div class="tableContainer">
-        <table class="table" fxLayout="column wrap" #table mat-table [dataSource]="dataSource">
+        <table class="table" fxLayout="column wrap" 
+                #table mat-table [dataSource]="dataSource">
             <ng-container matColumnDef="Name">
                 <th mat-header-cell *matHeaderCellDef> Name </th>
                 <td mat-cell *matCellDef="let user"> {{user.firstname}} {{user.name}}</td>
@@ -39,14 +53,19 @@
             <ng-container matColumnDef="MakeStaf">
                 <th mat-header-cell *matHeaderCellDef> actions </th>
                 <td mat-cell *matCellDef="let user">
-                    <button *ngIf="!user.roles.toString().includes('staff')" (click)="makeUserStaff(user.id)" mat-raised-button color="primary">Make him
-                        staff</button>
+                    <button *ngIf="!user.roles.toString().includes('staff')"
+                             (click)="makeUserStaff(user.id)" mat-raised-button 
+                             color="primary">
+                             Make himstaff
+                    </button>
                 </td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="rows"></tr>
         </table>
-        <mat-paginator [pageSize]="itemsPerPage" [pageSizeOptions]="[10, 20, 50]" [length]="dataSource.totalItems">
+        <mat-paginator  [pageSize]="itemsPerPage" 
+                        [pageSizeOptions]="[10, 20, 50]" 
+                        [length]="dataSource.totalItems">
         </mat-paginator>
     </div>
 </div>

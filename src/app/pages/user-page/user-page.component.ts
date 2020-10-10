@@ -16,13 +16,9 @@ export class UserPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getUserInfo();
-  }
-
-  getUserInfo(): void{
     this.authService.getUser().subscribe({
       next : (user) => this.user = user,
-      error: (err) => console.error('Not logged')  // route to 
+      error: (err) => console.error('Not logged')
     });
   }
 

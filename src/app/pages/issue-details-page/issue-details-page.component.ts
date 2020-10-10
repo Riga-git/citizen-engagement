@@ -12,6 +12,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { IssueComment } from 'src/app/models/IssueComment';
 import { AuthService } from 'src/app/security/auth.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CommentAuthor } from 'src/app/models/comment-author';
 
 @Component({
   selector: 'app-issue-details-page',
@@ -59,7 +60,9 @@ export class IssueDetailsPageComponent implements OnInit{
         this.issueService.getIssue(params.get('id'))
           .subscribe({ next: (issue) => {this.currentIssue = issue, 
                                         this.displayMarker(), 
-                                        this.getcomments(this.currentIssue.id,this.commentPage,this.issueService.getCommentsPageSize), 
+                                        this.getcomments(this.currentIssue.id,
+                                                        this.commentPage,
+                                                        this.issueService.getCommentsPageSize), 
                                         this.tagsString = this.tagsToString(this.currentIssue.tags),
                                         this.description = this.currentIssue.description,
                                         this.issueState = this.currentIssue.state
@@ -119,8 +122,13 @@ export class IssueDetailsPageComponent implements OnInit{
         // ignore the index 0 because is a empty string because the separator is located before the tagName 
         this.stringToTags(this.tagsString)
       ).subscribe({
-        next : () => {this.snackBar.open('Issue reported with succes','',{panelClass : 'SnackBarSuccess', duration : 2500}), this.editMode = false, this.currentIssue.tags = this.stringToTags(this.tagsString), this.currentIssue.description = this.description},
-        error : (error) => {this.snackBar.open('Sorry we were unable to update the issue. Detail : '+ error.message, 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})}
+        next : () => {this.snackBar.open('Issue reported with succes','',
+                                        {panelClass : 'SnackBarSuccess', duration : 2500}),
+                      this.editMode = false, 
+                      this.currentIssue.tags = this.stringToTags(this.tagsString), 
+                      this.currentIssue.description = this.description},
+        error : (error) => {this.snackBar.open('Sorry we were unable to update the issue. Detail : '+ error.message, 
+                                                'x', {panelClass : ['SnackBarError', 'SnackBarButton']})}
       });
     }
   }
@@ -132,8 +140,13 @@ export class IssueDetailsPageComponent implements OnInit{
   postComment() : void {
     this.issueService.postComments(this.currentIssue.id, this.commentText)
       .subscribe({
-        next : (comment) => {},
-        error : (error) => {this.snackBar.open("Sorry we were unable to post your comment. Detail :" + error.message, 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})}
+        next : (comment) => {let tmp = comment;
+                            tmp.author = new CommentAuthor(this.auth.getUserName().firstname,
+                            this.auth.getUserName().lastname);
+                            this.comments.push(tmp); 
+                            this.commentText = "";},
+        error : (error) => {this.snackBar.open("Sorry we were un able to post your comment. Detail :" + error.message, 
+                                              'x', {panelClass : ['SnackBarError', 'SnackBarButton']})}
       });
   }
 
@@ -144,14 +157,14 @@ export class IssueDetailsPageComponent implements OnInit{
       pluck('body')
     )
     .subscribe({
-        next : (comments) => {
-                                comments.forEach(comment => this.comments.push(comment));
-                                if (this.comments.length < this.issueService.getCommentsPageSize){
-                                  this.commentPage = 1;}
-                                else {  this.commentPage += 1;
-                                       this.getcomments(issueId,this.commentPage,this.issueService.getCommentsPageSize);}
-                                },
-        error : (error) => {this.snackBar.open("Sorry we were unable to load the comments. Detail :" + error.message, 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})}
+        next : (comments) => {comments.forEach(comment => this.comments.push(comment));
+                              if (this.comments.length < this.issueService.getCommentsPageSize){
+                                this.commentPage = 1;}
+                              else {  this.commentPage += 1;
+                                      this.getcomments(issueId,this.commentPage,this.issueService.getCommentsPageSize);}
+                              },
+        error : (error) => {this.snackBar.open("Sorry we were unable to load the comments. Detail :" + error.message, 
+                            'x', {panelClass : ['SnackBarError', 'SnackBarButton']})}
       });
   }
 
@@ -167,8 +180,8 @@ export class IssueDetailsPageComponent implements OnInit{
                                 case 'reject' : this.currentIssue.state = 'rejected'; break;
                                 case 'resolve' : this.currentIssue.state = 'resolved'; break;}}
                                 ,
-      error : (error) => this.snackBar.open("Sorry we were unable to change the issue state. Detail :" + error.message, 'x',
-                         {panelClass : ['SnackBarError', 'SnackBarButton']})
+      error : (error) => this.snackBar.open("Sorry we were unable to change the issue state. Detail :" + error.message,
+                                            'x',{panelClass : ['SnackBarError', 'SnackBarButton']})
     });
   }
 }

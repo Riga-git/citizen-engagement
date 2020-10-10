@@ -1,5 +1,3 @@
-import { IssueState } from './issue';
-
 export type IssueActions = "start" |"reject" | "resolve"; 
 
 export class ChangeIssueStatusResponse {

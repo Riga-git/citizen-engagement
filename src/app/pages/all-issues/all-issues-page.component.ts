@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IssueService } from 'src/app/api/issue.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { IssuesDataSources } from '../../models/issue-data-sources';
+import { IssuesDataSources } from '../../dataSources/issue-data-sources';
 import { Issue, IssueState } from 'src/app/models/issue';
 import { latLng, MapOptions, tileLayer, Map, Marker, marker } from 'leaflet';
 import { MatPaginator } from '@angular/material/paginator';
@@ -39,7 +39,9 @@ export class AllIssuesPageComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatTable) Table: MatTable<any>;
 
-  constructor(private issueService: IssueService, private router : Router, private snackBar: MatSnackBar) {}
+  constructor(private issueService: IssueService, 
+              private router : Router, 
+              private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
 
@@ -65,7 +67,8 @@ export class AllIssuesPageComponent implements OnInit {
 
   ngAfterViewInit() {
     this.paginator.page.subscribe({
-          next : () => this.dataSource.loadIssues(this.paginator.pageIndex+1, this.paginator.pageSize)
+          next : () => this.dataSource.loadIssues(this.paginator.pageIndex+1, 
+                                                  this.paginator.pageSize)
         })
 }
 
@@ -105,8 +108,11 @@ export class AllIssuesPageComponent implements OnInit {
 
   deleteIssue(id) : void {
     this.issueService.deleteIssue(id).subscribe({
-      next : () => {this.snackBar.open('Issue deleted with succes','',{panelClass : 'SnackBarSuccess', duration : 2500}), this.dataSource.loadIssues();},
-      error : (error) => this.snackBar.open('Sorry we were unable to delete the issue.  Detail : ' + error.error, 'x', {panelClass : ['SnackBarError', 'SnackBarButton']})
+      next : () => {  this.snackBar.open('Issue deleted with succes','',
+                      {panelClass : 'SnackBarSuccess', duration : 2500}), 
+                     this.dataSource.loadIssues();},
+      error : (error) => this.snackBar.open('Sorry we were unable to delete the issue.  Detail : ' + error.error, 
+                                            'x', {panelClass : ['SnackBarError', 'SnackBarButton']})
     });
   }
 
