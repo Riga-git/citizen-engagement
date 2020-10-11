@@ -24,7 +24,10 @@
                         </mat-form-field>
                         <mat-form-field class="col-4">
                             <mat-label>Stauts</mat-label>
-                            <mat-select name="typeSelector" [(ngModel)]='issueStatus' (selectionChange)="filterIssue()">
+                            <mat-select #stateSelector
+                                        name="typeSelector" 
+                                        [(ngModel)]='issueStatus' 
+                                        (selectionChange)="filterIssue()">
                                 <mat-option value="">all</mat-option>
                                 <mat-option value="new">new</mat-option>
                                 <mat-option value="inProgress">inProgress</mat-option>

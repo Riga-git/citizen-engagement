@@ -16,13 +16,10 @@ import { Router } from '@angular/router';
 })
 export class ReportIssuePageComponent implements OnInit {
 
-  description : string = "";
-  tagsString : string = "";
   mapOptions : MapOptions = {};
   map : Map;
   mapMarkers : Marker[] = [];
   images = new FileInput(null);
-  chosesIssueType : string = "";
   issueTypes : IssueType[] = [];
   loadedImages : LoadImageResponse[] = [];
 
@@ -70,12 +67,13 @@ export class ReportIssuePageComponent implements OnInit {
   addNewIssue(form: NgForm) {
     // Only do something if the form is valid
     if (form.valid) {
+      let tagsString : string = form.controls['Tags'].value;
       this.issueService.postIssue(
-        this.description,
+        form.controls['Description'].value,
         this.mapMarkers[0].toGeoJSON().geometry,
-        this.chosesIssueType,
+        form.controls['typeSelector'].value,
         // ignore the index 0 because is a empty string because the separator is located before the tagName 
-        this.tagsString.replace(/\s/g, "").split('#').slice(1,this.tagsString.length), 
+        tagsString.replace(/\s/g, "").split('#').slice(1,tagsString.length), 
         this.loadedImages.map(image => image.url)
       ).subscribe({
         next : () => {this.snackBar.open('Issue reported with succes','',

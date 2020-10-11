@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Form, NgForm } from '@angular/forms';
 import { IssueService } from 'src/app/api/issue.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import  { UsersDataSource } from '../../dataSources/users-data-source';
@@ -10,21 +10,19 @@ import { MatTable } from '@angular/material/table';
 import { findIndex } from 'lodash';
 
 
+
 @Component({
   selector: 'app-admin-page',
   templateUrl: './admin-page.component.html',
   styleUrls: ['./admin-page.component.scss']
 })
 export class AdminPageComponent implements OnInit{
-  name : string;
-  description : string;
   dataSource: UsersDataSource;
   displayedColumns: string[] = ['Name','Roles','MakeStaf'];
-  itemsPerPage : Number;
   usersList : User[] = [];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatTable) Table: MatTable<any>;
+  @ViewChild(MatTable) Table: MatTable<unknown>;
 
   constructor(private issueService : IssueService, 
     private userServce: UserService, 
@@ -47,9 +45,10 @@ export class AdminPageComponent implements OnInit{
   addNewType(form: NgForm) {
     // Only do something if the form is valid
     if (form.valid) {
-       this.issueService.addNewType(this.name, this.description).subscribe({
-        next : () => this.snackBar.open('Type added with succes','',
-                                        {panelClass : 'SnackBarSuccess', duration : 2500}),
+       this.issueService.addNewType(form.controls['Name'].value, form.controls['Description'].value).subscribe({
+        next : () => {this.snackBar.open('Type added with succes','',
+                                        {panelClass : 'SnackBarSuccess', duration : 2500});
+                      form.resetForm();},
         error : (error) => this.snackBar.open('Sorry we were unable to add the issue type. Detail : '+ error.message, 
                                               'x', {panelClass : ['SnackBarError', 'SnackBarButton']})
        });

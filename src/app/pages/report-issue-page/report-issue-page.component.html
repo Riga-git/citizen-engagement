@@ -5,9 +5,8 @@
             (submit)="addNewIssue(reportIssueForm)">
         <mat-form-field appearance="outline">
           <mat-label>Type</mat-label>
-          <mat-select required 
-                      name="typeSelector" 
-                      [(ngModel)]='chosesIssueType'>
+          <mat-select required ngModel
+                      name="typeSelector">
             <mat-option *ngFor="let issueType of issueTypes" 
                         [value]='issueType.href'>
                         {{issueType.name}}
@@ -16,7 +15,7 @@
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Tag(s) (# prefix)</mat-label>
-          <input [(ngModel)]='tagsString' 
+          <input  ngModel
                   name="Tags" 
                   matInput maxlength="100" 
                   form="repIssueForm"
@@ -25,16 +24,15 @@
         <br>
         <mat-form-field appearance="outline">
           <mat-label>Description</mat-label>
-          <textarea required 
+          <textarea required ngModel
                     #descriptionField="ngModel" 
-                    name="description" 
-                    [(ngModel)]='description' 
+                    name="Description" 
                     matInput
                     maxlength="1000" 
                     form="repIssueForm" 
                     placeholder="Write a small description...">
           </textarea>
-          <mat-hint>{{description.length}}/1000</mat-hint>
+          <mat-hint>{{descriptionField.value?.length || 0}}/1000</mat-hint>
         </mat-form-field>
         <p *ngIf="descriptionField.hasError('required') && descriptionField.touched" 
           class="ErrorMessage">

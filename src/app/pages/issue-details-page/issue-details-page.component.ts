@@ -1,11 +1,11 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { IssueService } from 'src/app/api/issue.service';
 import { latLng, MapOptions, tileLayer, Map, Marker, marker, LeafletMouseEvent, Point } from 'leaflet';
 import { NgForm } from '@angular/forms';
 import { FileInput } from 'ngx-material-file-input';
 import { Location } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { finalize, map, pluck, tap } from 'rxjs/operators';
+import { pluck, tap } from 'rxjs/operators';
 import { Issue, IssueState } from 'src/app/models/issue';
 import { IssueActions } from 'src/app/models/change-issue-status-response';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
@@ -24,16 +24,13 @@ export class IssueDetailsPageComponent implements OnInit{
 
   description : string = "";
   tagsString : string = "";
-  issueState : IssueState;
   mapOptions : MapOptions = {};
   map : Map;
   mapMarkers : Marker[] = [];
   images = new FileInput(null);
-  chosesIssueType : string = "";
   editMode  : Boolean;
   currentIssue : Issue = new Issue;
   updateFormIssue : Issue = new Issue;
-  commentText : string = '';
   comments : IssueComment[] = [];
   commentPage : number = 1;
   totalComments : number
@@ -42,6 +39,8 @@ export class IssueDetailsPageComponent implements OnInit{
                       private route: ActivatedRoute, private location :Location, 
                       public auth : AuthService, private dialogBox : MatDialog ) {}
 
+
+  @ViewChild('updateIssueForm') form : NgForm;
   ngOnInit(){
 
     this.mapOptions = {
@@ -64,11 +63,12 @@ export class IssueDetailsPageComponent implements OnInit{
                                                         this.commentPage,
                                                         this.issueService.getCommentsPageSize), 
                                         this.tagsString = this.tagsToString(this.currentIssue.tags),
-                                        this.description = this.currentIssue.description,
-                                        this.issueState = this.currentIssue.state
+                                        this.description = this.currentIssue.description
                                       }});
       });
   }
+
+
 
   private tagsToString(tags : Array<string>) : string {
     return '#' + tags.toString().split(',').join(' #');
@@ -137,14 +137,14 @@ export class IssueDetailsPageComponent implements OnInit{
     this.location.back();
   }
 
-  postComment() : void {
-    this.issueService.postComments(this.currentIssue.id, this.commentText)
+  postComment(form : NgForm) : void {
+    this.issueService.postComments(this.currentIssue.id, form.controls['commentText'].value)
       .subscribe({
         next : (comment) => {let tmp = comment;
                             tmp.author = new CommentAuthor(this.auth.getUserName().firstname,
                             this.auth.getUserName().lastname);
                             this.comments.push(tmp); 
-                            this.commentText = "";},
+                            form.resetForm},
         error : (error) => {this.snackBar.open("Sorry we were un able to post your comment. Detail :" + error.message, 
                                               'x', {panelClass : ['SnackBarError', 'SnackBarButton']})}
       });

@@ -5,7 +5,7 @@
             <div class="col-11 col-lg-3">
                 <mat-form-field appearance="outline">
                     <mat-label>Name</mat-label>
-                    <input required [(ngModel)]='name' 
+                    <input required ngModel 
                             #nameField name="Name" 
                             matInput maxlength="25" 
                             form="newTypeForm" 
@@ -16,8 +16,8 @@
             <div class="col-11 col-lg-7">
                 <mat-form-field appearance="outline">
                     <mat-label>Description</mat-label>
-                    <textarea [(ngModel)]='description' 
-                                #descriptionField name="description" 
+                    <textarea   ngModel 
+                                #descriptionField name="Description" 
                                 matInput 
                                 maxlength="1000" 
                                 form="newTypeForm"
@@ -63,8 +63,7 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="rows"></tr>
         </table>
-        <mat-paginator  [pageSize]="itemsPerPage" 
-                        [pageSizeOptions]="[10, 20, 50]" 
+        <mat-paginator  [pageSizeOptions]="[10, 20, 50]" 
                         [length]="dataSource.totalItems">
         </mat-paginator>
     </div>

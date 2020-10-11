@@ -8,6 +8,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTable} from '@angular/material/table';
 import { animate, state, style, transition, trigger} from '@angular/animations';
 import { Router } from '@angular/router';
+import { MatSelect } from '@angular/material/select';
 
 @Component({
   selector: 'app-all-issues',
@@ -32,9 +33,8 @@ export class AllIssuesPageComponent implements OnInit {
   mapMarkers : Marker[] = [];
   itemsPerPage : Number;
   expandedIssue : Issue | null;
-  chosesIssueType : string = "";
   searchText : string = "";
-  issueStatus : IssueState = "all";
+  issueStatus : IssueState;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatTable) Table: MatTable<any>;
@@ -69,7 +69,7 @@ export class AllIssuesPageComponent implements OnInit {
     this.paginator.page.subscribe({
           next : () => this.dataSource.loadIssues(this.paginator.pageIndex+1, 
                                                   this.paginator.pageSize)
-        })
+        });
 }
 
   onRowClickedExpand(row): void {

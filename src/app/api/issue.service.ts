@@ -4,7 +4,7 @@ import { Observable, from } from "rxjs";
 import { IssueType } from "src/app/models/issue-type";
 import { ReportIssueFormat } from '../models/report-issue-format';
 import { ReportIssueResponse } from '../models/report-issue-response';
-import { Issue, IssueState } from '../models/issue';
+import { Issue } from '../models/issue';
 import { environment } from "../../environments/environement";
 import { Geometry } from 'geojson';
 import { Router } from '@angular/router';

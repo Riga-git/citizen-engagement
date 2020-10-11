@@ -12,8 +12,8 @@
             *ngIf="editMode">
         <mat-form-field appearance="outline">
           <mat-label>Tag(s) (# prefix)</mat-label>
-          <input [(ngModel)]='tagsString' 
-                  name="Tags" matInput 
+          <input  [(ngModel)]='tagsString'
+                  name="tags" matInput 
                   maxlength="100" 
                   form="repIssueForm"
                   placeholder="ex: #StreetHole #CityCenter">
@@ -21,12 +21,15 @@
         <br>
         <mat-form-field appearance="outline">
           <mat-label>Description</mat-label>
-          <textarea required #descriptionField="ngModel" 
-                    name="description" [(ngModel)]='description'
-                    matInput maxlength="1000" form="updateIssueForm" 
+          <textarea required 
+                    [(ngModel)]='description'
+                    #descriptionField="ngModel" 
+                    name="description"  
+                    matInput maxlength="1000" 
+                    form="updateIssueForm" 
                     placeholder="Write a small description...">
           </textarea>
-          <mat-hint>{{description.length}}/1000</mat-hint>
+          <mat-hint>{{descriptionField.value?.length || 0}}/1000</mat-hint>
         </mat-form-field>
         <p *ngIf="descriptionField.hasError('required') && descriptionField.touched" 
             class="ErrorMessage">
@@ -60,7 +63,7 @@
         <div class="mb-5 row align-items-center justify-content-around">
           <button [disabled]="!this.mapMarkers.length || !updateIssueForm.valid" 
                   mat-raised-button color="primary"
-                  type="submit">$
+                  type="submit">
                   Submit
           </button>
           <button (click)="editMode = false" 
@@ -130,13 +133,13 @@
                     [display]="!editMode">
 </app-comments-list>
 <div *ngIf="!editMode" class="container mt-lg-5">
-  <form (submit)="postComment()">
+  <form #updateIssueForm="ngForm" (submit)="postComment(updateIssueForm)">
     <div class="row align-items-center justify-content-center">
      <mat-form-field class="col-12" 
                      appearance="outline">
        <mat-label>Leave a comment</mat-label>
-          <textarea name="comment" 
-                    [(ngModel)]='commentText' 
+          <textarea name="commentText" 
+                    #commentText
                     matInput maxlength="1000"
                     placeholder="..."></textarea>
           <mat-hint>{{commentText.length}}/1000</mat-hint>

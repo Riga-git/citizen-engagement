@@ -64,3 +64,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
       @include mat-elevation(8);
     }
   }
+
+mat-hint{
+    font-size: medium;
+}

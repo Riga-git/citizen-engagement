@@ -12,12 +12,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class SignUpPageComponent implements OnInit {
 
-  userName : string;
-  password : string;
-  firstName : string;
-  lastName : string;
-  phone : string;
-
   constructor(private userService: UserService, private router: Router, private snackBar : MatSnackBar) {}
 
   ngOnInit(): void {
@@ -27,12 +21,12 @@ export class SignUpPageComponent implements OnInit {
     // Only do something if the form is valid
     if (form.valid) {
       this.userService.addNewUser(
-        this.userName,
-        this.password,
-        this.firstName,
-        this.lastName,
-        undefined,
-        this.phone,
+        form.controls['userName'].value,
+        form.controls['password'].value,
+        form.controls['firstName'].value,
+        form.controls['lastName'].value,
+        'citizen',
+        form.controls['phone'].value,
       ).subscribe({
         next : () => {this.snackBar.open('User added','',{panelClass : 'SnackBarSuccess', 
                                           duration : 2500}); 
