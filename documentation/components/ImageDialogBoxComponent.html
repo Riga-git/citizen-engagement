@@ -1,0 +1,657 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>citizen-engagement documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">citizen-engagement documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>ImageDialogBoxComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/issue-details-page/issue-details-page.component.ts</code>
+</p>
+
+
+
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-image-dialog-box</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">styles</td>
+                <td class="col-md-9"><code>.imageContainer{display: flex; justify-content: center; align-items: center;},.imageContainer img{width : 100%;}</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">template</td>
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;imageContainer clickable&quot;&gt;&lt;img (clic)&#x3D;&quot;close()&quot; [src]&#x3D;&quot;data.src&quot; alt&#x3D;&quot;image at full size&quot;&gt;&lt;/div&gt;</code></pre></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#data">data</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#dialogRef">dialogRef</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#close">close</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(dialogRef: <a href="../components/ImageDialogBoxComponent.html">MatDialogRef<ImageDialogBoxComponent></a>, data: <a href="../interfaces/DialogData.html">DialogData</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="200" class="link-to-prism">src/app/pages/issue-details-page/issue-details-page.component.ts:200</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>dialogRef</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../components/ImageDialogBoxComponent.html" target="_self" >MatDialogRef&lt;ImageDialogBoxComponent&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>data</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/DialogData.html" target="_self" >DialogData</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="close"></a>
+                    <span class="name">
+                        <b>
+                            close
+                        </b>
+                        <a href="#close"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>close()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="206"
+                            class="link-to-prism">src/app/pages/issue-details-page/issue-details-page.component.ts:206</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="data"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            data</b>
+                            <a href="#data"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/DialogData.html" target="_self" >DialogData</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @Inject(MAT_DIALOG_DATA)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="204" class="link-to-prism">src/app/pages/issue-details-page/issue-details-page.component.ts:204</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dialogRef"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            dialogRef</b>
+                            <a href="#dialogRef"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../components/ImageDialogBoxComponent.html" target="_self" >MatDialogRef&lt;ImageDialogBoxComponent&gt;</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="203" class="link-to-prism">src/app/pages/issue-details-page/issue-details-page.component.ts:203</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Inject, OnInit, ViewChild } from &#x27;@angular/core&#x27;;
+import { IssueService } from &#x27;src/app/api/issue.service&#x27;;
+import { latLng, MapOptions, tileLayer, Map, Marker, marker, LeafletMouseEvent, Point } from &#x27;leaflet&#x27;;
+import { NgForm } from &#x27;@angular/forms&#x27;;
+import { FileInput } from &#x27;ngx-material-file-input&#x27;;
+import { Location } from &#x27;@angular/common&#x27;;
+import { MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
+import { pluck, tap } from &#x27;rxjs/operators&#x27;;
+import { Issue, IssueState } from &#x27;src/app/models/issue&#x27;;
+import { IssueActions } from &#x27;src/app/models/change-issue-status-response&#x27;;
+import { ActivatedRoute, ParamMap, Router } from &#x27;@angular/router&#x27;;
+import { IssueComment } from &#x27;src/app/models/IssueComment&#x27;;
+import { AuthService } from &#x27;src/app/security/auth.service&#x27;;
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from &#x27;@angular/material/dialog&#x27;;
+import { CommentAuthor } from &#x27;src/app/models/comment-author&#x27;;
+
+@Component({
+  selector: &#x27;app-issue-details-page&#x27;,
+  templateUrl: &#x27;./issue-details-page.component.html&#x27;,
+  styleUrls: [&#x27;./issue-details-page.component.scss&#x27;]
+})
+
+export class IssueDetailsPageComponent implements OnInit{
+
+  description : string &#x3D; &quot;&quot;;
+  tagsString : string &#x3D; &quot;&quot;;
+  mapOptions : MapOptions &#x3D; {};
+  map : Map;
+  mapMarkers : Marker[] &#x3D; [];
+  images &#x3D; new FileInput(null);
+  editMode  : Boolean;
+  currentIssue : Issue &#x3D; new Issue;
+  updateFormIssue : Issue &#x3D; new Issue;
+  comments : IssueComment[] &#x3D; [];
+  commentPage : number &#x3D; 1;
+  totalComments : number
+
+  constructor(private issueService: IssueService, private snackBar: MatSnackBar, 
+                      private route: ActivatedRoute, private location :Location, 
+                      public auth : AuthService, private dialogBox : MatDialog ) {}
+
+
+  @ViewChild(&#x27;updateIssueForm&#x27;) form : NgForm;
+  ngOnInit(){
+
+    this.mapOptions &#x3D; {
+      layers: [
+        tileLayer(
+          &#x27;http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&#x27;,
+          { maxZoom: 18 }
+        )
+      ],
+      zoom: 13,
+      center: latLng(46.778186, 6.641524)
+    };
+
+    this.route.paramMap
+      .subscribe((params: ParamMap) &#x3D;&gt; {
+        this.issueService.getIssue(params.get(&#x27;id&#x27;))
+          .subscribe({ next: (issue) &#x3D;&gt; {this.currentIssue &#x3D; issue, 
+                                        this.displayMarker(), 
+                                        this.getcomments(this.currentIssue.id,
+                                                        this.commentPage,
+                                                        this.issueService.getCommentsPageSize), 
+                                        this.tagsString &#x3D; this.tagsToString(this.currentIssue.tags),
+                                        this.description &#x3D; this.currentIssue.description
+                                      }});
+      });
+  }
+
+
+
+  private tagsToString(tags : Array&lt;string&gt;) : string {
+    return &#x27;#&#x27; + tags.toString().split(&#x27;,&#x27;).join(&#x27; #&#x27;);
+  }
+
+  private stringToTags(tagsString : string) : string[]{
+    return tagsString.replace(/\s/g, &quot;&quot;).split(&#x27;#&#x27;).slice(1,tagsString.length);
+  }
+
+  onMapReady(map : Map) : void {
+    this.map &#x3D; map;
+  }
+
+  updateMarker(e: LeafletMouseEvent): void {
+    if (this.editMode) {
+      let tmpMarker: Marker &#x3D; marker([0, 0]).setLatLng(e.latlng);
+      if (!this.mapMarkers.length) {
+        this.mapMarkers.push(tmpMarker);
+      } else {
+        this.mapMarkers[0] &#x3D; tmpMarker;
+      }
+    }
+  }
+
+  displayMarker(): void {
+    //in a GeoJson object latitude and longitude are reversed relative to a marker.
+  
+    let lat : number;
+    let lon : number;
+    lon &#x3D; this.currentIssue.location[&#x27;coordinates&#x27;][0];
+    lat &#x3D; this.currentIssue.location[&#x27;coordinates&#x27;][1];
+    let tmpMarker : Marker &#x3D; marker([0,0]).setLatLng([lat, lon]);
+    if (!this.mapMarkers.length){
+      this.mapMarkers.push(tmpMarker);
+    }else{
+      this.mapMarkers[0] &#x3D; tmpMarker;
+    }
+
+    // recenter the map on the marker 
+    this.map.panTo(this.mapMarkers[0].getLatLng());
+  }
+
+  updateIssue(form: NgForm) {
+    // Only do something if the form is valid
+    if (form.valid) {
+      this.issueService.updateIssue(
+        this.currentIssue.id,
+        this.description,
+        this.mapMarkers[0].toGeoJSON().geometry,
+        this.currentIssue.issueTypeHref,
+        // ignore the index 0 because is a empty string because the separator is located before the tagName 
+        this.stringToTags(this.tagsString)
+      ).subscribe({
+        next : () &#x3D;&gt; {this.snackBar.open(&#x27;Issue reported with succes&#x27;,&#x27;&#x27;,
+                                        {panelClass : &#x27;SnackBarSuccess&#x27;, duration : 2500}),
+                      this.editMode &#x3D; false, 
+                      this.currentIssue.tags &#x3D; this.stringToTags(this.tagsString), 
+                      this.currentIssue.description &#x3D; this.description},
+        error : (error) &#x3D;&gt; {this.snackBar.open(&#x27;Sorry we were unable to update the issue. Detail : &#x27;+ error.message, 
+                                                &#x27;x&#x27;, {panelClass : [&#x27;SnackBarError&#x27;, &#x27;SnackBarButton&#x27;]})}
+      });
+    }
+  }
+
+  navigateBack() : void{
+    this.location.back();
+  }
+
+  postComment(form : NgForm) : void {
+    this.issueService.postComments(this.currentIssue.id, form.controls[&#x27;commentText&#x27;].value)
+      .subscribe({
+        next : (comment) &#x3D;&gt; {let tmp &#x3D; comment;
+                            tmp.author &#x3D; new CommentAuthor(this.auth.getUserName().firstname,
+                            this.auth.getUserName().lastname);
+                            this.comments.push(tmp); 
+                            form.resetForm},
+        error : (error) &#x3D;&gt; {this.snackBar.open(&quot;Sorry we were un able to post your comment. Detail :&quot; + error.message, 
+                                              &#x27;x&#x27;, {panelClass : [&#x27;SnackBarError&#x27;, &#x27;SnackBarButton&#x27;]})}
+      });
+  }
+
+  getcomments(issueId: string, currentPage : number, pageSize : number) : void {
+    this.issueService.getComments(issueId, currentPage, pageSize)
+    .pipe(
+      tap(response &#x3D;&gt; this.totalComments &#x3D; + response.headers.get(&#x27;Pagination-Total&#x27;)),
+      pluck(&#x27;body&#x27;)
+    )
+    .subscribe({
+        next : (comments) &#x3D;&gt; {comments.forEach(comment &#x3D;&gt; this.comments.push(comment));
+                              if (this.comments.length &lt; this.issueService.getCommentsPageSize){
+                                this.commentPage &#x3D; 1;}
+                              else {  this.commentPage +&#x3D; 1;
+                                      this.getcomments(issueId,this.commentPage,this.issueService.getCommentsPageSize);}
+                              },
+        error : (error) &#x3D;&gt; {this.snackBar.open(&quot;Sorry we were unable to load the comments. Detail :&quot; + error.message, 
+                            &#x27;x&#x27;, {panelClass : [&#x27;SnackBarError&#x27;, &#x27;SnackBarButton&#x27;]})}
+      });
+  }
+
+  imageDialogOpen(src : string){
+    this.dialogBox.open(ImageDialogBoxComponent,{data: {src: src}});
+  }
+
+  changeIssueStatus(action : IssueActions){
+    this.issueService.changeIssueStatus(action,this.currentIssue.id).subscribe({
+      next : (response) &#x3D;&gt; {
+                              switch(response.type){
+                                case &#x27;start&#x27; : this.currentIssue.state &#x3D; &#x27;inProgress&#x27;; break;
+                                case &#x27;reject&#x27; : this.currentIssue.state &#x3D; &#x27;rejected&#x27;; break;
+                                case &#x27;resolve&#x27; : this.currentIssue.state &#x3D; &#x27;resolved&#x27;; break;}}
+                                ,
+      error : (error) &#x3D;&gt; this.snackBar.open(&quot;Sorry we were unable to change the issue state. Detail :&quot; + error.message,
+                                            &#x27;x&#x27;,{panelClass : [&#x27;SnackBarError&#x27;, &#x27;SnackBarButton&#x27;]})
+    });
+  }
+}
+
+export interface DialogData {
+  src: string;
+}
+
+@Component({
+  selector: &#x27;app-image-dialog-box&#x27;,
+  template: &#x60;&lt;div class&#x3D;&quot;imageContainer clickable&quot;&gt;&lt;img (clic)&#x3D;&quot;close()&quot; [src]&#x3D;&quot;data.src&quot; alt&#x3D;&quot;image at full size&quot;&gt;&lt;/div&gt;&#x60;,
+  styles: [&#x27;.imageContainer{display: flex; justify-content: center; align-items: center;}&#x27;,
+           &#x27;.imageContainer img{width : 100%;}&#x27;,
+          ]
+})
+export class ImageDialogBoxComponent{
+
+  constructor(
+    public dialogRef: MatDialogRef&lt;ImageDialogBoxComponent&gt;,
+    @Inject(MAT_DIALOG_DATA)  public data: DialogData) {}
+
+  close(): void {
+    this.dialogRef.close();
+  }
+}</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="c-styleData">
+            <pre class="line-numbers"><code class="language-scss">.imageContainer{display: flex; justify-content: center; align-items: center;}
+.imageContainer img{width : 100%;}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="imageContainer clickable"><img (clic)="close()" [src]="data.src" alt="image at full size"></div></div>'
+    var COMPONENTS = [{'name': 'AdminPageComponent', 'selector': 'app-admin-page'},{'name': 'AllIssuesPageComponent', 'selector': 'app-all-issues'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CardComponent', 'selector': 'app-card'},{'name': 'CommentsListComponent', 'selector': 'app-comments-list'},{'name': 'ImageDialogBoxComponent', 'selector': 'app-image-dialog-box'},{'name': 'IssueDetailsPageComponent', 'selector': 'app-issue-details-page'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'ReportIssuePageComponent', 'selector': 'app-report-issue-page'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SignUpPageComponent', 'selector': 'app-sign-up-page'},{'name': 'ToolbarComponent', 'selector': 'app-toolbar'},{'name': 'UserPageComponent', 'selector': 'app-user-page'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ImageDialogBoxComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ImageDialogBoxComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,637 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>citizen-engagement documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">citizen-engagement documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>SignUpPageComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/sign-up-page/sign-up-page.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-sign-up-page</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./sign-up-page.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./sign-up-page.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addNewUser">addNewUser</a>
+                            </li>
+                            <li>
+                                <a href="#navigateToLoginPage">navigateToLoginPage</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(userService: <a href="../injectables/UserService.html">UserService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, snackBar: MatSnackBar)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/pages/sign-up-page/sign-up-page.component.ts:13</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>userService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>snackBar</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatSnackBar</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addNewUser"></a>
+                    <span class="name">
+                        <b>
+                            addNewUser
+                        </b>
+                        <a href="#addNewUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addNewUser(form: <a href="https://angular.io/api/forms/NgForm" target="_blank">NgForm</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/app/pages/sign-up-page/sign-up-page.component.ts:20</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>form</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/forms/NgForm" target="_blank" >NgForm</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navigateToLoginPage"></a>
+                    <span class="name">
+                        <b>
+                            navigateToLoginPage
+                        </b>
+                        <a href="#navigateToLoginPage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigateToLoginPage()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/app/pages/sign-up-page/sign-up-page.component.ts:40</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="17"
+                            class="link-to-prism">src/app/pages/sign-up-page/sign-up-page.component.ts:17</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { NgForm } from &#x27;@angular/forms&#x27;;
+import { HttpHeaders, HttpClient } from &#x27;@angular/common/http&#x27;;
+import { UserService } from &#x27;../../api/user.service&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
+
+@Component({
+  selector: &#x27;app-sign-up-page&#x27;,
+  templateUrl: &#x27;./sign-up-page.component.html&#x27;,
+  styleUrls: [&#x27;./sign-up-page.component.scss&#x27;]
+})
+export class SignUpPageComponent implements OnInit {
+
+  constructor(private userService: UserService, private router: Router, private snackBar : MatSnackBar) {}
+
+  ngOnInit(): void {
+  }
+
+  addNewUser(form: NgForm) {
+    // Only do something if the form is valid
+    if (form.valid) {
+      this.userService.addNewUser(
+        form.controls[&#x27;userName&#x27;].value,
+        form.controls[&#x27;password&#x27;].value,
+        form.controls[&#x27;firstName&#x27;].value,
+        form.controls[&#x27;lastName&#x27;].value,
+        &#x27;citizen&#x27;,
+        form.controls[&#x27;phone&#x27;].value,
+      ).subscribe({
+        next : () &#x3D;&gt; {this.snackBar.open(&#x27;User added&#x27;,&#x27;&#x27;,{panelClass : &#x27;SnackBarSuccess&#x27;, 
+                                          duration : 2500}); 
+                      this.navigateToLoginPage();},
+        error : () &#x3D;&gt; {this.snackBar.open(&#x27;Sorry something went wrong...&#x27;, &#x27;x&#x27;, 
+                            {panelClass : [&#x27;SnackBarError&#x27;, &#x27;SnackBarButton&#x27;]});}
+      });
+    }
+  }
+
+  navigateToLoginPage () : void {
+    this.router.navigateByUrl(&#x27;/login&#x27;);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container mt-5&quot;&gt;
+    &lt;form #signUpForm&#x3D;&quot;ngForm&quot; (submit)&#x3D;&quot;addNewUser(signUpForm)&quot;&gt;
+      &lt;div class&#x3D;&quot;row justify-content-center&quot;&gt;
+        &lt;div class&#x3D;&quot;col-5&quot;&gt;
+          &lt;mat-form-field&gt;
+            &lt;mat-label for&#x3D;&quot;name&quot;&gt;Unsername&lt;/mat-label&gt;
+            &lt;input ngModel
+                  name&#x3D;&quot;userName&quot; 
+                  matInput 
+                  #nameField&#x3D;&quot;ngModel&quot; 
+                  required/&gt;
+          &lt;/mat-form-field&gt;
+          &lt;p *ngIf&#x3D;&quot;nameField.hasError(&#x27;required&#x27;) &amp;&amp; nameField.touched&quot;&gt;
+            Username is required
+          &lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;row justify-content-center&quot;&gt;
+        &lt;div class&#x3D;&quot; col-5 &quot;&gt;
+          &lt;mat-form-field&gt;
+            &lt;mat-label&gt;Password&lt;/mat-label&gt;
+            &lt;input matInput 
+                  ngModel
+                  name&#x3D;&quot;password&quot; 
+                  #passwordField&#x3D;&quot;ngModel&quot; 
+                  required/&gt;
+          &lt;/mat-form-field&gt;
+          &lt;p *ngIf&#x3D;&quot;passwordField.hasError(&#x27;required&#x27;) &amp;&amp; passwordField.touched&quot;&gt;
+            Password is required
+          &lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;row justify-content-center&quot;&gt;
+        &lt;div class&#x3D;&quot; col-5 &quot;&gt;
+          &lt;mat-form-field&gt;
+            &lt;mat-label&gt;First name&lt;/mat-label&gt;
+            &lt;input matInput 
+                  ngModel
+                  name&#x3D;&quot;firstName&quot; 
+                  #firstNameField&#x3D;&quot;ngModel&quot; 
+                  required /&gt;
+          &lt;/mat-form-field&gt;
+          &lt;p *ngIf&#x3D;&quot;firstNameField.hasError(&#x27;required&#x27;) &amp;&amp; firstNameField.touched&quot;&gt;
+            First name is required
+          &lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;row justify-content-center&quot;&gt;
+        &lt;div class&#x3D;&quot; col-5 &quot;&gt;
+          &lt;mat-form-field&gt;
+            &lt;mat-label&gt;Last name&lt;/mat-label&gt;
+            &lt;input matInput 
+                  ngModel
+                  name&#x3D;&quot;lastName&quot; 
+                  #lastNameField&#x3D;&quot;ngModel&quot; 
+                  required/&gt;
+          &lt;/mat-form-field&gt;
+          &lt;p *ngIf&#x3D;&quot;lastNameField.hasError(&#x27;required&#x27;) &amp;&amp; lastNameField.touched&quot;&gt;
+            Last name is required
+          &lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;row justify-content-center&quot;&gt;
+        &lt;div class&#x3D;&quot; col-5 &quot;&gt;
+          &lt;mat-form-field&gt;
+            &lt;mat-label&gt;phone&lt;/mat-label&gt;
+            &lt;input matInput 
+                  ngModel
+                  name&#x3D;&quot;phone&quot; 
+                  #phoneField&#x3D;&quot;ngModel&quot;/&gt;
+          &lt;/mat-form-field&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;row align-content-center justify-content-center&quot;&gt;
+        &lt;div class&#x3D;&quot; col-5 mt-5 &quot;&gt;
+          &lt;div class&#x3D;&quot; row align-content-center justify-content-around&quot; &gt;
+          &lt;button mat-raised-button 
+                  color&#x3D;&quot;primary&quot; 
+                  type&#x3D;&quot;submit&quot; 
+                  [disabled]&#x3D;&quot;signUpForm.invalid&quot;&gt;
+                  Submit
+          &lt;/button&gt;
+          &lt;button mat-raised-button 
+                  color&#x3D;&quot;accent&quot; 
+                  (click)&#x3D;&quot;navigateToLoginPage()&quot;&gt;
+                  Log in page
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+  
+  </code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./sign-up-page.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">mat-form-field{
+    display: block;
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="container mt-5">    <form #signUpForm="ngForm" (submit)="addNewUser(signUpForm)">      <div class="row justify-content-center">        <div class="col-5">          <mat-form-field>            <mat-label for="name">Unsername</mat-label>            <input ngModel                  name="userName"                   matInput                   #nameField="ngModel"                   required/>          </mat-form-field>          <p *ngIf="nameField.hasError(\'required\') && nameField.touched">            Username is required          </p>        </div>      </div>      <div class="row justify-content-center">        <div class=" col-5 ">          <mat-form-field>            <mat-label>Password</mat-label>            <input matInput                   ngModel                  name="password"                   #passwordField="ngModel"                   required/>          </mat-form-field>          <p *ngIf="passwordField.hasError(\'required\') && passwordField.touched">            Password is required          </p>        </div>      </div>      <div class="row justify-content-center">        <div class=" col-5 ">          <mat-form-field>            <mat-label>First name</mat-label>            <input matInput                   ngModel                  name="firstName"                   #firstNameField="ngModel"                   required />          </mat-form-field>          <p *ngIf="firstNameField.hasError(\'required\') && firstNameField.touched">            First name is required          </p>        </div>      </div>      <div class="row justify-content-center">        <div class=" col-5 ">          <mat-form-field>            <mat-label>Last name</mat-label>            <input matInput                   ngModel                  name="lastName"                   #lastNameField="ngModel"                   required/>          </mat-form-field>          <p *ngIf="lastNameField.hasError(\'required\') && lastNameField.touched">            Last name is required          </p>        </div>      </div>      <div class="row justify-content-center">        <div class=" col-5 ">          <mat-form-field>            <mat-label>phone</mat-label>            <input matInput                   ngModel                  name="phone"                   #phoneField="ngModel"/>          </mat-form-field>        </div>      </div>      <div class="row align-content-center justify-content-center">        <div class=" col-5 mt-5 ">          <div class=" row align-content-center justify-content-around" >          <button mat-raised-button                   color="primary"                   type="submit"                   [disabled]="signUpForm.invalid">                  Submit          </button>          <button mat-raised-button                   color="accent"                   (click)="navigateToLoginPage()">                  Log in page          </button>        </div>        </div>      </div>    </form>  </div>    </div>'
+    var COMPONENTS = [{'name': 'AdminPageComponent', 'selector': 'app-admin-page'},{'name': 'AllIssuesPageComponent', 'selector': 'app-all-issues'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CardComponent', 'selector': 'app-card'},{'name': 'CommentsListComponent', 'selector': 'app-comments-list'},{'name': 'ImageDialogBoxComponent', 'selector': 'app-image-dialog-box'},{'name': 'IssueDetailsPageComponent', 'selector': 'app-issue-details-page'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'ReportIssuePageComponent', 'selector': 'app-report-issue-page'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SignUpPageComponent', 'selector': 'app-sign-up-page'},{'name': 'ToolbarComponent', 'selector': 'app-toolbar'},{'name': 'UserPageComponent', 'selector': 'app-user-page'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'SignUpPageComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'SignUpPageComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
