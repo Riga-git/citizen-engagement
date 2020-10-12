@@ -142,6 +142,9 @@
                                 <a href="#issueList">issueList</a>
                             </li>
                             <li>
+                                <a href="#issueStatus">issueStatus</a>
+                            </li>
+                            <li>
                                 <a href="#itemsPerPage">itemsPerPage</a>
                             </li>
                             <li>
@@ -155,6 +158,9 @@
                             </li>
                             <li>
                                 <a href="#paginator">paginator</a>
+                            </li>
+                            <li>
+                                <a href="#searchText">searchText</a>
                             </li>
                             <li>
                                 <a href="#Table">Table</a>
@@ -172,6 +178,12 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#deleteIssue">deleteIssue</a>
+                            </li>
+                            <li>
+                                <a href="#filterIssue">filterIssue</a>
+                            </li>
+                            <li>
                                 <a href="#moreDetails">moreDetails</a>
                             </li>
                             <li>
@@ -181,10 +193,13 @@
                                 <a href="#ngOnInit">ngOnInit</a>
                             </li>
                             <li>
+                                <a href="#onCardClicked">onCardClicked</a>
+                            </li>
+                            <li>
                                 <a href="#onMapReady">onMapReady</a>
                             </li>
                             <li>
-                                <a href="#onRowClicked">onRowClicked</a>
+                                <a href="#onRowClickedExpand">onRowClickedExpand</a>
                             </li>
                         </ul>
                     </td>
@@ -204,12 +219,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(issueService: <a href="../injectables/IssueService.html">IssueService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+<code>constructor(issueService: <a href="../injectables/IssueService.html">IssueService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, snackBar: MatSnackBar)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:40</a></div>
                             </td>
                         </tr>
 
@@ -250,6 +265,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>snackBar</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatSnackBar</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -272,6 +299,111 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="deleteIssue"></a>
+                    <span class="name">
+                        <b>
+                            deleteIssue
+                        </b>
+                        <a href="#deleteIssue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deleteIssue(id)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="109"
+                            class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:109</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filterIssue"></a>
+                    <span class="name">
+                        <b>
+                            filterIssue
+                        </b>
+                        <a href="#filterIssue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>filterIssue()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="119"
+                            class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:119</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="moreDetails"></a>
                     <span class="name">
                         <b>
@@ -283,15 +415,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>moreDetails()</code>
+<code>moreDetails(id)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="89"
-                            class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:89</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="105"
+                            class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:105</a></div>
                 </td>
             </tr>
 
@@ -300,8 +432,35 @@
                 <td class="col-md-4">
 
                     <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -329,8 +488,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="61"
-                            class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:61</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="68"
+                            class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:68</a></div>
                 </td>
             </tr>
 
@@ -368,8 +527,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="53"
-                            class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:53</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:46</a></div>
                 </td>
             </tr>
 
@@ -380,6 +539,72 @@
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onCardClicked"></a>
+                    <span class="name">
+                        <b>
+                            onCardClicked
+                        </b>
+                        <a href="#onCardClicked"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onCardClicked(id)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="93"
+                            class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:93</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -407,8 +632,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="85"
-                            class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:85</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="101"
+                            class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:101</a></div>
                 </td>
             </tr>
 
@@ -459,26 +684,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="onRowClicked"></a>
+                    <a name="onRowClickedExpand"></a>
                     <span class="name">
                         <b>
-                            onRowClicked
+                            onRowClickedExpand
                         </b>
-                        <a href="#onRowClicked"><span class="icon ion-ios-link"></span></a>
+                        <a href="#onRowClickedExpand"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>onRowClicked(row)</code>
+<code>onRowClickedExpand(row)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="67"
-                            class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:67</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:75</a></div>
                 </td>
             </tr>
 
@@ -547,7 +772,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:28</a></div>
                             </td>
                         </tr>
 
@@ -579,7 +804,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:29</a></div>
                             </td>
                         </tr>
 
@@ -606,7 +831,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:34</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:35</a></div>
                             </td>
                         </tr>
 
@@ -638,7 +863,34 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:31</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="issueStatus"></a>
+                        <span class="name">
+                            <b>
+                            issueStatus</b>
+                            <a href="#issueStatus"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/Issue.html" target="_self" >IssueState</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:37</a></div>
                             </td>
                         </tr>
 
@@ -665,7 +917,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:34</a></div>
                             </td>
                         </tr>
 
@@ -692,7 +944,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:31</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:32</a></div>
                             </td>
                         </tr>
 
@@ -724,7 +976,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:32</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:33</a></div>
                             </td>
                         </tr>
 
@@ -792,6 +1044,38 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:39</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="searchText"></a>
+                        <span class="name">
+                            <b>
+                            searchText</b>
+                            <a href="#searchText"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&quot;&quot;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
                                     <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:36</a></div>
                             </td>
                         </tr>
@@ -828,7 +1112,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:37</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/pages/all-issues/all-issues-page.component.ts:40</a></div>
                             </td>
                         </tr>
 
@@ -844,13 +1128,14 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, ViewChild } from &#x27;@angular/core&#x27;;
 import { IssueService } from &#x27;src/app/api/issue.service&#x27;;
 import { MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
-import { IssuesDataSources } from &#x27;../../models/issue-data-sources&#x27;;
-import { Issue } from &#x27;src/app/models/issue&#x27;;
+import { IssuesDataSources } from &#x27;../../dataSources/issue-data-sources&#x27;;
+import { Issue, IssueState } from &#x27;src/app/models/issue&#x27;;
 import { latLng, MapOptions, tileLayer, Map, Marker, marker } from &#x27;leaflet&#x27;;
 import { MatPaginator } from &#x27;@angular/material/paginator&#x27;;
 import { MatTable} from &#x27;@angular/material/table&#x27;;
-import {animate, state, style, transition, trigger} from &#x27;@angular/animations&#x27;;
+import { animate, state, style, transition, trigger} from &#x27;@angular/animations&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
+import { MatSelect } from &#x27;@angular/material/select&#x27;;
 
 @Component({
   selector: &#x27;app-all-issues&#x27;,
@@ -869,17 +1154,24 @@ export class AllIssuesPageComponent implements OnInit {
 
   dataSource: IssuesDataSources;
   displayedColumns: string[] &#x3D; [&#x27;Description&#x27;];
-  issueList : Issue[] &#x3D; [];
   mapOptions : MapOptions &#x3D; {};
+  issueList : Issue[] &#x3D; [];
   map : Map;
   mapMarkers : Marker[] &#x3D; [];
   itemsPerPage : Number;
   expandedIssue : Issue | null;
+  searchText : string &#x3D; &quot;&quot;;
+  issueStatus : IssueState;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatTable) Table: MatTable&lt;any&gt;;
 
-  constructor(private issueService: IssueService, private router : Router) {
+  constructor(private issueService: IssueService, 
+              private router : Router, 
+              private snackBar: MatSnackBar) {}
+
+  ngOnInit(): void {
+
     this.mapOptions &#x3D; {
       layers: [
         tileLayer(
@@ -890,24 +1182,24 @@ export class AllIssuesPageComponent implements OnInit {
       zoom: 13,
       center: latLng(46.778186, 6.641524)
     };
+    
     this.itemsPerPage &#x3D; this.issueService.defaultPaginatorPageSize;
-  }
 
-  ngOnInit(): void {
-      this.dataSource&#x3D; new IssuesDataSources(this.issueService);
-      this.dataSource.loadIssues();
-      this.dataSource.issuesList$.subscribe({
-        next : (issueList) &#x3D;&gt; this.issueList &#x3D; issueList
-      });
+    this.dataSource &#x3D; new IssuesDataSources(this.issueService);
+    this.dataSource.loadIssues();
+    this.dataSource.issuesList$.subscribe({
+      next: (issueList) &#x3D;&gt; this.issueList &#x3D; issueList
+    });
   }
 
   ngAfterViewInit() {
     this.paginator.page.subscribe({
-          next : () &#x3D;&gt; this.dataSource.loadIssues(this.paginator.pageIndex+1, this.paginator.pageSize)
-        })
+          next : () &#x3D;&gt; this.dataSource.loadIssues(this.paginator.pageIndex+1, 
+                                                  this.paginator.pageSize)
+        });
 }
 
-  onRowClicked(row): void {
+  onRowClickedExpand(row): void {
     //in a GeoJson object latitude and longitude are reversed relative to a marker.
   
     this.expandedIssue &#x3D; this.expandedIssue &#x3D;&#x3D;&#x3D; row ? null : row ;
@@ -925,12 +1217,34 @@ export class AllIssuesPageComponent implements OnInit {
     this.map.panTo(this.mapMarkers[0].getLatLng());
   }
 
+  onCardClicked(id) : void{
+    let clickedCard &#x3D; this.issueList.find(issue &#x3D;&gt; issue.id &#x3D;&#x3D;&#x3D; id)
+    if (clickedCard !&#x3D;&#x3D; undefined)
+    {
+      this.onRowClickedExpand(clickedCard);
+    } 
+  }
+
   onMapReady(map : Map) : void {
     this.map &#x3D; map;
   }
 
-  moreDetails() : void {
-    this.router.navigate([ &#x27;/issue&#x27;, this.expandedIssue.id ]);
+  moreDetails(id) : void {
+    this.router.navigate([ &#x27;/issue&#x27;, id ]);
+  }
+
+  deleteIssue(id) : void {
+    this.issueService.deleteIssue(id).subscribe({
+      next : () &#x3D;&gt; {  this.snackBar.open(&#x27;Issue deleted with succes&#x27;,&#x27;&#x27;,
+                      {panelClass : &#x27;SnackBarSuccess&#x27;, duration : 2500}), 
+                     this.dataSource.loadIssues();},
+      error : (error) &#x3D;&gt; this.snackBar.open(&#x27;Sorry we were unable to delete the issue.  Detail : &#x27; + error.error, 
+                                            &#x27;x&#x27;, {panelClass : [&#x27;SnackBarError&#x27;, &#x27;SnackBarButton&#x27;]})
+    });
+  }
+
+  filterIssue() : void{
+    this.dataSource.loadIssues(undefined, undefined, this.searchText, [this.issueStatus]);
   }
 }
 </code></pre>
@@ -938,52 +1252,69 @@ export class AllIssuesPageComponent implements OnInit {
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container mt-5&quot;&gt;
+    &lt;div class&#x3D;&quot;row justify-content-center&quot;&gt;
+        &lt;div class&#x3D;&quot;col-12 mb-5&quot;&gt;
+            &lt;div leaflet [leafletOptions]&#x3D;&quot;mapOptions&quot; (leafletMapReady)&#x3D;&quot;onMapReady($event)&quot;
+                [leafletLayers]&#x3D;&quot;mapMarkers&quot; class&#x3D;&quot;map&quot; ngDefaultControl&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
     &lt;div class&#x3D;&quot;row align-items-center justify-content-center&quot;&gt;
-        &lt;div class&#x3D;&quot; col-10 col-lg-6 &quot;&gt;
+        &lt;div class&#x3D;&quot; col-12&quot;&gt;
             &lt;div class&#x3D;&quot;spinner-container&quot; *ngIf&#x3D;&quot;dataSource.loading$ | async&quot;&gt;
                 &lt;mat-spinner style&#x3D;&quot;display: inline-block;&quot;&gt;&lt;/mat-spinner&gt;
             &lt;/div&gt;
-            &lt;div class&#x3D;&quot;mb-5 mat-elevation-z8&quot;&gt;
-                &lt;table #table mat-table [dataSource]&#x3D;&quot;dataSource&quot;&gt;
+            &lt;div class&#x3D;&quot;mb-5 &quot;&gt;
+                &lt;div class&#x3D;&quot;filterContainer&quot;&gt;
+                    &lt;div class&#x3D;&quot;filterTitleContainer&quot;&gt;
+                        &lt;strong&gt;Filters&lt;/strong&gt;filterContainer
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;row justify-content-around&quot;&gt;
+                        &lt;mat-form-field class&#x3D;&quot;col-4&quot;&gt;
+                            &lt;mat-label&gt;Search &lt;/mat-label&gt;
+                            &lt;input matInput [(ngModel)]&#x3D;&#x27;searchText&#x27; (change)&#x3D;&quot;filterIssue()&quot;&gt;
+                            &lt;mat-icon matSuffix&gt;search&lt;/mat-icon&gt;
+                        &lt;/mat-form-field&gt;
+                        &lt;mat-form-field class&#x3D;&quot;col-4&quot;&gt;
+                            &lt;mat-label&gt;Stauts&lt;/mat-label&gt;
+                            &lt;mat-select #stateSelector
+                                        name&#x3D;&quot;typeSelector&quot; 
+                                        [(ngModel)]&#x3D;&#x27;issueStatus&#x27; 
+                                        (selectionChange)&#x3D;&quot;filterIssue()&quot;&gt;
+                                &lt;mat-option value&#x3D;&quot;&quot;&gt;all&lt;/mat-option&gt;
+                                &lt;mat-option value&#x3D;&quot;new&quot;&gt;new&lt;/mat-option&gt;
+                                &lt;mat-option value&#x3D;&quot;inProgress&quot;&gt;inProgress&lt;/mat-option&gt;
+                                &lt;mat-option value&#x3D;&quot;rejected&quot;&gt;rejected&lt;/mat-option&gt;
+                                &lt;mat-option value&#x3D;&quot;resolved&quot;&gt;resolved&lt;/mat-option&gt;
+                            &lt;/mat-select&gt;
+                        &lt;/mat-form-field&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;d-none d-lg-flex cardsContainer&quot;&gt;
+                    &lt;app-card *ngFor&#x3D;&quot;let issue of issueList&quot; 
+                    [issue]&#x3D;&quot;issue&quot; 
+                    (deleteClicked)&#x3D;&quot;deleteIssue(issue.id)&quot;
+                    (moreClicked)&#x3D;&quot;moreDetails(issue.id)&quot;
+                    (cardClicked)&#x3D;&quot;onCardClicked(issue.id)&quot;&gt;&lt;/app-card&gt;
+                &lt;/div&gt;
+                &lt;table fxLayout&#x3D;&quot;column wrap&quot; class&#x3D;&quot;d-lg-none&quot; #table mat-table [dataSource]&#x3D;&quot;dataSource&quot;&gt;
                     &lt;ng-container matColumnDef&#x3D;&quot;Description&quot;&gt;
                         &lt;th mat-header-cell *matHeaderCellDef&gt; Description &lt;/th&gt;
                         &lt;td mat-cell *matCellDef&#x3D;&quot;let issue&quot;&gt; {{issue.description}}
                             &lt;div class&#x3D;&quot;issue-detail&quot;
                                 [@detailExpand]&#x3D;&quot;issue &#x3D;&#x3D; expandedIssue ? &#x27;expanded&#x27; : &#x27;collapsed&#x27;&quot;&gt;
-                                &lt;div class&#x3D;&quot;imageContainer&quot;&gt;
-                                    &lt;img class&#x3D;&quot;imagePreview&quot; [src]&#x3D;&quot;issue.imageUrl!&#x3D;&#x3D; &#x27;&#x27;  ? issue.imageUrl : &#x27;../../../assets/Images/noImage.svg&#x27;&quot;
-                                        alt&#x3D;&quot;{{issue.imageUrl}}&quot;&gt;
-                                &lt;/div&gt;
-                                &lt;div class&#x3D;&quot;detailsContainer&quot;&gt; 
-                                    &lt;div class&#x3D;&quot;tags&quot;&gt; {{issue.tags}} &lt;/div&gt;
-                                    &lt;div class&#x3D;&quot;description&quot;&gt; {{issue.description}} &lt;/div&gt;
-                                    &lt;div&gt; created : {{issue.createdAt | date:&#x27;mediumDate&#x27; }} &lt;/div&gt;
-                                    &lt;br&gt;
-                                    &lt;div [ngClass]&#x3D;&quot;{&#x27;state-new&#x27; : issue.state &#x3D;&#x3D;&#x3D; &#x27;new&#x27;,
-                                                    &#x27;state-inprogress&#x27; : issue.state &#x3D;&#x3D;&#x3D; &#x27;inProgress&#x27;,
-                                                    &#x27;state-rejected&#x27; : issue.state &#x3D;&#x3D;&#x3D; &#x27;rejected&#x27;,
-                                                    &#x27;state-resolved&#x27; : issue.state &#x3D;&#x3D;&#x3D; &#x27;resolved&#x27;}&quot;&gt; 
-                                                    {{issue.state}} 
-                                    &lt;/div&gt;
-                                    &lt;button mat-raised-button color&#x3D;&quot;primary&quot; (click)&#x3D;&quot;moreDetails()&quot;&gt;more&lt;/button&gt;
-                                &lt;/div&gt;
+                                &lt;app-card [issue]&#x3D;&quot;issue&quot;&gt;&lt;/app-card&gt;
                             &lt;/div&gt;
                         &lt;/td&gt;
                     &lt;/ng-container&gt;
                     &lt;tr mat-header-row *matHeaderRowDef&#x3D;&quot;displayedColumns&quot;&gt;&lt;/tr&gt;
                     &lt;tr mat-row *matRowDef&#x3D;&quot;let row; columns: displayedColumns;&quot; class&#x3D;&quot;rows&quot;
-                        [class.expanded-row]&#x3D;&quot;expandedIssue &#x3D;&#x3D;&#x3D; row&quot; (click)&#x3D;&quot;onRowClicked(row)&quot;&gt;
+                        [class.expanded-row]&#x3D;&quot;expandedIssue &#x3D;&#x3D;&#x3D; row&quot; (click)&#x3D;&quot;onRowClickedExpand(row)&quot;&gt;
                     &lt;/tr&gt;
                 &lt;/table&gt;
-                &lt;mat-paginator [pageSize]&#x3D;&quot;itemsPerPage&quot; [pageSizeOptions]&#x3D;&quot;[5, 10, 25, 50]&quot;
+                &lt;mat-paginator [pageSize]&#x3D;&quot;itemsPerPage&quot; [pageSizeOptions]&#x3D;&quot;[6, 12, 18, 36]&quot;
                     [length]&#x3D;&quot;dataSource.totalItems&quot;&gt;
                 &lt;/mat-paginator&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-
-        &lt;div class&#x3D;&quot;col-10 order-first order-lg-last mb-5 mb-lg-0 col-lg-6&quot;&gt;
-            &lt;div leaflet [leafletOptions]&#x3D;&quot;mapOptions&quot; (leafletMapReady)&#x3D;&quot;onMapReady($event)&quot;
-                [leafletLayers]&#x3D;&quot;mapMarkers&quot; class&#x3D;&quot;map&quot; ngDefaultControl&gt;
             &lt;/div&gt;
         &lt;/div&gt;
     &lt;/div&gt;
@@ -994,52 +1325,51 @@ export class AllIssuesPageComponent implements OnInit {
                 <p class="comment">
                     <code>./all-issues-page.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">table {
-    width: 100%;
-  }
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;~@angular/material/theming&#x27;;
 
-tr {
-  text-align: left
-  ;    
-}
 
 .map{
-  height: 50vh;
+  height: 30vh;
 }
 
 .container {
   width: 95%;
 }
 
-.tags{
-  font-size: 1.5em;
-  font-weight: bold;
-  padding-bottom: 1em;
+// filers ---------------------------------------
+.filterContainer{
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,.2);
+  margin-bottom: 1em;
+  text-align: left;
 }
 
-.description{
-  font-weight: lighter;
-  padding-bottom: 0.5em;
-}
-
-.detailsContainer{
+.filterTitleContainer{
   padding: 1em;
-  position: relative;
-  width: 100%;
+  text-align: left;
+  color: rgba(0,0,0,.54);
+  font-family: Roboto,Helvetica, sans-serif;
+}
+// ------------------------------------------------
+
+// cards ------------------------------------------
+.cardsContainer{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 
-.imagePreview {
-  min-width: 80px;
-  height: 200px;
-  border-style: groove;
-  border-color: rgb(26, 25, 25);
-  border-width: 1px;
+// ------------------------------------------------
+
+// Table ------------------------------------------
+table {
+  max-width: 100%;
 }
 
-button{
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
+tr {
+text-align: left
+;    
 }
 
 .rows td {
@@ -1053,11 +1383,35 @@ tr.rows:not(.expanded-row):hover {
 tr.rows:not(.expanded-row):active {
   background: #efefef;
 }
+// ------------------------------------------------
+
 
 .issue-detail {
   overflow: hidden;
   display: flex;
 }
+
+.imageFrame{
+  max-width: 30%;
+  min-width: 30%;
+  border-style: groove;
+  border-color: rgb(26, 25, 25);
+  border-width: 0px 1px 0px 0px;
+  vertical-align: auto;
+  display: flex;
+  justify-content: center;
+}
+
+mat-paginator{
+  border: solid rgba(75, 73, 73, 0.54);
+  border-width: 1px;
+  border-radius: 5px;
+}
+
+
+
+
+
 </code></pre>
     </div>
 
@@ -1086,8 +1440,8 @@ tr.rows:not(.expanded-row):active {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container mt-5">    <div class="row align-items-center justify-content-center">        <div class=" col-10 col-lg-6 ">            <div class="spinner-container" *ngIf="dataSource.loading$ | async">                <mat-spinner style="display: inline-block;"></mat-spinner>            </div>            <div class="mb-5 mat-elevation-z8">                <table #table mat-table [dataSource]="dataSource">                    <ng-container matColumnDef="Description">                        <th mat-header-cell *matHeaderCellDef> Description </th>                        <td mat-cell *matCellDef="let issue"> {{issue.description}}                            <div class="issue-detail"                                [@detailExpand]="issue == expandedIssue ? \'expanded\' : \'collapsed\'">                                <div class="imageContainer">                                    <img class="imagePreview" [src]="issue.imageUrl!== \'\'  ? issue.imageUrl : \'../../../assets/Images/noImage.svg\'"                                        alt="{{issue.imageUrl}}">                                </div>                                <div class="detailsContainer">                                     <div class="tags"> {{issue.tags}} </div>                                    <div class="description"> {{issue.description}} </div>                                    <div> created : {{issue.createdAt | date:\'mediumDate\' }} </div>                                    <br>                                    <div [ngClass]="{\'state-new\' : issue.state === \'new\',                                                    \'state-inprogress\' : issue.state === \'inProgress\',                                                    \'state-rejected\' : issue.state === \'rejected\',                                                    \'state-resolved\' : issue.state === \'resolved\'}">                                                     {{issue.state}}                                     </div>                                    <button mat-raised-button color="primary" (click)="moreDetails()">more</button>                                </div>                            </div>                        </td>                    </ng-container>                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="rows"                        [class.expanded-row]="expandedIssue === row" (click)="onRowClicked(row)">                    </tr>                </table>                <mat-paginator [pageSize]="itemsPerPage" [pageSizeOptions]="[5, 10, 25, 50]"                    [length]="dataSource.totalItems">                </mat-paginator>            </div>        </div>        <div class="col-10 order-first order-lg-last mb-5 mb-lg-0 col-lg-6">            <div leaflet [leafletOptions]="mapOptions" (leafletMapReady)="onMapReady($event)"                [leafletLayers]="mapMarkers" class="map" ngDefaultControl>            </div>        </div>    </div></div></div>'
-    var COMPONENTS = [{'name': 'AdminPageComponent', 'selector': 'app-admin-page'},{'name': 'AllIssuesPageComponent', 'selector': 'app-all-issues'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'IssueDetailsPageComponent', 'selector': 'app-issue-details-page'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'ReportIssuePageComponent', 'selector': 'app-report-issue-page'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'ToolbarComponent', 'selector': 'app-toolbar'},{'name': 'UserPageComponent', 'selector': 'app-user-page'}];
+        var COMPONENT_TEMPLATE = '<div><div class="container mt-5">    <div class="row justify-content-center">        <div class="col-12 mb-5">            <div leaflet [leafletOptions]="mapOptions" (leafletMapReady)="onMapReady($event)"                [leafletLayers]="mapMarkers" class="map" ngDefaultControl>            </div>        </div>    </div>    <div class="row align-items-center justify-content-center">        <div class=" col-12">            <div class="spinner-container" *ngIf="dataSource.loading$ | async">                <mat-spinner style="display: inline-block;"></mat-spinner>            </div>            <div class="mb-5 ">                <div class="filterContainer">                    <div class="filterTitleContainer">                        <strong>Filters</strong>filterContainer                    </div>                    <div class="row justify-content-around">                        <mat-form-field class="col-4">                            <mat-label>Search </mat-label>                            <input matInput [(ngModel)]=\'searchText\' (change)="filterIssue()">                            <mat-icon matSuffix>search</mat-icon>                        </mat-form-field>                        <mat-form-field class="col-4">                            <mat-label>Stauts</mat-label>                            <mat-select #stateSelector                                        name="typeSelector"                                         [(ngModel)]=\'issueStatus\'                                         (selectionChange)="filterIssue()">                                <mat-option value="">all</mat-option>                                <mat-option value="new">new</mat-option>                                <mat-option value="inProgress">inProgress</mat-option>                                <mat-option value="rejected">rejected</mat-option>                                <mat-option value="resolved">resolved</mat-option>                            </mat-select>                        </mat-form-field>                    </div>                </div>                <div class="d-none d-lg-flex cardsContainer">                    <app-card *ngFor="let issue of issueList"                     [issue]="issue"                     (deleteClicked)="deleteIssue(issue.id)"                    (moreClicked)="moreDetails(issue.id)"                    (cardClicked)="onCardClicked(issue.id)"></app-card>                </div>                <table fxLayout="column wrap" class="d-lg-none" #table mat-table [dataSource]="dataSource">                    <ng-container matColumnDef="Description">                        <th mat-header-cell *matHeaderCellDef> Description </th>                        <td mat-cell *matCellDef="let issue"> {{issue.description}}                            <div class="issue-detail"                                [@detailExpand]="issue == expandedIssue ? \'expanded\' : \'collapsed\'">                                <app-card [issue]="issue"></app-card>                            </div>                        </td>                    </ng-container>                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="rows"                        [class.expanded-row]="expandedIssue === row" (click)="onRowClickedExpand(row)">                    </tr>                </table>                <mat-paginator [pageSize]="itemsPerPage" [pageSizeOptions]="[6, 12, 18, 36]"                    [length]="dataSource.totalItems">                </mat-paginator>            </div>        </div>    </div></div></div>'
+    var COMPONENTS = [{'name': 'AdminPageComponent', 'selector': 'app-admin-page'},{'name': 'AllIssuesPageComponent', 'selector': 'app-all-issues'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CardComponent', 'selector': 'app-card'},{'name': 'CommentsListComponent', 'selector': 'app-comments-list'},{'name': 'ImageDialogBoxComponent', 'selector': 'app-image-dialog-box'},{'name': 'IssueDetailsPageComponent', 'selector': 'app-issue-details-page'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'ReportIssuePageComponent', 'selector': 'app-report-issue-page'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SignUpPageComponent', 'selector': 'app-sign-up-page'},{'name': 'ToolbarComponent', 'selector': 'app-toolbar'},{'name': 'UserPageComponent', 'selector': 'app-user-page'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AllIssuesPageComponent'};
 </script>

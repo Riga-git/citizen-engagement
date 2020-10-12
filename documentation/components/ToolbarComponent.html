@@ -121,6 +121,21 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#AuthService">AuthService</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -351,6 +366,40 @@
         </tbody>
     </table>
 </section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="AuthService"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            AuthService</b>
+                            <a href="#AuthService"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/navigation/toolbar/toolbar.component.ts:13</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
 
 </div>
 
@@ -368,7 +417,7 @@ import { Router } from &quot;@angular/router&quot;;
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor(private sidenavService : SidenavService, private AuthService : AuthService, private router: Router) { }
+  constructor(private sidenavService : SidenavService, public AuthService : AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -403,10 +452,11 @@ export class ToolbarComponent implements OnInit {
       &lt;a mat-button routerLinkActive&#x3D;&quot;activeRoute&quot; routerLink&#x3D;&quot;/myIssues&quot;&gt;My issues&lt;/a&gt;
       &lt;a mat-button routerLinkActive&#x3D;&quot;activeRoute&quot; routerLink&#x3D;&quot;/allIssues&quot;&gt;All issues&lt;/a&gt;
       &lt;a mat-button routerLinkActive&#x3D;&quot;activeRoute&quot; routerLink&#x3D;&quot;/myAccount&quot;&gt;my Accout&lt;/a&gt;
-      &lt;a mat-button routerLinkActive&#x3D;&quot;activeRoute&quot; routerLink&#x3D;&quot;/admin&quot;&gt;Admin&lt;/a&gt;
+      &lt;a *ngIf&#x3D;&quot;AuthService.isAdminUser()&quot; mat-button routerLinkActive&#x3D;&quot;activeRoute&quot; routerLink&#x3D;&quot;/admin&quot;&gt;Admin&lt;/a&gt;
       &lt;a mat-button (click)&#x3D;&quot;logout()&quot;&gt;Log out&lt;/a&gt;
     &lt;/div&gt;
-  &lt;/mat-toolbar&gt;</code></pre>
+  &lt;/mat-toolbar&gt;
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-styleData">
@@ -420,10 +470,6 @@ export class ToolbarComponent implements OnInit {
 
 .mat-toolbar{
   height: 7vh;
-}
-
-div {
-    overflow: inherit;
 }
 
 a{
@@ -496,8 +542,8 @@ img{
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-toolbar color="primary">    <div fxShow="true" fxHide.gt-sm="true">      <button mat-icon-button (click)="toggleSidenav()">        <mat-icon>menu</mat-icon>      </button>    </div>    <a mat-button class="companyName" routerLink="/">      <span>Citizen engagement</span>      <span><img src="../..//assets/Images/logo.svg" alt="Logo"></span>    </a>    <span class="spacer"></span>    <div fxShow="true" fxHide.lt-md="true">      <a mat-button routerLinkActive="activeRoute" routerLink="/reportIssue">Report an issue</a>      <a mat-button routerLinkActive="activeRoute" routerLink="/myIssues">My issues</a>      <a mat-button routerLinkActive="activeRoute" routerLink="/allIssues">All issues</a>      <a mat-button routerLinkActive="activeRoute" routerLink="/myAccount">my Accout</a>      <a mat-button routerLinkActive="activeRoute" routerLink="/admin">Admin</a>      <a mat-button (click)="logout()">Log out</a>    </div>  </mat-toolbar></div>'
-    var COMPONENTS = [{'name': 'AdminPageComponent', 'selector': 'app-admin-page'},{'name': 'AllIssuesPageComponent', 'selector': 'app-all-issues'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'IssueDetailsPageComponent', 'selector': 'app-issue-details-page'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'ReportIssuePageComponent', 'selector': 'app-report-issue-page'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'ToolbarComponent', 'selector': 'app-toolbar'},{'name': 'UserPageComponent', 'selector': 'app-user-page'}];
+        var COMPONENT_TEMPLATE = '<div><mat-toolbar color="primary">    <div fxShow="true" fxHide.gt-sm="true">      <button mat-icon-button (click)="toggleSidenav()">        <mat-icon>menu</mat-icon>      </button>    </div>    <a mat-button class="companyName" routerLink="/">      <span>Citizen engagement</span>      <span><img src="../..//assets/Images/logo.svg" alt="Logo"></span>    </a>    <span class="spacer"></span>    <div fxShow="true" fxHide.lt-md="true">      <a mat-button routerLinkActive="activeRoute" routerLink="/reportIssue">Report an issue</a>      <a mat-button routerLinkActive="activeRoute" routerLink="/myIssues">My issues</a>      <a mat-button routerLinkActive="activeRoute" routerLink="/allIssues">All issues</a>      <a mat-button routerLinkActive="activeRoute" routerLink="/myAccount">my Accout</a>      <a *ngIf="AuthService.isAdminUser()" mat-button routerLinkActive="activeRoute" routerLink="/admin">Admin</a>      <a mat-button (click)="logout()">Log out</a>    </div>  </mat-toolbar></div>'
+    var COMPONENTS = [{'name': 'AdminPageComponent', 'selector': 'app-admin-page'},{'name': 'AllIssuesPageComponent', 'selector': 'app-all-issues'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CardComponent', 'selector': 'app-card'},{'name': 'CommentsListComponent', 'selector': 'app-comments-list'},{'name': 'ImageDialogBoxComponent', 'selector': 'app-image-dialog-box'},{'name': 'IssueDetailsPageComponent', 'selector': 'app-issue-details-page'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'ReportIssuePageComponent', 'selector': 'app-report-issue-page'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SignUpPageComponent', 'selector': 'app-sign-up-page'},{'name': 'ToolbarComponent', 'selector': 'app-toolbar'},{'name': 'UserPageComponent', 'selector': 'app-user-page'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ToolbarComponent'};
 </script>

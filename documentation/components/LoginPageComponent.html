@@ -142,6 +142,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#navigateToSingUpPage">navigateToSingUpPage</a>
+                            </li>
+                            <li>
                                 <a href="#onSubmit">onSubmit</a>
                             </li>
                         </ul>
@@ -162,12 +165,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(auth: <a href="../injectables/AuthService.html">AuthService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+<code>constructor(auth: <a href="../injectables/AuthService.html">AuthService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, snackBar: MatSnackBar)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/security/login-page/login-page.component.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/security/login-page/login-page.component.ts:24</a></div>
                             </td>
                         </tr>
 
@@ -208,6 +211,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>snackBar</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatSnackBar</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -230,6 +245,45 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="navigateToSingUpPage"></a>
+                    <span class="name">
+                        <b>
+                            navigateToSingUpPage
+                        </b>
+                        <a href="#navigateToSingUpPage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigateToSingUpPage()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="53"
+                            class="link-to-prism">src/app/security/login-page/login-page.component.ts:53</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="onSubmit"></a>
                     <span class="name">
                         <b>
@@ -248,8 +302,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/app/security/login-page/login-page.component.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/app/security/login-page/login-page.component.ts:35</a></div>
                 </td>
             </tr>
 
@@ -324,7 +378,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/security/login-page/login-page.component.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/security/login-page/login-page.component.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -358,7 +412,7 @@ edits the login form. It will then be sent to the API.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/security/login-page/login-page.component.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/security/login-page/login-page.component.ts:24</a></div>
                             </td>
                         </tr>
 
@@ -383,6 +437,7 @@ import { AuthRequest } from &quot;src/app/models/auth-request&quot;;
 import { AuthService } from &quot;../auth.service&quot;;
 import { Router } from &quot;@angular/router&quot;;
 import { NgForm } from &quot;@angular/forms&quot;;
+import { MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
 
 @Component({
   selector: &quot;app-login-page&quot;,
@@ -402,9 +457,10 @@ export class LoginPageComponent {
    */
   loginError: boolean;
 
-  constructor(private auth: AuthService, private router: Router) {
+  constructor(private auth: AuthService, private router: Router, private snackBar: MatSnackBar,) {
     this.authRequest &#x3D; new AuthRequest();
     this.loginError &#x3D; false;
+    
   }
 
   /**
@@ -422,9 +478,14 @@ export class LoginPageComponent {
         error: (err) &#x3D;&gt; {
           this.loginError &#x3D; true;
           console.warn(&#x60;Authentication failed: ${err.message}&#x60;);
+          this.snackBar.open(&quot;wrong user name or password&quot;, &quot;x&quot;, {panelClass : [&#x27;SnackBarError&#x27;, &#x27;SnackBarButton&#x27;],duration : 2500})
         },
       });
     }
+  }
+
+  navigateToSingUpPage() : void {
+    this.router.navigateByUrl(&#x27;/singUp&#x27;);
   }
 }</code></pre>
     </div>
@@ -436,11 +497,11 @@ export class LoginPageComponent {
     &lt;div class&#x3D;&quot;row justify-content-center&quot;&gt;
       &lt;div class&#x3D;&quot;col-5&quot;&gt;
         &lt;mat-form-field&gt;
-          &lt;mat-label for&#x3D;&quot;name&quot;&gt;Name&lt;/mat-label&gt;
+          &lt;mat-label for&#x3D;&quot;name&quot;&gt;Unsername&lt;/mat-label&gt;
           &lt;input name&#x3D;&quot;FirstName&quot; matInput id&#x3D;&quot;name&quot; #nameField&#x3D;&quot;ngModel&quot; required [(ngModel)]&#x3D;&quot;authRequest.name&quot; /&gt;
         &lt;/mat-form-field&gt;
         &lt;p *ngIf&#x3D;&quot;nameField.hasError(&#x27;required&#x27;) &amp;&amp; nameField.touched&quot;&gt;
-          Name is required
+          Username is required
         &lt;/p&gt;
       &lt;/div&gt;
     &lt;/div&gt;
@@ -456,14 +517,18 @@ export class LoginPageComponent {
         &lt;/p&gt;
       &lt;/div&gt;
     &lt;/div&gt;
-      &lt;div class&#x3D;&quot;row justify-content-center&quot;&gt;
+    &lt;div class&#x3D;&quot;row align-content-center justify-content-center&quot;&gt;
+      &lt;div class&#x3D;&quot; col-5 mt-5 &quot;&gt;
+        &lt;div class&#x3D;&quot; row align-content-center justify-content-around&quot; &gt;
         &lt;button mat-raised-button color&#x3D;&quot;primary&quot; type&#x3D;&quot;submit&quot; [disabled]&#x3D;&quot;loginForm.invalid&quot;&gt;Log in&lt;/button&gt;
-        &lt;p *ngIf&#x3D;&quot;loginError&quot;&gt;
-          Unable to log in. See the log for more information.
-        &lt;/p&gt;
+        &lt;button mat-raised-button color&#x3D;&quot;accent&quot; (click)&#x3D;&quot;navigateToSingUpPage()&quot;&gt;Sign Up&lt;/button&gt;
       &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
   &lt;/form&gt;
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-styleData">
@@ -500,8 +565,8 @@ export class LoginPageComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container mt-5">  <form #loginForm="ngForm" (submit)="onSubmit(loginForm)">    <div class="row justify-content-center">      <div class="col-5">        <mat-form-field>          <mat-label for="name">Name</mat-label>          <input name="FirstName" matInput id="name" #nameField="ngModel" required [(ngModel)]="authRequest.name" />        </mat-form-field>        <p *ngIf="nameField.hasError(\'required\') && nameField.touched">          Name is required        </p>      </div>    </div>    <div class="row justify-content-center">      <div class=" col-5 ">        <mat-form-field>          <mat-label>Password</mat-label>          <input matInput name="password" id="passwrod" #passwordField="ngModel" required            [(ngModel)]=\'authRequest.password\' />        </mat-form-field>        <p *ngIf="passwordField.hasError(\'required\') && passwordField.touched">          Password is required        </p>      </div>    </div>      <div class="row justify-content-center">        <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Log in</button>        <p *ngIf="loginError">          Unable to log in. See the log for more information.        </p>      </div>  </form></div></div>'
-    var COMPONENTS = [{'name': 'AdminPageComponent', 'selector': 'app-admin-page'},{'name': 'AllIssuesPageComponent', 'selector': 'app-all-issues'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'IssueDetailsPageComponent', 'selector': 'app-issue-details-page'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'ReportIssuePageComponent', 'selector': 'app-report-issue-page'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'ToolbarComponent', 'selector': 'app-toolbar'},{'name': 'UserPageComponent', 'selector': 'app-user-page'}];
+        var COMPONENT_TEMPLATE = '<div><div class="container mt-5">  <form #loginForm="ngForm" (submit)="onSubmit(loginForm)">    <div class="row justify-content-center">      <div class="col-5">        <mat-form-field>          <mat-label for="name">Unsername</mat-label>          <input name="FirstName" matInput id="name" #nameField="ngModel" required [(ngModel)]="authRequest.name" />        </mat-form-field>        <p *ngIf="nameField.hasError(\'required\') && nameField.touched">          Username is required        </p>      </div>    </div>    <div class="row justify-content-center">      <div class=" col-5 ">        <mat-form-field>          <mat-label>Password</mat-label>          <input matInput name="password" id="passwrod" #passwordField="ngModel" required            [(ngModel)]=\'authRequest.password\' />        </mat-form-field>        <p *ngIf="passwordField.hasError(\'required\') && passwordField.touched">          Password is required        </p>      </div>    </div>    <div class="row align-content-center justify-content-center">      <div class=" col-5 mt-5 ">        <div class=" row align-content-center justify-content-around" >        <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Log in</button>        <button mat-raised-button color="accent" (click)="navigateToSingUpPage()">Sign Up</button>      </div>      </div>    </div>  </form></div></div>'
+    var COMPONENTS = [{'name': 'AdminPageComponent', 'selector': 'app-admin-page'},{'name': 'AllIssuesPageComponent', 'selector': 'app-all-issues'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CardComponent', 'selector': 'app-card'},{'name': 'CommentsListComponent', 'selector': 'app-comments-list'},{'name': 'ImageDialogBoxComponent', 'selector': 'app-image-dialog-box'},{'name': 'IssueDetailsPageComponent', 'selector': 'app-issue-details-page'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'ReportIssuePageComponent', 'selector': 'app-report-issue-page'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SignUpPageComponent', 'selector': 'app-sign-up-page'},{'name': 'ToolbarComponent', 'selector': 'app-toolbar'},{'name': 'UserPageComponent', 'selector': 'app-user-page'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'LoginPageComponent'};
 </script>

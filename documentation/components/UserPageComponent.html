@@ -145,9 +145,6 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#getUserInfo">getUserInfo</a>
-                            </li>
-                            <li>
                                 <a href="#ngOnInit">ngOnInit</a>
                             </li>
                         </ul>
@@ -220,45 +217,6 @@
     <h3 id="methods">
         Methods
     </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getUserInfo"></a>
-                    <span class="name">
-                        <b>
-                            getUserInfo
-                        </b>
-                        <a href="#getUserInfo"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getUserInfo()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="22"
-                            class="link-to-prism">src/app/pages/user-page/user-page.component.ts:22</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -355,41 +313,47 @@ export class UserPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getUserInfo();
-  }
-
-  getUserInfo(): void{
     this.authService.getUser().subscribe({
       next : (user) &#x3D;&gt; this.user &#x3D; user,
-      error: (err) &#x3D;&gt; console.error(&#x27;Not logged&#x27;)  // route to 
+      error: (err) &#x3D;&gt; console.error(&#x27;Not logged&#x27;)
     });
   }
 
-}
-</code></pre>
+}</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;p&gt;
-    &lt;span&gt;&lt;strong&gt;First Name : &lt;/strong&gt;&lt;/span&gt;
-    &lt;span&gt;{{user.firstname}}&lt;/span&gt;
-&lt;/p&gt;
-&lt;p&gt;
-    &lt;span&gt;&lt;strong&gt;Last Name : &lt;/strong&gt;&lt;/span&gt;
-    &lt;span&gt;{{user.lastname}}&lt;/span&gt;
-&lt;/p&gt;
-&lt;p *ngIf&#x3D;&#x27;user.phone&#x27;&gt;
-    &lt;span&gt;&lt;strong&gt;Phone : &lt;/strong&gt;&lt;/span&gt;
-    &lt;span&gt;{{user.phone}}&lt;/span&gt;
-&lt;/p&gt;
-</code></pre>
+        <pre class="line-numbers"><code class="language-html">&lt;mat-card &gt;
+    &lt;p&gt;
+        &lt;span&gt;&lt;strong&gt;First Name : &lt;/strong&gt;&lt;/span&gt;
+        &lt;span&gt;{{user.firstname}}&lt;/span&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+        &lt;span&gt;&lt;strong&gt;Last Name : &lt;/strong&gt;&lt;/span&gt;
+        &lt;span&gt;{{user.lastname}}&lt;/span&gt;
+    &lt;/p&gt;
+    &lt;p *ngIf&#x3D;&#x27;user.phone&#x27;&gt;
+        &lt;span&gt;&lt;strong&gt;Phone : &lt;/strong&gt;&lt;/span&gt;
+        &lt;span&gt;{{user.phone}}&lt;/span&gt;
+    &lt;/p&gt;
+    &lt;p *ngIf&#x3D;&#x27;user.roles&#x27;&gt;
+        &lt;span&gt;&lt;strong&gt;Roles :  &lt;/strong&gt;&lt;/span&gt;
+        &lt;span&gt;# {{user.roles.toString().split(&#x27;,&#x27;).join(&#x27; #&#x27;)}}&lt;/span&gt;
+    &lt;/p&gt;
+&lt;/mat-card&gt;   </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-styleData">
                 <p class="comment">
                     <code>./user-page.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss"></code></pre>
+                <pre class="line-numbers"><code class="language-scss">.UserInfoContainer{
+    height: 100%;
+}
+
+.alignLeft{
+    text-align : left;
+}</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -417,8 +381,8 @@ export class UserPageComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><p>    <span><strong>First Name : </strong></span>    <span>{{user.firstname}}</span></p><p>    <span><strong>Last Name : </strong></span>    <span>{{user.lastname}}</span></p><p *ngIf=\'user.phone\'>    <span><strong>Phone : </strong></span>    <span>{{user.phone}}</span></p></div>'
-    var COMPONENTS = [{'name': 'AdminPageComponent', 'selector': 'app-admin-page'},{'name': 'AllIssuesPageComponent', 'selector': 'app-all-issues'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'IssueDetailsPageComponent', 'selector': 'app-issue-details-page'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'ReportIssuePageComponent', 'selector': 'app-report-issue-page'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'ToolbarComponent', 'selector': 'app-toolbar'},{'name': 'UserPageComponent', 'selector': 'app-user-page'}];
+        var COMPONENT_TEMPLATE = '<div><mat-card >    <p>        <span><strong>First Name : </strong></span>        <span>{{user.firstname}}</span>    </p>    <p>        <span><strong>Last Name : </strong></span>        <span>{{user.lastname}}</span>    </p>    <p *ngIf=\'user.phone\'>        <span><strong>Phone : </strong></span>        <span>{{user.phone}}</span>    </p>    <p *ngIf=\'user.roles\'>        <span><strong>Roles :  </strong></span>        <span># {{user.roles.toString().split(\',\').join(\' #\')}}</span>    </p></mat-card>   </div>'
+    var COMPONENTS = [{'name': 'AdminPageComponent', 'selector': 'app-admin-page'},{'name': 'AllIssuesPageComponent', 'selector': 'app-all-issues'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CardComponent', 'selector': 'app-card'},{'name': 'CommentsListComponent', 'selector': 'app-comments-list'},{'name': 'ImageDialogBoxComponent', 'selector': 'app-image-dialog-box'},{'name': 'IssueDetailsPageComponent', 'selector': 'app-issue-details-page'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'ReportIssuePageComponent', 'selector': 'app-report-issue-page'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SignUpPageComponent', 'selector': 'app-sign-up-page'},{'name': 'ToolbarComponent', 'selector': 'app-toolbar'},{'name': 'UserPageComponent', 'selector': 'app-user-page'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'UserPageComponent'};
 </script>

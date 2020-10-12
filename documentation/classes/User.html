@@ -97,6 +97,9 @@
                                 <a href="#name">name</a>
                             </li>
                             <li>
+                                <a href="#password">password</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Optional</span>
                                 <a href="#phone">phone</a>
                             </li>
@@ -142,7 +145,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/app/models/user.ts:7</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/models/user.ts:8</a></div>
                             </td>
                         </tr>
 
@@ -225,7 +228,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/models/user.ts:8</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/models/user.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -263,6 +266,33 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="password"></a>
+                        <span class="name">
+                            <b>
+                            password</b>
+                            <a href="#password"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/app/models/user.ts:7</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="phone"></a>
                         <span class="name">
                             <b>
@@ -280,7 +310,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/models/user.ts:9</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/models/user.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -305,9 +335,14 @@
 
                         </td>
                     </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/models/user.ts:10</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/models/user.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -332,10 +367,11 @@ export class User {
   readonly id: string;
   readonly href: string;
   name: string;
+  password : string;
   firstname: string;
   lastname: string;
   phone?: string;
-  roles: Role[];
+  roles: Role[] &#x3D; [];
 }</code></pre>
     </div>
 </div>

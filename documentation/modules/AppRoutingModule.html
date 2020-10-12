@@ -146,23 +146,27 @@
 import { Routes, RouterModule } from &#x27;@angular/router&#x27;;
 import { LoginPageComponent } from &quot;./security/login-page/login-page.component&quot;;
 import { AuthGuard } from &quot;./security/guards/auth.guard&quot;;
+import { AdminGuard } from &quot;./security/guards/admin.guard&quot;;
+
 import { PagesModule } from &#x27;./pages/pages.module&#x27;
 import { ReportIssuePageComponent } from &#x27;./pages/report-issue-page/report-issue-page.component&#x27;;
 import { AllIssuesPageComponent } from &#x27;./pages/all-issues/all-issues-page.component&#x27;;
 import { UserPageComponent } from &#x27;./pages/user-page/user-page.component&#x27;;
 import { AdminPageComponent } from &#x27;./pages/admin-page/admin-page.component&#x27;;
 import { IssueDetailsPageComponent } from &#x27;./pages/issue-details-page/issue-details-page.component&#x27;;
+import { SignUpPageComponent } from &#x27;./pages/sign-up-page/sign-up-page.component&#x27;;
 
 
 const routes: Routes &#x3D; [
   // Add this default route to redirect to dummy
   { path: &quot;&quot;, redirectTo: &quot;reportIssue&quot;, pathMatch: &quot;full&quot; },
   { path: &quot;login&quot;, component: LoginPageComponent },
+  { path: &quot;singUp&quot;, component: SignUpPageComponent},
   { path: &quot;reportIssue&quot;, component: ReportIssuePageComponent, canActivate: [AuthGuard] },
   { path: &quot;allIssues&quot;, component: AllIssuesPageComponent, canActivate: [AuthGuard]},
   { path: &quot;myIssues&quot;, component:  AllIssuesPageComponent, canActivate: [AuthGuard]},
   { path: &quot;myAccount&quot;, component:  UserPageComponent, canActivate: [AuthGuard]},
-  { path: &quot;admin&quot;, component:  AdminPageComponent, canActivate: [AuthGuard]},
+  { path: &quot;admin&quot;, component:  AdminPageComponent, canActivate: [AuthGuard, AdminGuard]},
   { path: &quot;issue/:id&quot;, component:  IssueDetailsPageComponent, canActivate: [AuthGuard]},
   // Add the route to display the dummy page
 ];
