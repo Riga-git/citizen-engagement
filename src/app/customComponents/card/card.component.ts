@@ -10,6 +10,7 @@ import { Issue } from 'src/app/models/issue';
 export class CardComponent{
 
  @Input() issue: Issue = new Issue;
+ @Input() deletable: boolean = false;
  @Output() deleteClicked : EventEmitter<string> = new EventEmitter(); 
  @Output() moreClicked : EventEmitter<string> = new EventEmitter(); 
  @Output() cardClicked : EventEmitter<string> = new EventEmitter<string>();

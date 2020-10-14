@@ -21,7 +21,7 @@
                             'state-resolved' : issue.state === 'resolved'}">
                     {{issue.state}}
                 </p>
-                <button mat-raised-button color="secondary" class="deleteButton" (click)="onDeleteClicked(IdHolder.id)">
+                <button *ngIf="deletable" mat-raised-button color="secondary" class="deleteButton" (click)="onDeleteClicked(IdHolder.id)">
                     <mat-icon>delete_outline</mat-icon>
                 </button>
                 <button mat-raised-button color="primary" class="moreButton" (click)="onMoreClicked(IdHolder.id)">more</button>
