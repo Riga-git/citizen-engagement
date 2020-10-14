@@ -8,7 +8,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTable} from '@angular/material/table';
 import { animate, state, style, transition, trigger} from '@angular/animations';
 import { Router } from '@angular/router';
-import { MatSelect } from '@angular/material/select';
+import { AuthService } from 'src/app/security/auth.service';
 
 @Component({
   selector: 'app-all-issues',
@@ -41,7 +41,8 @@ export class AllIssuesPageComponent implements OnInit {
 
   constructor(private issueService: IssueService, 
               private router : Router, 
-              private snackBar: MatSnackBar) {}
+              private snackBar: MatSnackBar,
+              public auth : AuthService) {}
 
   ngOnInit(): void {
 

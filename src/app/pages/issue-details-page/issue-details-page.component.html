@@ -37,26 +37,26 @@
         </p>
         <br>
         <div class="changeIssueStatusContaintainer">
-          <button *ngIf="(currentIssue.creatorHref === auth.geUserHref() || auth.isAdminUser()) 
+          <button *ngIf="auth.isAdminUser()
                           && currentIssue.state ==='new'" 
-                          class="mt-5 mb-5 startBtn"  
-                          mat-raised-button type="button" 
-                          (click)="changeIssueStatus('start')">
-                          Start
+                  class="mt-5 mb-5 startBtn"  
+                  mat-raised-button type="button" 
+                  (click)="changeIssueStatus('start')">
+                  Start
           </button>
-          <button *ngIf="(currentIssue.creatorHref === auth.geUserHref() || auth.isAdminUser()) 
+          <button *ngIf="auth.isAdminUser()
                           && (currentIssue.state ==='new' || currentIssue.state ==='inProgress')"
-                          class="mt-5 mb-5 rejectBtn"  
-                          mat-raised-button 
-                          type="button" 
-                          (click)="changeIssueStatus('reject')">
-                          Reject
+                  class="mt-5 mb-5 rejectBtn"  
+                  mat-raised-button 
+                  type="button" 
+                  (click)="changeIssueStatus('reject')">
+                  Reject
           </button>
-          <button *ngIf="(currentIssue.creatorHref === auth.geUserHref() || auth.isAdminUser()) 
+          <button *ngIf="auth.isAdminUser()
                           && currentIssue.state ==='inProgress'"
-                          class="mt-5 mb-5 resolveBtn" mat-raised-button 
-                          type="button" (click)="changeIssueStatus('resolve')">
-                          Resolve
+                  class="mt-5 mb-5 resolveBtn" mat-raised-button 
+                  type="button" (click)="changeIssueStatus('resolve')">
+                  Resolve
           </button>
         </div>
         <br>
@@ -138,7 +138,8 @@
      <mat-form-field class="col-12" 
                      appearance="outline">
        <mat-label>Leave a comment</mat-label>
-          <textarea name="commentText" 
+          <textarea name="commentText"
+                    ngModel 
                     #commentText
                     matInput maxlength="1000"
                     placeholder="..."></textarea>
